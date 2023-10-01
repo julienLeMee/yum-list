@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     @reviews = Review.all
   end
@@ -13,7 +15,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params(:title, :content, :rating))
+    @review = current_user.reviews.new(review_params(:title, :content, :rating))
     @restaurant = Restaurant.find_by(id: params[:restaurant_id])
     @review.restaurant = @restaurant
     if @review.save
@@ -21,6 +23,10 @@ class ReviewsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def user_reviews
+    @user_reviews = current_user.reviews
   end
 
 private

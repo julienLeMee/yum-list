@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
 # GET /restaurants/:id/edit : Affiche le formulaire de modification d'un restaurant.
 # PATCH /restaurants/:id : Met à jour un restaurant spécifique.
 # DELETE /restaurants/:id : Supprime un restaurant spécifique.
+
+  root to: 'home#index'
 
   resources :restaurants
 end

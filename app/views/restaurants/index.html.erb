@@ -5,12 +5,13 @@
       <span class="title"><%= link_to restaurant.name, restaurant_path(restaurant) %></span>
       <br>
       <%= restaurant.address %>
-      <br>
       <%= restaurant.category %>
       <br>
-      <%= link_to "Delete", restaurant_path(restaurant), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce restaurant ?", turbo_method: :delete, turbo_confirm: "Delete #{restaurant.name}?" }, class: "btn-delete" %>
-      <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn-outline" %>
+      <%= link_to "Delete", restaurant_path(restaurant), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce restaurant ?", turbo_method: :delete, turbo_confirm: "Delete #{restaurant.name}?" }, class: "btn-primary-delete" %>
+      <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn-primary-outline" %>
       <br>
     </li>
   <% end %>
 </ul>
+<br><br>
+<%= link_to "Retour à l'accueil", root_path, class: "btn-primary" %>

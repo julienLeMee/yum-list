@@ -1,1 +1,16 @@
 <h1>Tout les restaurants</h1>
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <span class="title"><%= link_to restaurant.name, restaurant_path(restaurant) %></span>
+      <br>
+      <%= restaurant.address %>
+      <br>
+      <%= restaurant.category %>
+      <br>
+      <%= link_to "Delete", restaurant_path(restaurant), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce restaurant ?", turbo_method: :delete, turbo_confirm: "Delete #{restaurant.name}?" }, class: "btn-delete" %>
+      <%= link_to "Edit", edit_restaurant_path(restaurant), class: "btn-outline" %>
+      <br>
+    </li>
+  <% end %>
+</ul>

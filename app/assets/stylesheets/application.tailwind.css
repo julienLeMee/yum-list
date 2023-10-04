@@ -3,22 +3,69 @@
 @tailwind utilities;
 
 
-/* @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
-} */
+body {
+  background-color: #F9FAFB;
+}
 
-.container {
+
+@layer components {
+
+  .btn-primary {
+    @apply rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:cursor-pointer transition duration-200 ease-in-out;
+  }
+
+  .btn-secondary {
+    @apply rounded-md bg-indigo-50 px-3.5 py-2.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100 transition duration-200 ease-in-out;
+  }
+
+  .btn-outline {
+    @apply rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-indigo-600 hover:text-white shadow-sm ring-2 ring-inset ring-indigo-600 hover:bg-indigo-600 transition duration-200 ease-in-out;
+  }
+
+  .btn-delete {
+    @apply rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition duration-200 ease-in-out;
+  }
+
+  .btn-text {
+    @apply rounded-md bg-white py-2.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition duration-200 ease-in-out;
+  }
+
+}
+
+
+.inner {
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100%;
 }
 
-.btn-primary {
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  .inner {
+    width: 90%;
+  }
+
+}
+
+
+/* .btn-primary {
   padding: 0.5rem 1rem;
   background-color: #3182ce;
   color: #fff;
@@ -47,4 +94,4 @@
 .btn-primary-outline:hover {
   background-color: #3182ce;
   color: #fff;
-}
+} */

@@ -1,0 +1,14 @@
+<h2>Ajouter un nouveau restaurant</h2>
+
+<%= simple_form_for @restaurant do |f| %>
+  <%= f.input :name %>
+  <%= f.input :address %>
+  <%= f.input :category %>
+  <%= f.input :description %>
+
+  <div class="actions">
+    <%= f.submit "Create Restaurant" %>
+  </div>
+<% end %>
+
+<%= link_to "Retour à la liste des restaurants", restaurants_path %>

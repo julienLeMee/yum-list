@@ -1,8 +1,14 @@
-<div class="container">
-  <h1 class="text-3xl font-bold mx-auto w-full"><%= @welcome_message %></h1>
-  <% if user_signed_in? %>
-    <%= link_to "Se déconnecter", logout_path, method: :get, data: { confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn-primary-outline" %>
-  <% else %>
-    <%= link_to "Se connecter", new_user_session_path, class: "btn-primary" %>
-  <% end %>
+<div class="container mx-auto">
+  <div class="inner">
+    <span class="title"><%= @welcome_message %></span>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to "Se déconnecter", logout_path, method: :get, data: { confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "btn-primary-outline mt-8" %>
+      <% else %>
+        <%= link_to "Se connecter", new_user_session_path, class: "btn-primary mt-8" %>
+      <% end %>
+      <%= link_to "Voir les restaurants", restaurants_path, class: "btn-primary-outline mt-8" %>
+      <%= link_to "Ajouter un restaurant", new_restaurant_path, class: "btn-primary-outline mt-8" %>
+    </div>
+  </div>
 </div>

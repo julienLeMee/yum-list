@@ -21,6 +21,12 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    @restaurant.destroy
+    redirect_to restaurants_path(@restaurant), status: :see_other, notice: "Restaurant supprimé avec succès."
+  end
+
 private
 
   def restaurant_params

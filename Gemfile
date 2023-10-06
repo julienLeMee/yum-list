@@ -33,6 +33,9 @@ gem "devise"
 # Simple form
 gem 'simple_form'
 
+# Tailwind CSS
+gem "tailwindcss-rails"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -76,5 +79,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "tailwindcss-rails"

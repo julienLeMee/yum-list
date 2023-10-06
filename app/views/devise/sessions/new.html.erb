@@ -1,30 +1,3 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false } }) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2 class="mt-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Se connecter</h2>
@@ -32,31 +5,31 @@
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
     <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-      <form class="space-y-6" action="" method="post">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false }, class: "space-y-6" }) do |f| %>
         <div>
-          <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <label class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div class="mt-2">
-              <input id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
           </div>
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-              <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
-              <div class="text-sm">
-                  <a href="{% url 'password_reset' %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Mot de passe oublié?</a>
-              </div>
+            <label class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
+            <div class="text-sm">
+              <a href="{% url 'password_reset' %}" class="font-semibold text-indigo-600 hover:text-indigo-500">Mot de passe oublié?</a>
+            </div>
           </div>
           <div class="mt-2">
-              <input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <%= f.password_field :password, autocomplete: "current-password", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
           </div>
-      </div>
+        </div>
 
         <div>
           <button type="submit" value="Login" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
         </div>
-      </form>
-    </div>
 
+      <% end %>
+    </div>
   </div>
 </div>

@@ -6,5 +6,7 @@ class HomeController < ApplicationController
     else
       @welcome_message = "Bienvenue sur Yum List 😋 !"
     end
+
+    @restaurants = Restaurant.all
   end
 end

@@ -1,46 +1,46 @@
 <main class="py-10 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
-    <form class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+    <%= form_with model: @restaurant, local: true do |f| %>
+      <div class="shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-6 sm:p-8">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-      <div class="px-4 py-6 sm:p-8">
-        <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="col-span-6">
+              <%= f.label :name, "Nom", class: "block text-sm font-medium leading-6 text-white" %>
+              <div class="mt-2">
+                <%= f.text_field :name, autocomplete: "given-name", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
 
-          <div class="col-span-6">
-            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
-            <div class="mt-2">
-                <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <!-- Ajoutez les autres champs du formulaire de la même manière -->
+
+            <div class="col-span-6">
+              <%= f.label :address, "Adresse", class: "block text-sm font-medium leading-6 text-white" %>
+              <div class="mt-2">
+                <%= f.text_field :address, autocomplete: "address", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.label :category, "Catégorie", class: "block text-sm font-medium leading-6 text-white" %>
+              <div class="mt-2">
+                <%= f.text_field :category, autocomplete: "category", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-white" %>
+              <div class="mt-2">
+                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+              </div>
+            </div>
+
+            <div class="col-span-6">
+              <%= f.submit "Add Restaurant", class: "rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus:ring focus:ring-offset-2 focus:ring-indigo-500" %>
             </div>
           </div>
-
-          <div class="col-span-6">
-            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Adresse</label>
-            <div class="mt-2">
-                <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-
-          <div class="col-span-6">
-            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Catégorie</label>
-            <div class="mt-2">
-                <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-
-          <div class="col-span-6">
-            <label for="{{ form.first_name.id_for_label }}" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
-            <div class="mt-2">
-                <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            </div>
-          </div>
-
-
         </div>
       </div>
-
-      <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8 flex-wrap gap-4">
-        <%= link_to "Retour à la liste des restaurants", restaurants_path, class: "rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-indigo-600 hover:text-white shadow-sm ring-2 ring-inset ring-indigo-600 hover:bg-indigo-600 transition duration-200 ease-in-out" %>
-      </div>
-
-    </form>
+    <% end %>
   </div>
 </main>

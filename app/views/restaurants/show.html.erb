@@ -1,5 +1,5 @@
-<div class="bg-white py-24 sm:py-32">
-  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+<main class="py-10 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-12 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl m-12 py-12">
     <div class="mx-auto lg:mx-0">
       <div class="flex justify-between w-full">
         <p class="text-base font-semibold leading-7 text-indigo-600"><%= @restaurant.category %></p>
@@ -12,8 +12,15 @@
       <p class="mt-1 text-xs leading-5 text-gray-500"><%= @restaurant.address %></p>
       <p class="mt-6 text-lg leading-8 text-gray-600"><%= @restaurant.description %></p>
     </div>
-    <div class="mt-6 flex border-t border-gray-900/5 pt-6">
-      <%= link_to "Back to restaurants", restaurants_path, class: "rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-    </div>
+  <div class="">
+    <label  class="block font-medium py-4">Rating :</label>
+    <select name="rating" class="mt-1 block w-16 pl-4 rounded-md border-0 bg-white py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-800 sm:text-sm sm:leading-6">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
   </div>
-</div>
+  </div>
+</main>

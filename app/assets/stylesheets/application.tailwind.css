@@ -4,8 +4,13 @@
 
 
 body {
-  background-color: rgb(17 24 39);
+  background-color: rgba(17 24 39 / 95%);
   height: 100vh;
+}
+
+.is-active {
+  background-color: rgb(31, 41, 55);
+  color: #fff!important;
 }
 
 @layer components {

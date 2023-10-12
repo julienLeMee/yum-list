@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_01_211004) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_12_050612) do
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "address"
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_211004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -41,5 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_01_211004) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "restaurants", "users"
   add_foreign_key "reviews", "restaurants"
 end

@@ -29,12 +29,9 @@ const closeMenuButton = document.getElementById("close-menu-button");
 const sideMenu = document.querySelector('.side-menu'); // Sélectionnez le menu mobile
 
   openMenuButton.addEventListener("click", () => {
-    // Vérifiez si le menu a la classe "hidden"
     if (sideMenu.classList.contains("hidden")) {
-      // Si le menu est caché, le montrer en supprimant la classe "hidden"
       sideMenu.classList.remove("hidden");
     } else {
-      // Si le menu est visible, le cacher en ajoutant la classe "hidden"
       sideMenu.classList.add("hidden");
     }
   });
@@ -45,5 +42,4 @@ const sideMenu = document.querySelector('.side-menu'); // Sélectionnez le menu 
     } else {
       sideMenu.classList.add("hidden");
     }
-  }
-);
+  });

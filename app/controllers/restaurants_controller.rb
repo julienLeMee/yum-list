@@ -1,6 +1,12 @@
 class RestaurantsController < ApplicationController
   def index
     @restaurants = current_user.restaurants
+    @google_map_key = ENV['GOOGLE_MAP_KEY']
+  end
+
+  def restaurant_list
+    @restaurants = current_user.restaurants
+    render json: { restaurants: @restaurants }
   end
 
   def show

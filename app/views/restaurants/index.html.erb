@@ -1,9 +1,22 @@
 <main class="py-10 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 my-20">
+      <% categories = [] %>
+      <% @restaurants.each do |restaurant| %>
+        <% unless categories.include?(restaurant.category) %>
+          <% categories << restaurant.category %>
+          <a href="#<%= restaurant.category.parameterize %>" class="p-6 border-2 border-white hover:bg-white text-white hover:text-gray-900 rounded-xl">
+            <h2 class="text-xl font-semibold">
+              <%= restaurant.category %>
+            </h2>
+          </a>
+        <% end %>
+      <% end %>
+    </div>
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <h2 class="pt-4 text-xl font-semibold text-white">
+        <h2 class="pt-4 text-xl font-semibold text-white" id="<%= category.parameterize %>">
           <%= category %>
         </h2>
         <ul role="list" class="">
@@ -46,8 +59,6 @@
       <% else %>
       <p class="text-white">Aucun restaurant dans ma liste</p>
     <% end %>
-
-  <div id="map" class= "w-full mx-auto h-[600px] my-20 rounded-xl"></div>
 
   </div>
 </main>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  --scroll-behavior: smooth!important;
+  scroll-behavior: smooth!important;
+}
 
 body {
   background-color: rgba(17 24 39 / 95%);

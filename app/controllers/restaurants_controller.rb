@@ -3,6 +3,14 @@ class RestaurantsController < ApplicationController
     @restaurants = current_user.restaurants
   end
 
+  def tested_restaurants
+    @restaurants = current_user.restaurants.where(tested: true)
+  end
+
+  def untested_restaurants
+    @restaurants = current_user.restaurants.where(tested: false)
+  end
+
   def restaurant_list
     @restaurants = current_user.restaurants
     render json: { restaurants: @restaurants }

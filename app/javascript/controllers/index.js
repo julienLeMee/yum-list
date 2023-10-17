@@ -24,35 +24,68 @@ eagerLoadControllersFrom("controllers", application)
 //   });
 // });
 
-const openMenuButton = document.getElementById("open-menu-button");
-const closeMenuButton = document.getElementById("close-menu-button");
-const sideMenu = document.querySelector('.side-menu'); // Sélectionnez le menu mobile
-
-  openMenuButton.addEventListener("click", () => {
-    if (sideMenu.classList.contains("hidden")) {
-      sideMenu.classList.remove("hidden");
-    } else {
-      sideMenu.classList.add("hidden");
-    }
-  });
-
-  closeMenuButton.addEventListener("click", () => {
-    if (sideMenu.classList.contains("hidden")) {
-      sideMenu.classList.remove("hidden");
-    } else {
-      sideMenu.classList.add("hidden");
-    }
-  });
 
 
-  const googleMapsApiKey = window.GOOGLE_MAPS_API_KEY;
+// function attachMenuEventHandlers() {
+//   const openMenuButton = document.getElementById("open-menu-button");
+//   const closeMenuButton = document.getElementById("close-menu-button");
+//   const sideMenu = document.querySelector('.side-menu');
+//   openMenuButton.addEventListener("click", () => {
+//     console.log("click");
+//     if (sideMenu.classList.contains("hidden")) {
+//       sideMenu.classList.remove("hidden");
+//     }
+//     else {
+//       sideMenu.classList.add("hidden");
+//     }
+//   });
+
+//   closeMenuButton.addEventListener("click", () => {
+//     if (sideMenu.classList.contains("hidden")) {
+//       sideMenu.classList.remove("hidden");
+//     }
+//     else {
+//       sideMenu.classList.add("hidden");
+//     }
+//   });
+// }
+
+// attachMenuEventHandlers();
+
+function openMenu() {
+  const sideMenu = document.querySelector('.side-menu');
+  sideMenu.classList.remove("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const openMenuButton = document.getElementById("open-menu-button");
+
+  if (openMenuButton) {
+    openMenuButton.addEventListener("click", openMenu);
+  }
+});
+
+
+function closeMenu() {
+  const sideMenu = document.querySelector('.side-menu');
+  sideMenu.classList.add("hidden");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const closeMenuButton = document.getElementById("close-menu-button");
+
+  if (closeMenuButton) {
+    closeMenuButton.addEventListener("click", closeMenu);
+  }
+});
+
+
 // Initialize and add the map
 let map;
 let userLocation;
 
 async function initMap() {
-  // Request needed libraries.
-  //@ts-ignore
+
   const { Map } = await google.maps.importLibrary("maps");
   const { Marker } = await google.maps.importLibrary("marker");
   const geocoder = new google.maps.Geocoder();
@@ -78,40 +111,10 @@ async function initMap() {
         title: "Votre position actuelle",
       });
 
-// Utilisez AJAX pour récupérer la liste de restaurants depuis votre contrôleur
-$.ajax({
-  url: "/restaurant_list", // Utilisez le chemin d'accès de votre route
-  method: "GET",
-  dataType: "json",
-  success: function (data) {
-    const restaurants = data.restaurants;
-
-    // Parcourez la liste de restaurants récupérée depuis le contrôleur
-    restaurants.forEach(function (restaurant) {
-      geocoder.geocode(
-        { address: restaurant.address },
-        (results, status) => {
-          if (status === "OK" && results[0].geometry) {
-            const restaurantLocation = results[0].geometry.location;
-
-            // Créez un marqueur pour le restaurant avec ses informations
-            new Marker({
-              map: map,
-              position: restaurantLocation,
-              title: restaurant.name,
-              label: restaurant.name, // Affichez le nom du restaurant au-dessus du marqueur
-            });
-          }
-        }
-      );
-    });
-  },
-});
-
     });
   }
 }
 
-window.addEventListener("load", () => {
+document.addEventListener("turbolinks:load", () => {
   initMap();
 });

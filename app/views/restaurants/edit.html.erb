@@ -6,31 +6,50 @@
           <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
 
             <div class="col-span-6">
-              <%= f.label :name, "Nom", class: "block text-sm font-medium leading-6 text-white" %>
+              <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-white" %>
               <div class="mt-2">
                 <%= f.text_field :name, class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
-              <%= f.label :address, "Adresse", class: "block text-sm font-medium leading-6 text-white" %>
+              <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-white" %>
               <div class="mt-2">
                 <%= f.text_field :address, class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
-              <%= f.label :category, "Catégorie", class: "block text-sm font-medium leading-6 text-white" %>
+              <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-white" %>
               <div class="mt-2">
-                <%= f.text_field :category, class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
-            <div class="col-span-6">
-              <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-white" %>
-              <div class="mt-2">
-                <%= f.text_field :description, class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
-              </div>
+            <div class="col-span-6 sm:col-span-3">
+              <%= f.label :category, "Category", class: "block text-sm font-medium leading-6 text-white" %>
+              <%= f.select :category, options_for_select([
+                "Asian",
+                "Ramen",
+                "Sushi",
+                "Japanese BBQ",
+                "Italian",
+                "Pizza",
+                "Burger",
+                "Vegan",
+                "Indian",
+                "Mexican",
+                "French",
+                "Brunch",
+                "Bar",
+                "Patisserie",
+                "Other"
+                ], @restaurant.category), { include_blank: 'Select a category' }, class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+
+            <div class="col-span-6 sm:col-span-3">
+              <%= f.label :rating, "Rating", class: "block text-sm font-medium leading-6 text-white" %>
+              <%= f.select :rating, options_for_select([1, 2, 3, 4, 5], @restaurant.rating), class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
             </div>
 
             <div class="col-span-6">
@@ -38,16 +57,9 @@
               <%= f.check_box :tested, class:"h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
             </div>
 
-            <div class="col-span-6">
-              <div class="col-span-6">
-                <%= f.label :rating, "Rating", class: "block text-sm font-medium leading-6 text-white" %>
-                <%= f.select :rating, options_for_select([1, 2, 3, 4, 5], @restaurant.rating), class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-              </div>
-            </div>
-
 
             <div class="col-span-6">
-              <%= f.submit "Mettre à jour Restaurant", class: "rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus:ring focus:ring-offset-2 focus:ring-indigo-500" %>
+              <%= f.submit "Update restaurant", class: "rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus:ring focus:ring-offset-2 focus:ring-indigo-500" %>
             </div>
           </div>
         </div>

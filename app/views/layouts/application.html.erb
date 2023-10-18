@@ -63,7 +63,7 @@
             To: "opacity-0"
         -->
         <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-          <button type="button" class="-m-2.5 p-2.5" id="close-menu-button" click="closeMenu">
+          <button type="button" class="-m-2.5 p-2.5" id="close-menu-button">
             <span class="sr-only">Close sidebar</span>
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -242,14 +242,14 @@
   </div>
 
   <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-    <button type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden" id="open-menu-button" click="openMenu">
+    <button type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden" id="open-menu-button">
       <span class="sr-only">Open sidebar</span>
       <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
     </button>
     <div class="flex-1 text-sm font-semibold leading-6 text-white">Yum List</div>
-    <a href="#" class="text-white">
+    <a href="#" class="text-white my-button">
       <span class="sr-only">Your profile</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
         <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
@@ -289,10 +289,5 @@
 
     <%= yield %>
 
-    <script>
-      (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-        key: "<%= @google_map_key %>",
-      });
-    </script>
   </body>
 </html>

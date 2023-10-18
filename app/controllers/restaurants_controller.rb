@@ -11,10 +11,10 @@ class RestaurantsController < ApplicationController
     @restaurants = current_user.restaurants.where(tested: false)
   end
 
-  def restaurant_list
-    @restaurants = current_user.restaurants
-    render json: { restaurants: @restaurants }
-  end
+  # def restaurant_list
+  #   @restaurants = current_user.restaurants
+  #   render json: { restaurants: @restaurants }
+  # end
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])

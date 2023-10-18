@@ -10,111 +10,68 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-// const tabs = document.querySelectorAll(".group");
+// function openMenu() {
+//   console.log("menu opened")
+//   const sideMenu = document.querySelector('.side-menu');
+//   sideMenu.classList.remove("hidden");
+// }
 
-// tabs.forEach((tab) => {
-//   tab.addEventListener("click", (e) => {
-//     tab.classList.add("is-active");
-//     e.preventDefault();
-//     tabs.forEach((otherTab) => {
-//       if (otherTab !== tab) {
-//         otherTab.classList.remove("is-active");
-//       }
-//     });
-//   });
+// function closeMenu() {
+//   console.log("menu closed")
+//   const sideMenu = document.querySelector('.side-menu');
+//   sideMenu.classList.add("hidden");
+// }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const openMenuButton = document.getElementById("open-menu-button");
+//   const closeMenuButton = document.getElementById("close-menu-button");
+
+//   if (openMenuButton) {
+//     openMenuButton.addEventListener("click", openMenu);
+//   }
+
+//   if (closeMenuButton) {
+//     closeMenuButton.addEventListener("click", closeMenu);
+//   }
 // });
 
 
 
-// function attachMenuEventHandlers() {
-//   const openMenuButton = document.getElementById("open-menu-button");
-//   const closeMenuButton = document.getElementById("close-menu-button");
-//   const sideMenu = document.querySelector('.side-menu');
-//   openMenuButton.addEventListener("click", () => {
-//     console.log("click");
-//     if (sideMenu.classList.contains("hidden")) {
-//       sideMenu.classList.remove("hidden");
-//     }
-//     else {
-//       sideMenu.classList.add("hidden");
-//     }
-//   });
+// // Initialize and add the map
+// let map;
+// let userLocation;
 
-//   closeMenuButton.addEventListener("click", () => {
-//     if (sideMenu.classList.contains("hidden")) {
-//       sideMenu.classList.remove("hidden");
-//     }
-//     else {
-//       sideMenu.classList.add("hidden");
-//     }
-//   });
+// async function initMap() {
+
+//   const { Map } = await google.maps.importLibrary("maps");
+//   const { Marker } = await google.maps.importLibrary("marker");
+//   const geocoder = new google.maps.Geocoder();
+
+//   // Obtenir la géolocalisation de l'utilisateur
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition((position) => {
+//       userLocation = {
+//         lat: position.coords.latitude,
+//         lng: position.coords.longitude,
+//       };
+
+//       // Créez la carte centrée sur la géolocalisation de l'utilisateur
+//       map = new Map(document.getElementById("map"), {
+//         zoom: 15, // Niveau de zoom initial
+//         center: userLocation, // Centrez la carte sur la géolocalisation de l'utilisateur
+//       });
+
+//       // Créez un marqueur pour la position de l'utilisateur
+//       const userMarker = new Marker({
+//         map: map,
+//         position: userLocation,
+//         title: "Votre position actuelle",
+//       });
+
+//     });
+//   }
 // }
 
-// attachMenuEventHandlers();
-
-function openMenu() {
-  const sideMenu = document.querySelector('.side-menu');
-  sideMenu.classList.remove("hidden");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const openMenuButton = document.getElementById("open-menu-button");
-
-  if (openMenuButton) {
-    openMenuButton.addEventListener("click", openMenu);
-  }
-});
-
-
-function closeMenu() {
-  const sideMenu = document.querySelector('.side-menu');
-  sideMenu.classList.add("hidden");
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  const closeMenuButton = document.getElementById("close-menu-button");
-
-  if (closeMenuButton) {
-    closeMenuButton.addEventListener("click", closeMenu);
-  }
-});
-
-
-// Initialize and add the map
-let map;
-let userLocation;
-
-async function initMap() {
-
-  const { Map } = await google.maps.importLibrary("maps");
-  const { Marker } = await google.maps.importLibrary("marker");
-  const geocoder = new google.maps.Geocoder();
-
-  // Obtenir la géolocalisation de l'utilisateur
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      userLocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-
-      // Créez la carte centrée sur la géolocalisation de l'utilisateur
-      map = new Map(document.getElementById("map"), {
-        zoom: 15, // Niveau de zoom initial
-        center: userLocation, // Centrez la carte sur la géolocalisation de l'utilisateur
-      });
-
-      // Créez un marqueur pour la position de l'utilisateur
-      const userMarker = new Marker({
-        map: map,
-        position: userLocation,
-        title: "Votre position actuelle",
-      });
-
-    });
-  }
-}
-
-document.addEventListener("turbolinks:load", () => {
-  initMap();
-});
+// document.addEventListener("turbolinks:load", () => {
+//   initMap();
+// });

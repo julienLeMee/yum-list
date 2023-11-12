@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
-  <div class="py-10 lg:pl-72">
-    <div class="px-4 sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Bienvenue sur Yum List</h1>
-      <p class="mt-6 text-lg leading-8 text-gray-300">Bonjour <%= current_user.email %> !</p>
+  <main class="lg:pl-72 h-full flex items-center justify-center">
+  <div class="px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl text-center font-bold tracking-tight text-white sm:text-6xl">Bienvenue sur Yum List</h1>
+      <p class="mt-6 text-xl text-center leading-8 text-gray-300"><%= current_user.email %> !</p>
     </div>
   </div>
 <% else %>
@@ -18,7 +18,7 @@
         </div>
         <div class="text-center">
           <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Yum List</h1>
-          <p class="mt-6 text-lg leading-8 text-gray-300">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+          <p class="mt-6 text-lg leading-8 text-gray-300 p-4">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <a href="<%= new_user_session_path %>" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</a>
           </div>

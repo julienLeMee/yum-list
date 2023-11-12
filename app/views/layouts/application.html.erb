@@ -2,7 +2,18 @@
 <html>
   <head>
     <title>YumList</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Utilisez la méta-balise viewport pour définir le comportement sur les appareils mobiles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <!-- Ajoutez cette méta-balise pour activer le mode plein écran sur certains navigateurs -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- Définissez la couleur de la barre d'adresse sur certains navigateurs mobiles -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Définissez la couleur de fond lorsqu'il s'agit d'une application mobile sur iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>

@@ -5,7 +5,7 @@
     <!-- Utilisez la méta-balise viewport pour définir le comportement sur les appareils mobiles -->
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <!-- Ajoutez cette méta-balise pour activer le mode plein écran sur certains navigateurs -->
+    <%# <!-- Ajoutez cette méta-balise pour activer le mode plein écran sur certains navigateurs -->
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <!-- Définissez la couleur de la barre d'adresse sur certains navigateurs mobiles -->
@@ -13,7 +13,7 @@
 
     <!-- Définissez la couleur de fond lorsqu'il s'agit d'une application mobile sur iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= javascript_importmap_tags %>
@@ -48,7 +48,7 @@
           <nav class="flex flex-1 flex-col">
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
-                <ul role="list" class="-mx-2 space-y-1 flex justify-between flex-wrap">
+                <ul role="list" class="-mx-2 space-y-1 flex justify-between flex-wrap align-baseline">
                   <li>
                     <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
                     <%= link_to root_path, class: "bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" do %>

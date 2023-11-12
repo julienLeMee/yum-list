@@ -10,6 +10,26 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Récupérez la case à cocher et la div du rating
+  const testedCheckbox = document.getElementById('tested_checkbox');
+  const ratingDiv = document.getElementById('ratingDiv');
+
+  // Fonction pour mettre à jour la visibilité de la div en fonction de l'état de la case à cocher
+  function updateRatingVisibility() {
+    ratingDiv.style.visibility = testedCheckbox.checked ? 'visible' : 'hidden';
+  }
+
+  // Ajoutez un écouteur d'événements pour mettre à jour la visibilité lorsqu'il y a un changement dans la case à cocher
+  testedCheckbox.addEventListener('change', updateRatingVisibility);
+
+  // Appelez la fonction une fois pour garantir que la visibilité est correcte au chargement de la page
+  updateRatingVisibility();
+});
+
+
+
 // function openMenu() {
 //   console.log("menu opened")
 //   const sideMenu = document.querySelector('.side-menu');

@@ -4,7 +4,7 @@
     <title>YumList</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Utilisez la méta-balise viewport pour définir le comportement sur les appareils mobiles -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%# <!-- Ajoutez cette méta-balise pour activer le mode plein écran sur certains navigateurs -->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,7 +50,7 @@
             <ul role="list" class="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" class="-mx-2 space-y-1 flex justify-between flex-wrap align-baseline">
-                  <li>
+                  <li class="mt-auto">
                     <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
                     <%= link_to root_path, class: "bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" do %>
                       <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

@@ -164,12 +164,21 @@
 
     <div class="fixed w-full top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
       <div class="flex-1 text-sm font-semibold leading-6 text-white">Yum List</div>
-        <a href="#" class="text-white my-button">
-          <span class="sr-only">Your profile</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-            <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-          </svg>
-        </a>
+      <% if user_signed_in? %>
+        <%= link_to dashboard_path, class: "text-white my-button" do %>
+            <span class="sr-only">Your profile</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+              <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+            </svg>
+        <% end %>
+      <% else %>
+        <%= link_to login_path, class: "text-white my-button" do %>
+            <span class="sr-only">Your profile</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+              <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+            </svg>
+        <% end %>
+      <% end %>
       </div>
     </div>
 

@@ -1,10 +1,13 @@
 # app/controllers/users_controller.rb
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:logout]
+  before_action :authenticate_user!, only: [:show, :logout]
+
+  def show
+    @user = current_user
+  end
 
   def logout
     sign_out current_user
-    redirect_to root_path, notice: "Vous avez été déconnecté avec succès."
+    redirect_to root_path, notice: 'Vous avez été déconnecté avec succès.'
   end
-
 end

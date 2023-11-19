@@ -6,7 +6,7 @@
     </h2>
 
     <p class="pt-4 text-base font-semibold text-white">
-      <%= @current_user.email %>
+      Vous avez <%= pluralize(current_user.restaurants.count, "restaurant") %> dans votre liste.
     </p>
 
   </div>

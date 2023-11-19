@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @restaurants = @user.restaurants
   end
 
   def logout

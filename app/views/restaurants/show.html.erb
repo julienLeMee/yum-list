@@ -1,8 +1,8 @@
 <main class="pt-16 pb-28 lg:pl-72">
-  <div class="px-6 lg:px-12 bg-gray-800 rounded-xl m-6 py-12 ring-1 ring-inset ring-gray-50">
+  <div class="px-6 lg:px-12 bg-[#ff6347] rounded-xl m-6 py-12 ring-1 ring-inset ring-gray-50">
     <div class="mx-auto lg:mx-0">
       <div class="flex justify-between w-full items-center">
-        <p class="text-base font-semibold leading-7 text-indigo-600"><%= @restaurant.category %></p>
+        <p class="text-base font-semibold leading-7 text-white"><%= @restaurant.category %></p>
         <div class="flex gap-2">
           <%= link_to edit_restaurant_path(@restaurant), class: "hover:bg-gray-700 p-2 rounded-full" do %>
             <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="white">
@@ -15,8 +15,8 @@
         </div>
       </div>
       <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl"><%= @restaurant.name %></h2>
-      <p class="mt-1 text-xs leading-5 text-gray-400"><%= @restaurant.address %></p>
-      <p class="mt-6 text-lg leading-8 text-gray-300"><%= @restaurant.description %></p>
+      <p class="mt-1 text-xs leading-5 text-white"><%= @restaurant.address %></p>
+      <p class="mt-6 text-lg leading-8 text-white"><%= @restaurant.description %></p>
     </div>
   </div>
 </main>

@@ -1,6 +1,6 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
-    <h2 class="pt-4 text-2xl font-semibold text-white">
+    <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
       Untested restaurants
     </h2>
 
@@ -9,7 +9,7 @@
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="flex flex-col gap-4 items-center justify-center p-6 border-2 border-white hover:bg-white text-white hover:text-gray-900 rounded-xl">
+          <a href="#<%= restaurant.category.parameterize %>" class="flex flex-col gap-4 items-center justify-center p-6 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
             <% if restaurant.category == "Asiatique" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2m0 20C6.5 22 2 17.5 2 12S6.5 2 12 2m0 20V12m0-10v10m0 0 5 5.5M12 12l5-5m-5 5h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
@@ -43,14 +43,14 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <h2 class="pt-4 text-xl font-semibold text-white" id="<%= category.parameterize %>">
+        <h2 class="pt-4 text-xl font-semibold text-[--color--text--primary]" id="<%= category.parameterize %>">
           <%= category %>
         </h2>
         <ul role="list" class="">
-          <div class="flex flex-col gap-2 my-6 overflow-hidden">
+          <div class="flex flex-col gap-2 my-6">
             <% restaurants.each do |restaurant| %>
               <li>
-                <a href="<%= restaurant_path(restaurant) %>" class="relative block hover:bg-gray-50 bg-white shadow-sm ring-1 ring-gray-900/5 rounded-xl">
+                <a href="<%= restaurant_path(restaurant) %>" class="relative block bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
                   <% if restaurant.tested? %>
                     <div class="bg-green-500 w-2 h-2 rounded-full absolute top-2 right-2"></div>
                   <% end %>
@@ -84,7 +84,7 @@
         </ul>
       <% end %>
       <% else %>
-      <p class="text-white text-center">Aucun restaurant dans ma liste !</p>
+      <p class="text-[--color--text--primary] text-center">Aucun restaurant dans ma liste !</p>
       <%= link_to new_restaurant_path, class: "text-center text-gray-400 hover:text-white hover:bg-gray-800 group flex justify-center rounded-md p-2 text-sm leading-6 font-semibold" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
           <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>

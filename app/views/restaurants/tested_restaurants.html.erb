@@ -1,22 +1,22 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <h2 class="pt-4 text-2xl font-semibold text-white">
+    <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
       Tested restaurants
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4 my-12">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 my-12">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="flex flex-col gap-4 items-center justify-center p-6 border-2 border-white hover:bg-white text-white hover:text-gray-900 rounded-xl">
-            <% if restaurant.category == "Asiatique" %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2m0 20C6.5 22 2 17.5 2 12S6.5 2 12 2m0 20V12m0-10v10m0 0 5 5.5M12 12l5-5m-5 5h7"></path></svg>
+          <a href="#<%= restaurant.category.parameterize %>" class="flex flex-col gap-4 items-center justify-center p-6 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
+            <% if restaurant.category == "Asian" %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path stroke="currentColor" stroke-width="1.5" d="M2 12h7M15 12h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2m0 20C6.5 22 2 17.5 2 12S6.5 2 12 2m0 20V12m0-10v10m0 0 5 5.5M12 12l5-5m-5 5h7"></path></svg>
             <% elsif restaurant.category == "Sushi" %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2m0 20C6.5 22 2 17.5 2 12S6.5 2 12 2m0 20V12m0-10v10m0 0 5 5.5M12 12l5-5m-5 5h7"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M10.5 9s0-2-1-4c4 0 6.5 2.5 6.5 2.5s3.5-.5 6 4.5c-1 5.5-6 6-6 6l-4 2.5v-3c-2.5-1-5-3.5-5-5S10.5 9 10.5 9Zm0 0s1-.5 2-.5M2 9.5l1 3-1 3s5 0 5-3-5-3-5-3ZM17 12.01l.01-.011"></path></svg>
             <% elsif restaurant.category == "Japanese BBQ" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8.5 14.5 5 22M8 6s1-1.061 1-2c0-1.333-1-2-1-2M12 6s1-1.061 1-2c0-1.333-1-2-1-2M16 6s1-1.061 1-2c0-1.333-1-2-1-2"></path><path stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M16.5 17.5h-9"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m15.5 14.5 2.1 4.5M18.5 22a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path><path stroke="currentColor" stroke-width="1.5" d="M12 15a7 7 0 0 0 6.975-6.4.563.563 0 0 0-.575-.6H5.6a.563.563 0 0 0-.575.6A7 7 0 0 0 12 15Z"></path></svg>
             <% elsif restaurant.category == "Pizza" %>
@@ -28,9 +28,7 @@
             <% elsif restaurant.category == "Indian" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 20V9S3 4 9.5 4H17c7 0 3 5 3 5v9a2 2 0 0 1-2 2H7Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 20H6a2 2 0 0 1-2-2V9S0 4 6.5 4H10"></path></svg>
             <% elsif restaurant.category == "Vegan" || restaurant.category == "Végétarien" %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 21s.5-4.5 4-8.5"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m19.13 4.242.594 6.175c.374 3.886-2.54 7.346-6.425 7.72-3.813.367-7.267-2.42-7.634-6.233a6.936 6.936 0 0 1 6.239-7.569l6.571-.632a.6.6 0 0 1 .655.54Z"></path>
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 21s.5-4.5 4-8.5"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m19.13 4.242.594 6.175c.374 3.886-2.54 7.346-6.425 7.72-3.813.367-7.267-2.42-7.634-6.233a6.936 6.936 0 0 1 6.239-7.569l6.571-.632a.6.6 0 0 1 .655.54Z"></path></svg>
             <% else %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 20h3m3 0H9m0 0v-5M17 20v-8s2.5-1 2.5-3V4.5M17 8.5v-4M4.5 11c1 2.128 4.5 4 4.5 4s3.5-1.872 4.5-4c1.08-2.297 0-6.5 0-6.5h-9s-1.08 4.203 0 6.5Z"></path></svg>
             <% end %>
@@ -44,21 +42,39 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <h2 class="pt-4 text-xl font-semibold text-white" id="<%= category.parameterize %>">
+        <h2 class="pt-4 text-xl font-semibold text-[--color--text--primary]" id="<%= category.parameterize %>">
           <%= category %>
         </h2>
         <ul role="list" class="">
-          <div class="flex flex-col gap-2 my-6 overflow-hidden">
+          <div class="flex flex-col gap-2 my-6">
             <% restaurants.each do |restaurant| %>
               <li>
-                <a href="<%= restaurant_path(restaurant) %>" class="relative block hover:bg-gray-50 bg-white shadow-sm ring-1 ring-gray-900/5 rounded-xl">
+                <a href="<%= restaurant_path(restaurant) %>" class="relative block bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
                   <% if restaurant.tested? %>
                     <div class="bg-green-500 w-2 h-2 rounded-full absolute top-2 right-2"></div>
                   <% end %>
                   <!-- Restaurant details here -->
                   <div class="relative flex justify-between gap-x-6 px-4 py-5 sm:px-6">
                     <div class="flex min-w-0 gap-x-4">
+                    <% if restaurant.category == "Pizza" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Ramen" %>
                       <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="">
+                    <% elsif restaurant.category == "Japanese BBQ" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1566705474094-5bf047ce2754?q=80&w=2906&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Asian" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Sushi" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Brunch" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1626372416494-3183a0c4f726?q=80&w=2912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Vegan" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% elsif restaurant.category == "Indian" %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?q=80&w=2784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% else %>
+                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                    <% end %>
                       <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">
                           <%= restaurant.name %>
@@ -85,7 +101,7 @@
         </ul>
       <% end %>
       <% else %>
-      <p class="text-white text-center">Aucun restaurant dans ma liste !</p>
+      <p class="text-[--color--text--primary] text-center">Aucun restaurant dans ma liste !</p>
       <%= link_to new_restaurant_path, class: "text-center text-gray-400 hover:text-white hover:bg-gray-800 group flex justify-center rounded-md p-2 text-sm leading-6 font-semibold" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
           <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>

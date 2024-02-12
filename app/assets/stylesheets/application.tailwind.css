@@ -2,13 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color--primary: #F2F1E4;
+  --color--burgundy: #7B474D;
+  --color--orange: #B86D36;
+  --color--green: #7A6B44;
+  --color--text--primary: #333;
+  --color--text--secondary: #514d46;
+}
+
 html, body {
   --scroll-behavior: smooth!important;
   scroll-behavior: smooth!important;
 }
 
 body {
-  background-color: tomato;
+  background-color: var(--color--primary);
   height: 100vh;
 }
 
@@ -20,7 +29,7 @@ body {
 #restaurant_rating, #restaurant_category {
   padding: 0.375rem 2.5rem 0.375rem 0.75rem;
   border: 1px solid rgb(209, 213, 219);
-  background-color: rgb(31, 41, 55);
+  background-color: tomato;
   color: #fff;
   border-radius: 0.375rem;
   margin-top: 0.5rem;

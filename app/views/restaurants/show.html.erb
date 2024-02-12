@@ -1,22 +1,22 @@
 <main class="pt-16 pb-28 lg:pl-72">
-  <div class="px-6 lg:px-12 bg-[#ff6347] rounded-xl m-6 py-12 ring-1 ring-inset ring-gray-50">
+  <div class="px-6 lg:px-12 bg-white rounded-xl m-6 py-12 shadow-lg">
     <div class="mx-auto lg:mx-0">
       <div class="flex justify-between w-full items-center">
-        <p class="text-base font-semibold leading-7 text-white"><%= @restaurant.category %></p>
+        <p class="text-base font-semibold leading-7 text-[--color--text--primary]"><%= @restaurant.category %></p>
         <div class="flex gap-2">
-          <%= link_to edit_restaurant_path(@restaurant), class: "hover:bg-gray-700 p-2 rounded-full" do %>
-            <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="white">
-            <path d="M14.3632 5.65156L15.8431 4.17157C16.6242 3.39052 17.8905 3.39052 18.6716 4.17157L20.0858 5.58579C20.8668 6.36683 20.8668 7.63316 20.0858 8.41421L18.6058 9.8942M14.3632 5.65156L4.74749 15.2672C4.41542 15.5993 4.21079 16.0376 4.16947 16.5054L3.92738 19.2459C3.87261 19.8659 4.39148 20.3848 5.0115 20.33L7.75191 20.0879C8.21972 20.0466 8.65806 19.8419 8.99013 19.5099L18.6058 9.8942M14.3632 5.65156L18.6058 9.8942" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <%= link_to edit_restaurant_path(@restaurant), class: "hover:bg-[--color--text--primary] hover:color-white p-2 rounded-full" do %>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#333">
+            <path d="M14.3632 5.65156L15.8431 4.17157C16.6242 3.39052 17.8905 3.39052 18.6716 4.17157L20.0858 5.58579C20.8668 6.36683 20.8668 7.63316 20.0858 8.41421L18.6058 9.8942M14.3632 5.65156L4.74749 15.2672C4.41542 15.5993 4.21079 16.0376 4.16947 16.5054L3.92738 19.2459C3.87261 19.8659 4.39148 20.3848 5.0115 20.33L7.75191 20.0879C8.21972 20.0466 8.65806 19.8419 8.99013 19.5099L18.6058 9.8942M14.3632 5.65156L18.6058 9.8942" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           <% end %>
-          <%= link_to restaurant_path(@restaurant), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce restaurant ?", turbo_method: :delete, turbo_confirm: "Delete #{@restaurant.name}?" }, class: "hover:bg-gray-700 p-2 rounded-full" do %>
-            <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="white">
-            <path d="M20 9L18.005 20.3463C17.8369 21.3026 17.0062 22 16.0353 22H7.96474C6.99379 22 6.1631 21.3026 5.99496 20.3463L4 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 6L15.375 6M3 6L8.625 6M8.625 6V4C8.625 2.89543 9.52043 2 10.625 2H13.375C14.4796 2 15.375 2.89543 15.375 4V6M8.625 6L15.375 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <%= link_to restaurant_path(@restaurant), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce restaurant ?", turbo_method: :delete, turbo_confirm: "Delete #{@restaurant.name}?" }, class: "hover:bg-[--color--text--primary] hover:color-white p-2 rounded-full" do %>
+            <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#333">
+            <path d="M20 9L18.005 20.3463C17.8369 21.3026 17.0062 22 16.0353 22H7.96474C6.99379 22 6.1631 21.3026 5.99496 20.3463L4 9" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 6L15.375 6M3 6L8.625 6M8.625 6V4C8.625 2.89543 9.52043 2 10.625 2H13.375C14.4796 2 15.375 2.89543 15.375 4V6M8.625 6L15.375 6" stroke="#333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           <% end %>
         </div>
       </div>
-      <h2 class="mt-2 text-4xl font-bold tracking-tight text-gray-100 sm:text-6xl"><%= @restaurant.name %></h2>
-      <p class="mt-1 text-xs leading-5 text-white"><%= @restaurant.address %></p>
-      <p class="mt-6 text-lg leading-8 text-white"><%= @restaurant.description %></p>
+      <h2 class="mt-2 text-4xl font-bold tracking-tight text-[--color--text--primary] sm:text-6xl"><%= @restaurant.name %></h2>
+      <p class="mt-1 text-xs leading-5 text-[--color--text--primary]"><%= @restaurant.address %></p>
+      <p class="mt-6 text-lg leading-8 text-[--color--text--primary]"><%= @restaurant.description %></p>
     </div>
   </div>
 </main>

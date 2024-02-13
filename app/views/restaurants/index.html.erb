@@ -42,8 +42,19 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <h2 class="pt-4 text-xl font-semibold text-[--color--text--primary]" id="<%= category.parameterize %>">
-          <%= category %>
+        <div class="flex items-center justify-between border-t border-[--color--text--secondary] py-4 mt-24">
+          <p class="text-lg text-[--color--text--primary]">
+            <%= category %>
+          </p>
+          <p>
+          00<%= restaurants.count %>
+          </p>
+          <p class="text-lg text-[--color--text--primary]">
+            <%= category %>
+          </p>
+        </div>
+        <h2 class="categories__titles" id="<%= category.parameterize %>">
+          <%= category %> <span class="dash">—</span> <%= category %>
         </h2>
         <ul role="list" class="">
           <div class="flex flex-col gap-2 my-6">

@@ -9,6 +9,8 @@
   --color--green: #7A6B44;
   --color--text--primary: #333;
   --color--text--secondary: #514d46;
+  --font-family--primary: "Druk";
+  --font-family--secondary: "NeueMontreal-Regular";
 }
 
 html, body {
@@ -19,6 +21,10 @@ html, body {
 body {
   background-color: var(--color--primary);
   height: 100vh;
+}
+
+main {
+  overflow: hidden;
 }
 
 .is-active {
@@ -40,6 +46,25 @@ body {
   box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.6);
 }
 
+.categories__titles {
+  color: var(--color--text--secondary);
+  font-size: clamp(60px,14vw,280px);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: var(--font-family--primary);
+  width: 300vw;
+  /* animation de déroulement infini */
+  animation: defilement 20s linear infinite;
+}
+
+@keyframes defilement {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 
 @layer components {
 

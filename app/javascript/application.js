@@ -2,47 +2,31 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-document.addEventListener("DOMContentLoaded", () => {
-  const openMenuButton = document.getElementById("open-menu-button");
-  const closeMenuButton = document.getElementById("close-menu-button");
-  const sideMenu = document.querySelector('.side-menu');
 
-  if (openMenuButton && closeMenuButton) {
-    openMenuButton.addEventListener("click", () => {
-      sideMenu.classList.remove("hidden");
-    });
+// // Initialize and add the map
+// let map;
 
-    closeMenuButton.addEventListener("click", () => {
-      sideMenu.classList.add("hidden");
-    });
-  }
-});
+// async function initMap() {
+//   // The location of Uluru
+//   const position = { lat: 45.630001, lng: -73.519997 };
+//   // Request needed libraries.
+//   //@ts-ignore
+//   const { Map } = await google.maps.importLibrary("maps");
+//   const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
 
+//   // The map, centered at Uluru
+//   map = new Map(document.getElementById("map"), {
+//     zoom: 10,
+//     center: position,
+//     mapId: "DEMO_MAP_ID",
+//   });
 
-// Initialize and add the map
-let map;
+//   // The marker, positioned at Uluru
+//   const marker = new AdvancedMarkerView({
+//     map: map,
+//     position: position,
+//     title: "Uluru",
+//   });
+// }
 
-async function initMap() {
-  // The location of Uluru
-  const position = { lat: 45.630001, lng: -73.519997 };
-  // Request needed libraries.
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerView } = await google.maps.importLibrary("marker");
-
-  // The map, centered at Uluru
-  map = new Map(document.getElementById("map"), {
-    zoom: 10,
-    center: position,
-    mapId: "DEMO_MAP_ID",
-  });
-
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerView({
-    map: map,
-    position: position,
-    title: "Uluru",
-  });
-}
-
-initMap();
+// initMap();

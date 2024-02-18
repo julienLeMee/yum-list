@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show', as: :dashboard
   get '/logout', to: 'users#logout', as: :logout
 
-  get "/restaurant_list", to: "restaurants#restaurant_list"
+  get '/restaurant_list', to: 'restaurants#restaurant_list'
+  get '/restaurant_addresses', to: 'restaurants#restaurant_addresses'
 
   resources :restaurants
+
 end

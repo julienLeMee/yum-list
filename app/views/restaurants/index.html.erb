@@ -5,7 +5,7 @@
       All restaurants
     </h2>
 
-    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
+    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[220px]">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
@@ -53,9 +53,10 @@
             <%= category %>
           </p>
         </div>
-        <h2 class="categories__titles" id="<%= category.parameterize %>">
-          <%= category %> <span class="dash">—</span> <%= category %>
-        </h2>
+            <h2 class="categories__titles" id="<%= category.parameterize %>">
+                <span><%= category %></span> <span class="dash">—</span> <span><%= category %></span><span class="dash"> —</span>
+                <span><%= category %></span> <span class="dash">—</span> <span><%= category %></span>
+            </h2>
         <ul role="list" class="">
           <div class="flex flex-col gap-2 my-6">
             <% restaurants.each do |restaurant| %>

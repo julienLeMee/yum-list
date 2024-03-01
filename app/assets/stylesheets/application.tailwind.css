@@ -28,6 +28,12 @@ main {
   overflow: hidden;
 }
 
+.categories__container {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+}
+
 .is-active {
   background-color: rgb(31, 41, 55);
   color: #fff!important;
@@ -53,7 +59,7 @@ main {
   font-weight: 600;
   text-transform: uppercase;
   font-family: var(--font-family--primary);
-  width: 300vw;
+  width: 500vw;
   /* animation de déroulement infini */
   animation: defilement 20s linear infinite;
 }

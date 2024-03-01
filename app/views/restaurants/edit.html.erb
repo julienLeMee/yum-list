@@ -1,28 +1,28 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
     <%= form_for @restaurant, url: restaurant_path(@restaurant), method: :patch, local: true do |f| %>
-      <div class="shadow-lg bg-white sm:rounded-xl">
+      <div class="shadow-sm sm:rounded-xl">
         <div class="px-4 py-6 sm:p-8">
           <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
 
             <div class="col-span-6">
               <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :name, class: "block w-full rounded-md border-1 bg-white/5 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :name, class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
               <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :address, class: "block w-full rounded-md border-1 bg-white/5 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :address, class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
               <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-md border-1 bg-white/5 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 

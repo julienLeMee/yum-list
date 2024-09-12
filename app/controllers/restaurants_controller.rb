@@ -1,6 +1,10 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = current_user.restaurants
+    if params[:query].present?
+      @restaurants = current_user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      @restaurants = current_user.restaurants
+    end
   end
 
   def tested_restaurants

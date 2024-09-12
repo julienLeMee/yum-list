@@ -5,12 +5,37 @@
       Tested restaurants
     </h2>
 
-    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[220px]">
+    <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form") do %>
+        <div class="relative mb-6">
+            <input
+            type="text"
+            name="query"
+            placeholder="Search for restaurants..."
+            class="w-full p-2 border-none mt-4 rounded-full"
+            value="<%= params[:query] %>"
+            id="search-input"
+            >
+        </div>
+
+        <div class="flex space-x-4">
+            <!-- Bouton de recherche -->
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">
+            Search
+            </button>
+
+            <!-- Bouton de réinitialisation -->
+            <% if params[:query].present? %>
+            <%= link_to 'Reset', restaurants_path, class: 'px-4 py-2 bg-gray-400 text-white rounded-md', method: :get %>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[80px]">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="w-[200px] h-[200px] flex flex-col gap-4 items-center justify-center p-6 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
+          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-4 items-center justify-center p-4 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-full hover:shadow-lg transition duration-200 ease-in-out">
             <% if restaurant.category == "Asian" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path stroke="currentColor" stroke-width="1.5" d="M2 12h7M15 12h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
@@ -42,10 +67,6 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <h2 class="categories__titles" id="<%= category.parameterize %>">
-            <span><%= category %></span> <span class="dash">—</span> <span><%= category %></span><span class="dash"> —</span>
-            <span><%= category %></span> <span class="dash">—</span> <span><%= category %></span>
-        </h2>
         <ul role="list" class="">
           <div class="flex flex-col gap-2 my-6">
             <% restaurants.each do |restaurant| %>

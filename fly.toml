@@ -1,26 +1,31 @@
-# fly.toml app configuration file generated for yum-list on 2023-10-17T23:10:48-04:00
+# fly.toml app configuration file generated for yum-list-aged-water-5075 on 2024-09-12T18:17:17-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "yum-list"
-primary_region = "yul"
-console_command = "/rails/bin/rails console"
+app = 'yum-list-aged-water-5075'
+primary_region = 'yul'
+console_command = '/rails/bin/rails console'
 
 [build]
 
 [[mounts]]
-  source = "data"
-  destination = "/data"
+  source = 'data'
+  destination = '/data'
 
 [http_service]
   internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ["app"]
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
 
 [[statics]]
-  guest_path = "/rails/public"
-  url_prefix = "/"
+  guest_path = '/rails/public'
+  url_prefix = '/'

@@ -7,13 +7,13 @@
     "theme_color": "#F2F1E4",
     "icons": [
       {
-        "src": "/images/yum-list-logo.svg",
-        "type": "image/svg+xml",
+        "src": "/images/yum-list-logo.png",
+        "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/images/yum-list-logo.svg",
-        "type": "image/svg+xml",
+        "src": "/images/yum-list-logo.png",
+        "type": "image/png",
         "sizes": "512x512"
       }
     ]

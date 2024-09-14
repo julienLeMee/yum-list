@@ -5,31 +5,6 @@
       Tested restaurants
     </h2>
 
-    <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form") do %>
-        <div class="relative mb-6">
-            <input
-            type="text"
-            name="query"
-            placeholder="Search for restaurants..."
-            class="w-full p-2 border-none mt-4 rounded-full"
-            value="<%= params[:query] %>"
-            id="search-input"
-            >
-        </div>
-
-        <div class="flex space-x-4">
-            <!-- Bouton de recherche -->
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">
-            Search
-            </button>
-
-            <!-- Bouton de réinitialisation -->
-            <% if params[:query].present? %>
-            <%= link_to 'Reset', restaurants_path, class: 'px-4 py-2 bg-gray-400 text-white rounded-md', method: :get %>
-            <% end %>
-        </div>
-    <% end %>
-
     <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[80px]">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>

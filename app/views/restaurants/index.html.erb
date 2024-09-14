@@ -5,7 +5,8 @@
       All restaurants
     </h2>
 
-    <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form") do %>
+    <% if @restaurants.any? %>
+      <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form") do %>
         <div class="relative mb-6">
             <input
             type="text"
@@ -28,6 +29,7 @@
             <%= link_to 'Reset', restaurants_path, class: 'px-4 py-2 bg-gray-400 text-white rounded-md', method: :get %>
             <% end %>
         </div>
+      <% end %>
     <% end %>
 
 

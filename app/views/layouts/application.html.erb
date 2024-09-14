@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Utilisez la méta-balise viewport pour définir le comportement sur les appareils mobiles -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="manifest" href="/manifest.json">
     <%# <!-- Ajoutez cette méta-balise pour activer le mode plein écran sur certains navigateurs -->
     <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -34,4 +34,15 @@
     <!-- prettier-ignore -->
 
   </body>
+  <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+        });
+    }
+</script>
 </html>

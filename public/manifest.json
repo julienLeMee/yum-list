@@ -4,7 +4,7 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#FFFFFF",
-    "theme_color": "#F2F1E4",
+    "theme_color": "#B1454A",
     "icons": [
       {
         "src": "/images/yum-list-logo.png",

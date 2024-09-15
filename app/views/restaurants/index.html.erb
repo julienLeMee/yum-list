@@ -1,18 +1,18 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
+    <%# <h2 class="p-4 mt-6 text-2xl rounded-xl font-semibold text-white bg-[--color--red]">
       All restaurants
-    </h2>
+    </h2> %>
 
     <% if @restaurants.any? %>
-      <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form") do %>
+      <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form", html: { class: "mt-4" }) do %>
         <div class="relative mb-6">
             <input
             type="text"
             name="query"
-            placeholder="Search for restaurants..."
-            class="w-full p-2 border-none mt-4 rounded-full"
+            placeholder="Search..."
+            class="w-full py-2 px-4 border-none mt-4 rounded-full"
             value="<%= params[:query] %>"
             id="search-input"
             >
@@ -20,13 +20,13 @@
 
         <div class="flex space-x-4">
             <!-- Bouton de recherche -->
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-md">
+            <button type="submit" class="w-fit text-white bg-[--color--red] hover:bg-[--color--burgundy] transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 px-4 text-sm leading-6 font-semibold">
             Search
             </button>
 
             <!-- Bouton de réinitialisation -->
             <% if params[:query].present? %>
-            <%= link_to 'Reset', restaurants_path, class: 'px-4 py-2 bg-gray-400 text-white rounded-md', method: :get %>
+            <%= link_to 'Reset', restaurants_path, class: 'w-fit text-[--color--red] border border-[--color--red] hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 px-4 text-sm leading-6 font-semibold', method: :get %>
             <% end %>
         </div>
       <% end %>
@@ -34,12 +34,12 @@
 
 
 
-    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[80px]">
+    <div class="gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[60px]">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-4 items-center justify-center p-4 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-full hover:shadow-lg transition duration-200 ease-in-out">
+          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-2 items-center justify-center py-2 px-4 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-full hover:shadow-lg transition duration-200 ease-in-out">
             <% if restaurant.category == "Asian" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path stroke="currentColor" stroke-width="1.5" d="M2 12h7M15 12h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
@@ -71,19 +71,15 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div class="flex items-center justify-between border-t border-[--color--text--secondary] py-4 mt-16">
+        <div class="flex items-center justify-between mb-4">
           <p class="text-lg text-[--color--text--primary]">
             <%= category %>
           </p>
           <p>
-            00<%= restaurants.count %>
-          </p>
-          <p class="text-lg text-[--color--text--primary]">
-            <%= category %>
+            <%= restaurants.count %>
           </p>
         </div>
-        <ul role="list" class="">
-          <div class="flex flex-col gap-2 my-6">
+        <ul role="list" class="flex gap-4 overflow-x-auto w-full mb-8">
             <% restaurants.each do |restaurant| %>
               <li>
                 <a href="<%= restaurant_path(restaurant) %>" class="relative block bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
@@ -91,26 +87,38 @@
                     <div class="bg-green-500 w-2 h-2 rounded-full absolute top-2 right-2"></div>
                   <% end %>
                   <!-- Restaurant details here -->
-                  <div class="relative flex justify-between gap-x-6 px-4 py-5 sm:px-6">
-                    <div class="flex min-w-0 gap-x-4">
+                  <div class="w-52 h-52 relative flex items-center justify-between p-6">
+                    <div class="flex flex-col gap-4 min-w-0 gap-x-4">
                     <% if restaurant.category == "Pizza" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                        <%= image_tag "/assets/pizza-logo.svg",
+                        alt: "Pizza", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Ramen" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1623341214825-9f4f963727da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80" alt="">
+                      <%= image_tag "/assets/ramen-logo.svg",
+                        alt: "ramen", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Japanese BBQ" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1566705474094-5bf047ce2754?q=80&w=2906&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/bbq-logo.svg",
+                        alt: "bbq", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Asian" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/onigiri-logo.svg",
+                        alt: "onigiri", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Sushi" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1615361200141-f45040f367be?q=80&w=2864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/sushi-logo.svg",
+                        alt: "sushi", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Brunch" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1626372416494-3183a0c4f726?q=80&w=2912&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/eggs-logo.svg",
+                        alt: "eggs", class: "h-20 w-20 flex-none bg-gray-50" %>
+                    <% elsif restaurant.category == "Burger" %>
+                      <%= image_tag "/assets/burger-logo.svg",
+                        alt: "burger", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Vegan" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                     <%= image_tag "/assets/vegan-logo.svg",
+                        alt: "vegan", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% elsif restaurant.category == "Indian" %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?q=80&w=2784&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/indian-logo.svg",
+                        alt: "indian", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% else %>
-                      <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                      <%= image_tag "/assets/restaurant-logo.svg",
+                        alt: "restaurant", class: "h-20 w-20 flex-none bg-gray-50" %>
                     <% end %>
                       <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">
@@ -126,15 +134,11 @@
                         <p class="text-sm leading-6 text-indigo-600"><%= restaurant.category %></p>
                         <p class="text-sm leading-6 text-gray-500"><%= "★" * restaurant.rating.to_i %></p>
                       </div>
-                      <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                      </svg>
                     </div>
                   </div>
                 </a>
               </li>
             <% end %>
-          </div>
         </ul>
       <% end %>
       <% else %>

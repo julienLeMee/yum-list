@@ -1,28 +1,28 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
     <%= form_with model: @restaurant, local: true do |f| %>
-      <div class="shadow-sm sm:rounded-xl">
+      <div class="">
         <div class="px-4 py-6 sm:p-8">
           <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
 
             <div class="col-span-6">
               <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :name, autocomplete: "given-name", class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :name, autocomplete: "given-name", class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
               <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :address, autocomplete: "off", class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :address, autocomplete: "off", class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
             <div class="col-span-6">
               <%= f.label :description, "Description", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <div class="mt-2">
-                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-md border-1 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                <%= f.text_field :description, autocomplete: "description", class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
               </div>
             </div>
 
@@ -44,16 +44,18 @@
                 "Bar",
                 "Patisserie",
                 "Other"
-                ], @restaurant.category), { include_blank: 'Select a category' }, class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+                ], @restaurant.category), { include_blank: 'Select a category' }, class: "mt-2 block w-full rounded-full border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
             </div>
 
-            <div class="col-span-6">
-              <%= f.label :tested, class:"block text-sm font-medium leading-6 text-[--color--text--primary] mr-2" %>
-              <%= f.check_box :tested, id:"tested_checkbox", class:"h-4 w-4 rounded border-gray-300 text-[--color--text--secondary] focus:ring-[--color--text--secondary] cursor-pointer" %>
-            </div>
+            <div class="flex justify-between w-full col-span-6">
+                <div class="">
+                <%= f.label :tested, class:"block text-sm font-medium leading-6 text-[--color--text--primary] mr-2" %>
+                <%= f.check_box :tested, id:"tested_checkbox", class:"h-4 w-4 rounded border-gray-300 text-[--color--text--secondary] focus:ring-[--color--text--secondary] cursor-pointer" %>
+                </div>
 
-            <div class="col-span-6">
-              <%= f.submit "Add Restaurant", class: "rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus:ring focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+                <div class="">
+                <%= f.submit "Add Restaurant", class: "rounded-full bg-[--color--red] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[--color--burgundy] focus:ring focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+                </div>
             </div>
           </div>
         </div>

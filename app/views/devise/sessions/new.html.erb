@@ -20,42 +20,42 @@
   <body class="h-full">
   ```
 -->
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="bg-[--color--red] flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="text-center text-4xl font-bold tracking-tight text-[--color--text--primary] pt-6">Yum List</h2>
-    <h3 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-[--color--text--primary]">Sign in to your account</h3>
+    <h2 class="text-center text-4xl font-bold tracking-tight text-white pt-6">Yum List</h2>
+    <h3 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign in to your account</h3>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false }, class: "space-y-6" }) do |f| %>
       <div>
-        <label for="email" class="block text-sm font-medium leading-6 text-[--color--text--primary]">Email address</label>
+        <label for="email" class="block text-sm font-medium leading-6 text-white">Email address</label>
         <div class="mt-2">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-md border-1 bg-white/5 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-full bg-white/20 py-1.5 text-white border-0 shadow-sm sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm font-medium leading-6 text-[--color--text--primary]">Password</label>
+          <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
           <div class="text-sm">
-            <a href="{% url 'password_reset' %}" class="font-semibold text-indigo-400 hover:text-indigo-300">Forgot password?</a>
+            <a href="{% url 'password_reset' %}" class="font-semibold text-[--color--text--primary] hover:text-black">Forgot password?</a>
           </div>
         </div>
         <div class="mt-2">
-            <%= f.password_field :password, autocomplete: "current-password", class: "block w-full rounded-md border-1 bg-white/5 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "block w-full rounded-full bg-white/20 py-1.5 text-white border-0 shadow-sm sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign in</button>
+        <button type="submit" class="flex w-full justify-center rounded-full bg-white/20 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-white hover:text-[--color--burgundy]">Sign in</button>
       </div>
     <% end %>
   </div>
 
-  <div class="mt-4 text-center text-[--color--text--primary]">
-    <p>If you don't have an account</p>
-    <a href="<%= new_user_registration_path %>" class="text-indigo-400 hover:text-indigo-300">Sign Up</a>
+  <div class="mt-4 text-center">
+    <p class="text-white">If you don't have an account</p>
+    <a href="<%= new_user_registration_path %>" class="text-[--color--text--primary] hover:text-black">Sign Up</a>
   </div>
 
 </div>

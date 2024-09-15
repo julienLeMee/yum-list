@@ -1,8 +1,9 @@
 <% if user_signed_in? %>
-  <main class="lg:pl-72 h-full flex items-center justify-center">
-  <div class="px-4 sm:px-6 lg:px-8">
-      <h1 class="text-5xl text-center font-bold tracking-tight text-[--color--text--primary] sm:text-6xl">Bienvenue sur Yum List</h1>
-      <p class="mt-6 text-xl text-center leading-8 text-[--color--text--secondary]"><%= current_user.email %> !</p>
+  <main class="bg-[#B1454A] lg:pl-72 h-full flex items-end justify-center relative z-[100]">
+    <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-60 h-60 absolute top-[10%]" %>
+    <div class="px-4 sm:px-6 lg:px-8">
+      <h1 class="text-5xl text-center font-bold tracking-tight text-white sm:text-6xl">Bienvenue sur Yum List</h1>
+      <p class="mt-6 text-xl text-center leading-8 text-white"><%= current_user.email %> !</p>
     </div>
   </div>
 <% else %>
@@ -12,8 +13,8 @@
       </div>
       <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
         <div class="text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-[--color--text--primary] sm:text-6xl">Yum List</h1>
-          <p class="mt-6 text-lg leading-8 text-[--color--text--secondary] p-4">Yum List makes it easy to organize and discover your favorite restaurants, whether you've already visited them or are planning to try them. Happy exploring!</p>
+          <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Yum List</h1>
+          <p class="mt-6 text-lg leading-8 text-white p-4">Yum List makes it easy to organize and discover your favorite restaurants, whether you've already visited them or are planning to try them. Happy exploring!</p>
           <div class="mt-6 flex items-center justify-center gap-x-6">
             <a href="<%= new_user_session_path %>" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</a>
           </div>

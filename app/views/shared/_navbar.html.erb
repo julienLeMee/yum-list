@@ -4,49 +4,46 @@
     <div class="relative z-[100] side-menu" role="dialog" aria-modal="true">
       <div class="fixed bg-[--color--primary]"></div>
 
-      <div class="fixed flex bottom-8 w-full">
+      <div class="fixed flex bottom-0 w-full">
         <div class="relative flex w-full flex-1 items-center justify-center">
 
           <!-- Sidebar component, swap this element with another sidebar if you like -->
-          <div class="max-w-[500px] mx-4 flex grow flex-row gap-y-5 overflow-y-auto bg-[--color--primary--hover] px-6 py-4 lg:hidden shadow-2xl rounded-full">
+         <div class="w-full flex grow flex-row gap-y-5 overflow-y-auto bg-[--color--primary--hover]/99 px-6 pb-6 lg:hidden shadow-2xl backdrop-blur-3xl">
             <nav class="flex flex-1 flex-col">
               <ul role="list" class="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" class="-mx-2 space-y-1 flex justify-between flex-wrap align-baseline">
                     <li class="mt-auto">
-                      <!-- Current: "text-[--color--text--primary]", Default: "text-[--color--text--primary] hover:bg-white hover:text-black" -->
-                      <%= link_to root_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+                      <!-- Current: "bg-red text-[--color--text--primary]", Default: "text-[--color--text--primary] hover:bg-white hover:text-black" -->
+                      <%= link_to root_path, class: "flex-col items-center text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
                         <svg class="h-6 w-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
+                        Dashboard
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to restaurants_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+                      <%= link_to restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
                           <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 6h12M4 6.01l.01-.011M4 12.01l.01-.011M4 18.01l.01-.011M8 12h12M8 18h12"></path>
                         </svg>
+                        All
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to new_restaurant_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>
-                        </svg>
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to tested_restaurants_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+                      <%= link_to tested_restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
                           <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m7 12.5 3 3 7-7"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path>
                         </svg>
+                        Tested
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to untested_restaurants_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+                      <%= link_to untested_restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
                           <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.5 10.677a2 2 0 0 0 2.823 2.823"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7.362 7.561C5.68 8.74 4.279 10.42 3 12c1.889 2.991 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 0 1-1.078 1.5"></path>
                         </svg>
+                        Untested
                       <% end %>
                     </li>
                   </ul>
@@ -131,6 +128,11 @@
     <div class="fixed w-full top-0 z-40 flex items-center gap-x-6 bg-[--color--primary] px-4 py-4 shadow-lg sm:px-6 lg:hidden border-[--color--text--primary] border-1">
       <div class="flex-1 text-sm font-semibold leading-6 text-[--color--text--primary]">Yum List</div>
       <% if user_signed_in? %>
+        <%= link_to new_restaurant_path, class: "text-[--color--text--primary] hover:bg-white hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+            <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>
+        </svg>
+        <% end %>
         <%= link_to dashboard_path, class: "text-[--color--text--primary] my-button" do %>
             <span class="sr-only">Your profile</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">

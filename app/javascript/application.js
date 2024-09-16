@@ -2,6 +2,33 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Sélectionnez tous les liens d'ancre
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+    anchorLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Empêche le comportement par défaut
+        e.preventDefault();
+
+        // Récupère la cible de l'ancre
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+          // Calcule la position avec un décalage (ajuster l'offset ici)
+          const offset = 100; // Décalage en pixels
+          const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+
+          // Défilement en douceur vers la position ajustée
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
 
 // // Initialize and add the map
 // let map;

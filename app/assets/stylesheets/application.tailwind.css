@@ -29,6 +29,11 @@ main {
   overflow: hidden;
 }
 
+.restaurant__card svg {
+    width: 4rem;
+    height: 4rem;
+}
+
 .categories__container {
   white-space: nowrap;
   overflow: hidden;

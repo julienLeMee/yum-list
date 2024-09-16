@@ -44,12 +44,14 @@ main {
   width: 6rem;
   height: 6rem;
 }
-.restaurant__card svg {
+.restaurant__card svg,
+.dashboard__card svg {
   width: 4rem;
   height: 4rem;
 }
 
-.single__card a svg {
+.single__card a svg,
+.dashboard__card a svg {
   width: 1.5rem;
   height: 1.5rem;
 }

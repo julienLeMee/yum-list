@@ -3,21 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --color--primary: #F5F5F5;
-  --color--primary--hover: #E6E5D8;
-  --color--red: #B1454A;
-  --color--burgundy: #7B474D;
-  --color--orange: #B86D36;
-  --color--green: #7A6B44;
+  --color--primary: #f5f5f5;
+  --color--primary--hover: #e6e5d8;
+  --color--red: #b1454a;
+  --color--burgundy: #7b474d;
+  --color--orange: #b86d36;
+  --color--green: #7a6b44;
   --color--text--primary: #333;
   --color--text--secondary: #514d46;
   --font-family--primary: "Druk";
   --font-family--secondary: "NeueMontreal-Regular";
 }
 
-html, body {
-  --scroll-behavior: smooth!important;
-  scroll-behavior: smooth!important;
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* WebKit (Chrome, Safari, etc.) */
+}
+
+html,
+body {
+  --scroll-behavior: smooth !important;
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -29,9 +39,22 @@ main {
   overflow: hidden;
 }
 
+.last-restaurant__card svg {
+  width: 6rem;
+  height: 6rem;
+}
 .restaurant__card svg {
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.single__card a svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.single__card svg {
+  width: 8rem;
+  height: 8rem;
 }
 
 .categories__container {
@@ -42,7 +65,7 @@ main {
 
 .is-active {
   background-color: rgb(31, 41, 55);
-  color: #fff!important;
+  color: #fff !important;
 }
 
 /* #restaurant_rating, #restaurant_category {
@@ -61,7 +84,7 @@ main {
 
 .categories__titles {
   color: var(--color--text--secondary);
-  font-size: clamp(60px,14vw,280px);
+  font-size: clamp(60px, 14vw, 280px);
   font-weight: 600;
   text-transform: uppercase;
   font-family: var(--font-family--primary);
@@ -80,7 +103,6 @@ main {
 }
 
 @layer components {
-
   .btn-primary {
     @apply rounded-md bg-[--color--burgundy] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[--color--burgundy] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color--burgundy] hover:cursor-pointer transition duration-200 ease-in-out;
   }
@@ -100,9 +122,7 @@ main {
   .btn-text {
     @apply rounded-md bg-white py-2.5 text-sm font-semibold text-indigo-600 hover:text-indigo-500 transition duration-200 ease-in-out;
   }
-
 }
-
 
 .inner {
   background-color: white;
@@ -128,13 +148,10 @@ main {
 }
 
 @media (max-width: 768px) {
-
   .inner {
     width: 90%;
   }
-
 }
-
 
 /* .btn-primary {
   padding: 0.5rem 1rem;

@@ -37,10 +37,7 @@
 
       <div>
         <div class="flex items-center justify-between">
-          <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
-          <div class="text-sm">
-            <a href="{% url 'password_reset' %}" class="font-semibold text-[--color--text--primary] hover:text-black">Forgot password?</a>
-          </div>
+            <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
         </div>
         <div class="mt-2">
             <%= f.password_field :password, autocomplete: "current-password", class: "block w-full rounded-full bg-white/20 py-1.5 text-white border-0 shadow-sm sm:text-sm sm:leading-6" %>

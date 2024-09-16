@@ -1,6 +1,5 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+<div class="bg-[--color--red] flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sign__up--page sm:mx-auto sm:w-full sm:max-w-sm">
     <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign up for an account</h2>
   </div>
 
@@ -9,29 +8,29 @@
       <div>
         <label for="email" class="block text-sm font-medium leading-6 text-white">Email address</label>
         <div class="mt-2">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-full border-0 bg-white/20 py-1.5 text-white shadow-sm sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div>
         <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
         <% if @minimum_password_length %>
-        <p class="text-xs text-gray-400">(<%= @minimum_password_length %> characters minimum)</p>
+        <p class="text-xs text-[#333]">(<%= @minimum_password_length %> characters minimum)</p>
         <% end %>
         <div class="mt-2">
-            <%= f.password_field :password, autocomplete: "new-password", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "block w-full rounded-full border-0 bg-white/20 py-1.5 text-white shadow-sm sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div>
         <label for="password_confirmation" class="block text-sm font-medium leading-6 text-white">Confirm Password</label>
         <div class="mt-2">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block w-full rounded-full border-0 bg-white/20 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6" %>
         </div>
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Sign Up</button>
+        <button type="submit" class="flex w-full justify-center rounded-full bg-white/30 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-white hover:text-[--color--red]">Sign Up</button>
       </div>
     <% end %>
   </div>

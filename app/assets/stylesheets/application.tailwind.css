@@ -51,7 +51,8 @@ main {
 }
 
 .single__card a svg,
-.dashboard__card a svg {
+.dashboard__card a svg,
+.sign__up--page svg {
   width: 1.5rem;
   height: 1.5rem;
 }

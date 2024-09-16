@@ -22,8 +22,8 @@
         <div class="dashboard__card--list pt-2 text-sm text-[--color--text--primary]">
       <% grouped_restaurants.each do |category, restaurants| %>
             <div class="dashboard__card flex items-center justify-between relative overflow-hidden p-4 my-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
-            <div class="flex flex-col">
-                <span class="font-light">Catégorie <%= category %></span>
+            <div class="flex flex-col gap-1">
+                <span class="font-light py-1 px-4 bg-white/20 w-fit rounded-full"><%= category %></span>
                 <span><%= pluralize(restaurants.count, "restaurant") %></span>
             </div>
             </liv>

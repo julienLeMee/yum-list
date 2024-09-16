@@ -6,9 +6,6 @@ module ApplicationHelper
         ['restaurants', 'tested_restaurants'],
         ['restaurants', 'untested_restaurants'],
         ['users', 'show'],
-        ['devise/sessions', 'new'],
-        ['devise/passwords', 'new'],
-        ['devise/passwords', 'edit'],
       '#F5F5F5' # Couleur spécifique pour ces contrôleurs et actions
     else
       '#B1454A' # Couleur par défaut

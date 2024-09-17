@@ -7,7 +7,7 @@
 
     <div class="grid grid-cols-3 gap-3 mt-4">
     <% @categories.each do |category| %>
-        <div class="flex flex-col justify-between gap-2 relative overflow-hidden p-4 text-base rounded-xl font-semibold text-white bg-[--color--red]">
+        <div class="categories__cards flex flex-col justify-between gap-2 relative overflow-hidden p-4 text-base rounded-xl font-semibold text-white bg-[--color--red]">
             <%= link_to category, restaurants_path(query: category) %>
             <div>
             <% case category %>

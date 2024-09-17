@@ -15,7 +15,7 @@
     </div>
 
     <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
-      Vous avez <%= pluralize(current_user.restaurants.count, "restaurant") %> dans votre liste.
+      You have <%= pluralize(current_user.restaurants.count, "restaurant") %> in your list.
     </p>
 
     <% grouped_restaurants = current_user.restaurants.group_by(&:category) %>

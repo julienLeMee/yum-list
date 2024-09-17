@@ -5,6 +5,7 @@ module ApplicationHelper
         ['restaurants', 'index'],
         ['restaurants', 'tested_restaurants'],
         ['restaurants', 'untested_restaurants'],
+        ['restaurants', 'categories'],
         ['users', 'show']
       '#F5F5F5' # Couleur spécifique pour ces contrôleurs et actions
     else

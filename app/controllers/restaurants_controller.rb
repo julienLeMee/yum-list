@@ -7,6 +7,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  def categories
+    @categories = current_user.restaurants.select(:category).distinct.pluck(:category)
+  end
+
   def tested_restaurants
     @restaurants = current_user.restaurants.where(tested: true)
   end

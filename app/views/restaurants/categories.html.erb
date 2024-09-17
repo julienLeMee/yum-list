@@ -1,32 +1,14 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <div class="flex items-center justify-between w-full mt-4">
-        <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
-        Dashboard
-        </h2>
-
-        <%= link_to logout_path, method: :get, data: { confirm: "Êtes-vous sûr de vouloir vous déconnecter ?" }, class: "w-fit text-[--color--red] hover:text-[--color--burgundy] mt-4 bg-white transition duration-200 ease-in-out group flex gap-x-3 rounded-full px-4 py-2 text-sm leading-6 font-semibold" do %>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12h7m0 0-3 3m3-3-3-3M19 6V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1"></path>
-            </svg>
-            <span class="truncate">Log out</span>
-        <% end %>
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-6 text-xl font-semibold leading-9 tracking-tight text-[#333]">My categories</h2>
     </div>
 
-    <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
-      Vous avez <%= pluralize(current_user.restaurants.count, "restaurant") %> dans votre liste.
-    </p>
-
-    <% grouped_restaurants = current_user.restaurants.group_by(&:category) %>
-        <div class="dashboard__card--list pt-2 text-sm text-[--color--text--primary]">
-      <% grouped_restaurants.each do |category, restaurants| %>
-            <div class="dashboard__card flex items-center justify-between relative overflow-hidden p-4 my-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
-            <div class="flex flex-col gap-1">
-                <span class="font-light py-1 px-4 bg-white/20 w-fit rounded-full"><%= category %></span>
-                <span><%= pluralize(restaurants.count, "restaurant") %></span>
-            </div>
-            </liv>
+    <div class="grid grid-cols-3 gap-3 mt-4">
+    <% @categories.each do |category| %>
+        <div class="flex flex-col justify-between gap-2 relative overflow-hidden p-4 text-base rounded-xl font-semibold text-white bg-[--color--red]">
+            <%= link_to category, restaurants_path(query: category) %>
             <div>
             <% case category %>
             <% when "Pizza" %>
@@ -54,7 +36,7 @@
             <% end %>
             </div>
         </div>
-        <% end %>
-
-  </div>
+    <% end %>
+    </div>
+</div>
 </main>

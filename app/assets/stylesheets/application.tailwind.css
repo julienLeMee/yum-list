@@ -45,9 +45,13 @@ main {
   height: 6rem;
 }
 .restaurant__card svg,
-.dashboard__card svg {
-  width: 4rem;
-  height: 4rem;
+.dashboard__card svg,
+.categories__cards svg {
+    width: 4rem;
+    height: 4rem;
+}
+.categories__cards svg {
+    margin-left: auto;
 }
 
 .single__card a svg,

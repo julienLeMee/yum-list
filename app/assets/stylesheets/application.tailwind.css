@@ -44,6 +44,11 @@ main {
   width: 6rem;
   height: 6rem;
 }
+
+.restaurant__card svg {
+    filter: hue-rotate(0deg);
+}
+
 .restaurant__card svg,
 .dashboard__card svg,
 .categories__cards svg {

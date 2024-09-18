@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+
 // // Initialize and add the map
 // let map;
 

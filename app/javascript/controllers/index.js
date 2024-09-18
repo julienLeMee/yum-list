@@ -28,6 +28,19 @@ eagerLoadControllersFrom("controllers", application)
 //   updateRatingVisibility();
 // });
 
+// document.addEventListener("DOMContentLoaded", function() {
+//     // Sélectionner tous les éléments SVG dans les cartes
+//     const svgElements = document.querySelectorAll('.restaurant__card svg');
+
+//     svgElements.forEach(svg => {
+//         // Générer un angle aléatoire entre 0 et 360 degrés
+//         const randomHue = Math.floor(Math.random() * 360);
+
+//         // Appliquer le filtre hue-rotate avec cet angle
+//         svg.style.filter = `hue-rotate(${randomHue}deg)`;
+//     });
+// });
+
 
 // Initialize and add the map
 // let map;

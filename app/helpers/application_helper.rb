@@ -3,6 +3,7 @@ module ApplicationHelper
     case [controller_name, action_name]
     when ['restaurants', 'new'],
         ['restaurants', 'index'],
+        ['restaurants', 'show'],
         ['restaurants', 'tested_restaurants'],
         ['restaurants', 'untested_restaurants'],
         ['restaurants', 'categories'],

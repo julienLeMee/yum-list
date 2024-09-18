@@ -17,4 +17,9 @@ Rails.application.routes.draw do
 
   resources :restaurants
 
+  resources :friendships, only: [:new, :create, :update, :destroy]
+  get '/friends', to: 'users#friends', as: :friends
+  post '/friendships', to: 'friendships#create', as: :create_friendship
+
+  get '/users/:id/restaurants', to: 'users#friend_restaurants', as: :user_restaurants
 end

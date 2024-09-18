@@ -1,0 +1,16 @@
+<main class="pt-16 pb-28 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+
+  <h1>Friends List</h1>
+
+    <% if @friends.any? %>
+    <ul>
+        <% @friends.each do |friend| %>
+            <li><%= link_to friend.email, user_restaurants_path(friend) %></li>
+        <% end %>
+    </ul>
+    <% else %>
+    <p>You have no friends yet.</p>
+    <% end %>
+  </div>
+</main>

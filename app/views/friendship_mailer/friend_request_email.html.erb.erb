@@ -1,0 +1,10 @@
+<h1>You have a new friend request!</h1>
+
+<p>
+  Hi <%= @friend.email %>,<br>
+  <%= @user.email %> has sent you a friend request.
+</p>
+
+<p>
+  <%= link_to 'View Request', dashboard_url %>
+</p>

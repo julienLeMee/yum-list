@@ -19,14 +19,18 @@
     <span>
 <       <%= link_to 'See Friends', friends_path %>
     </span>
-    
+
     <p class="py-4 text-base font-semibold text-[--color--text--primary]">
       <% if !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user) %>
-        <%= form_with url: create_friendship_path, method: :post, local: true do |form| %>
-            <%= form.hidden_field :friend_id, value: @user.id %>
+        <%= form_with url: friendships_path, method: :post, local: true do |form| %>
+            <%= form.hidden_field :email, value: @user.email %>
             <%= form.submit "Add Friend", class: "btn btn-primary" %>
         <% end %>
       <% end %>
+    </p>
+
+    <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
+      <%= link_to 'Pending Friend Requests', pending_requests_friendships_path, class: 'btn btn-secondary' %>
     </p>
 
     <p class="pt-4 text-base font-semibold text-[--color--text--primary]">

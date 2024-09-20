@@ -1,13 +1,13 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <h1>Friends List</h1>
+    <h1 class="mt-4">Friends List</h1>
 
     <% if @friends.any? %>
       <ul>
         <% @friends.each do |friend| %>
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
-            <li>
+            <li class="flex flex-col my-4">
                 <%= link_to friend.email, user_restaurants_path(friend) %>
                 <% if friendship %>
                 <% if friendship.pending? %>

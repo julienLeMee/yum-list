@@ -1,20 +1,34 @@
 Rails.application.routes.draw do
-  devise_for :users
+    devise_for :users
 
-  root to: 'home#index'
+    resources :users
 
-  get '/map', to: 'pages#map', as: :map
+    root to: 'home#index'
 
-  get '/categories', to: 'restaurants#categories', as: :restaurant_categories
-  get '/tested-restaurants', to: 'restaurants#tested_restaurants', as: :tested_restaurants
-  get '/untested-restaurants', to: 'restaurants#untested_restaurants', as: :untested_restaurants
+    get '/map', to: 'pages#map', as: :map
 
-  get '/dashboard', to: 'users#show', as: :dashboard
-  get '/logout', to: 'users#logout', as: :logout
+    get '/categories', to: 'restaurants#categories', as: :restaurant_categories
+    get '/tested-restaurants', to: 'restaurants#tested_restaurants', as: :tested_restaurants
+    get '/untested-restaurants', to: 'restaurants#untested_restaurants', as: :untested_restaurants
 
-  get '/restaurant_list', to: 'restaurants#restaurant_list'
-  get '/restaurant_addresses', to: 'restaurants#restaurant_addresses'
+    get '/dashboard', to: 'users#show', as: :dashboard
+    get '/logout', to: 'users#logout', as: :logout
 
-  resources :restaurants
+    get '/restaurant_list', to: 'restaurants#restaurant_list'
+    get '/restaurant_addresses', to: 'restaurants#restaurant_addresses'
 
-end
+    resources :restaurants
+
+    resources :friendships, only: [:new, :create, :update, :destroy] do
+        collection do
+          get :pending_requests
+        end
+        member do
+          patch :accept
+          delete :reject
+        end
+      end
+
+    get '/friends', to: 'users#friends', as: :friends
+    get '/users/:id/restaurants', to: 'users#friend_restaurants', as: :user_restaurants
+  end

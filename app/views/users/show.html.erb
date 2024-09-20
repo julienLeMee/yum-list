@@ -1,6 +1,8 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
+    <%= render 'shared/flashes' %>
+
     <div class="flex items-center justify-between w-full mt-4">
         <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
         Dashboard
@@ -13,6 +15,23 @@
             <span class="truncate">Log out</span>
         <% end %>
     </div>
+
+    <span>
+<       <%= link_to 'See Friends', friends_path %>
+    </span>
+
+    <p class="py-4 text-base font-semibold text-[--color--text--primary]">
+      <% if !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user) %>
+        <%= form_with url: friendships_path, method: :post, local: true do |form| %>
+            <%= form.hidden_field :email, value: @user.email %>
+            <%= form.submit "Add Friend", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </p>
+
+    <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
+      <%= link_to 'Pending Friend Requests', pending_requests_friendships_path, class: 'btn btn-secondary' %>
+    </p>
 
     <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
       You have <%= pluralize(current_user.restaurants.count, "restaurant") %> in your list.

@@ -1,0 +1,30 @@
+<main class="pt-16 pb-28 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+
+    <h1>Friends List</h1>
+
+    <% if @friends.any? %>
+      <ul>
+        <% @friends.each do |friend| %>
+            <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
+            <li>
+                <%= link_to friend.email, user_restaurants_path(friend) %>
+                <% if friendship %>
+                <% if friendship.pending? %>
+                    <%= "Friend request pending" %>
+                <% elsif friendship.accepted? %>
+                    <%= form_with(url: friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure you want to remove this friend?' }, html: { class: 'inline' }) do %>
+                    <%= submit_tag 'Remove', class: 'text-red-500' %>
+                    <% end %>
+                <% end %>
+                <% else %>
+                <%= "No friendship found" %>
+                <% end %>
+            </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>You have no friends yet.</p>
+    <% end %>
+  </div>
+</main>

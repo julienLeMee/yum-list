@@ -3,6 +3,26 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Configurer l'envoi d'email
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  # Configurer le serveur SMTP avec Sendgrid
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY'],
+    domain: 'https://yum-list-aged-water-5075.fly.dev/',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+ }
+ config.action_mailer.default_options = { from: 'pepperwoood@gmail.com' }
+
+  # Assurer que les erreurs de livraison sont levées
+  config.action_mailer.raise_delivery_errors = true
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

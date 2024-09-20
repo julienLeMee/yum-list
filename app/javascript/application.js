@@ -2,7 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-
 // // Initialize and add the map
 // let map;
 

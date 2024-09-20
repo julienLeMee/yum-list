@@ -1,0 +1,16 @@
+<main class="pt-16 pb-28 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+
+    <h1><%= @friend.email %>'s Restaurant List</h1>
+
+    <% if @restaurants.any? %>
+    <ul>
+        <% @restaurants.each do |restaurant| %>
+        <li><%= restaurant.name %> - <%= restaurant.address %></li>
+        <% end %>
+    </ul>
+    <% else %>
+    <p>No restaurants found for <%= @friend.email %>.</p>
+    <% end %>
+  </div>
+</main>

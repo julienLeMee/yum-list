@@ -1,0 +1,21 @@
+<main class="pt-16 pb-28 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+
+    <h1>Pending Friend Requests</h1>
+
+    <% if @pending_requests.any? %>
+    <ul>
+        <% @pending_requests.each do |request| %>
+        <li>
+            <%= link_to request.user.email, user_path(request.user) %>
+            <%= button_to 'Accept', accept_friendship_path(request.id), method: :patch, class: 'btn btn-success' %>
+            <%= link_to 'Reject', reject_friendship_path(request.id), method: :delete, class: 'btn btn-danger' %>
+        </li>
+        <% end %>
+    </ul>
+    <% else %>
+    <p>No pending friend requests.</p>
+    <% end %>
+
+  </div>
+</main>

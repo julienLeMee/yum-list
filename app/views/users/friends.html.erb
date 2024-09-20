@@ -1,21 +1,27 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <h1 class="mt-4">Friends List</h1>
+    <h1 class="mt-4 pt-4 text-2xl font-semibold text-[--color--text--primary]">Friends List</h1>
 
     <% if @friends.any? %>
       <ul>
         <% @friends.each do |friend| %>
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
-            <li class="flex flex-col my-4">
+            <li class="flex flex-col gap-1 relative overflow-hidden p-4 my-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
                 <%= link_to friend.email, user_restaurants_path(friend) %>
                 <% if friendship %>
                 <% if friendship.pending? %>
-                    <%= "Friend request pending" %>
+                <div class="flex gap-2">
+                    <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="white" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M12 12C15.866 12 19 8.86599 19 5H5C5 8.86599 8.13401 12 12 12ZM12 12C15.866 12 19 15.134 19 19H5C5 15.134 8.13401 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 2L12 2L19 2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 22H12L19 22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <span class="text-sm font-light">Friend request pending</span>
+                </div>
                 <% elsif friendship.accepted? %>
+                <div class="flex gap-2">
+                    <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M18.6213 12.1213L20.7426 10M22.864 7.87868L20.7426 10M20.7426 10L18.6213 7.87868M20.7426 10L22.864 12.1213" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     <%= form_with(url: friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure you want to remove this friend?' }, html: { class: 'inline' }) do %>
-                    <%= submit_tag 'Remove', class: 'text-red-500' %>
+                    <%= submit_tag 'Remove', class: 'text-sm font-light text-red-200' %>
                     <% end %>
+                </div>
                 <% end %>
                 <% else %>
                 <%= "No friendship found" %>

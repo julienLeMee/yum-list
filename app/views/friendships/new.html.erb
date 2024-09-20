@@ -1,16 +1,11 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <%= link_to "Add Friend", "#", data: { toggle: "modal", target: "#addFriendModal" } %>
-
     <div class="modal fade" id="addFriendModal" tabindex="-1" role="dialog" aria-labelledby="addFriendModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="addFriendModalLabel">Add a Friend</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title mt-4" id="addFriendModalLabel">Add a Friend</h5>
         </div>
         <div class="modal-body">
             <%= form_with url: friendships_path, method: :post, local: true do |form| %>

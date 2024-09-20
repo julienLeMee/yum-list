@@ -1,5 +1,5 @@
 class FriendshipMailer < ApplicationMailer
-    default from: 'no-reply@yumlist.app'
+    default from: 'pepperwoood@gmail.com'
 
     def friend_request_email(user, friend)
       @user = user

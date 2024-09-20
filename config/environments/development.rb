@@ -4,21 +4,31 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Configurer l'envoi d'email
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.perform_caching = false
 
   # Configurer le serveur SMTP
-#   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: '587',
+    user_name: 'apikey',
+    password: ENV['SENDGRID_API_KEY'],
     domain: 'localhost',
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    authentication: 'plain',
-    enable_starttls_auto: true,
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
+  config.action_mailer.default_options = { from: 'pepperwoood@gmail.com' }
+#   config.action_mailer.delivery_method = :letter_opener
+#   config.action_mailer.smtp_settings = {
+#     address: 'smtp.gmail.com',
+#     port: '587',
+#     domain: 'example.com',
+#     user_name: ENV['SMTP_USERNAME'],
+#     password: ENV['SMTP_PASSWORD'],
+#     authentication: 'plain',
+#     enable_starttls_auto: true
+#   }
 
   # Configurer l'URL d'action mailer pour les environnements de développement
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
@@ -57,7 +67,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 

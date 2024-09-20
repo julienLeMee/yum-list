@@ -16,22 +16,40 @@
         <% end %>
     </div>
 
-    <span>
-<       <%= link_to 'See Friends', friends_path %>
+    <div class="flex gap-2 justify-evenly items-center my-4">
+    <span class="flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-2 text-center">
+        <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
+            <path d="M1 20V19C1 15.134 4.134 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 7.65685 16.3431 9 18 9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+        </svg>
+        <%= link_to 'See Friends', friends_path, class: 'text-base font-semibold text-[--color--text--primary]' %>
     </span>
 
-    <p class="py-4 text-base font-semibold text-[--color--text--primary]">
-      <% if !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user) %>
-        <%= form_with url: friendships_path, method: :post, local: true do |form| %>
-            <%= form.hidden_field :email, value: @user.email %>
-            <%= form.submit "Add Friend", class: "btn btn-primary" %>
+    <span class="flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-2 text-center">
+        <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
+            <path d="M17 10H20M23 10H20M20 10V7M20 10V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M1 20V19C1 15.134 4.134 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <% if !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user) %>
+            <%= form_with url: friendships_path, method: :post, local: true do |form| %>
+                <%= form.hidden_field :email, value: @user.email %>
+                <%= form.submit "Add Friend", class: "text-base font-semibold text-[--color--text--primary]" %>
+            <% end %>
         <% end %>
-      <% end %>
-    </p>
+    </span>
 
-    <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
-      <%= link_to 'Pending Friend Requests', pending_requests_friendships_path, class: 'btn btn-secondary' %>
-    </p>
+    <span class="flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-2 text-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
+            <path d="M3 13C6.6 5 17.4 5 21 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 17C10.3431 17 9 15.6569 9 14C9 12.3431 10.3431 11 12 11C13.6569 11 15 12.3431 15 14C15 15.6569 13.6569 17 12 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <%= link_to 'Pending Requests', pending_requests_friendships_path, class: 'text-base font-semibold text-[--color--text--primary]' %>
+    </span>
+</div>
+
 
     <p class="pt-4 text-base font-semibold text-[--color--text--primary]">
       You have <%= pluralize(current_user.restaurants.count, "restaurant") %> in your list.

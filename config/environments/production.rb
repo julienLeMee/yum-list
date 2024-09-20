@@ -12,7 +12,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     user_name: 'apikey',
     password: ENV['SENDGRID_API_KEY'],
-    domain: 'https://yum-list-aged-water-5075.fly.dev/',
+    domain: 'yum-list-aged-water-5075.fly.dev',
     address: 'smtp.sendgrid.net',
     port: 587,
     authentication: :plain,

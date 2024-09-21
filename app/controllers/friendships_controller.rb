@@ -41,6 +41,16 @@ class FriendshipsController < ApplicationController
       @pending_requests = Friendship.where(friend: current_user, status: 'pending')
     end
 
+    def resend_request
+        @friendship = Friendship.find(params[:id])
+        if @friendship.pending?
+          flash[:notice] = "Friend request resent."
+        else
+          flash[:alert] = "Unable to resend request."
+        end
+        redirect_to friends_path
+    end
+
     def accept
         friendship = Friendship.find(params[:id])
 

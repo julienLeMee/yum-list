@@ -155,9 +155,11 @@
                           <%= restaurant.description %>
                         </p>
                         <p class="mt-1 flex text-xs leading-5 text-gray-500">
-                        <div class="absolute right-6 flex gap-1 justify-end">
-                        <%= restaurant.rating %>
-                        <span class="text-[#F9BD00]">★</span>
+                        <div class="flex gap-1 justify-start">
+                        <% if restaurant.rating.present? %>
+                            <span><%= restaurant.rating %></span>
+                            <span class="text-[#F9BD00]">★</span>
+                        <% end %>
                         </div>
                         </p>
                       </div>

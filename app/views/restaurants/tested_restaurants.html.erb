@@ -55,7 +55,7 @@
               <li>
                 <a href="<%= restaurant_path(restaurant) %>" class="restaurant__card relative block bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl hover:shadow-lg transition duration-200 ease-in-out">
                   <% if restaurant.tested? %>
-                    <div class="bg-green-500 w-2 h-2 rounded-full absolute top-2 right-2"></div>
+                    <span class="absolute top-4 right-4"><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#4DAA57"><path d="M5 13L9 17L19 7" stroke="#4DAA57" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
                   <% end %>
                   <!-- Restaurant details here -->
                   <div class="w-52 h-52 relative flex items-center justify-between p-6">
@@ -89,9 +89,11 @@
                           <%= restaurant.description %>
                         </p>
                         <p class="mt-1 flex text-xs leading-5 text-gray-500">
-                        <div class="absolute right-6 flex gap-1 justify-end">
-                        <%= restaurant.rating %>
-                        <span class="text-[#F9BD00]">★</span>
+                        <div class="flex gap-1 justify-start">
+                        <% if restaurant.rating.present? %>
+                            <span><%= restaurant.rating %></span>
+                            <span class="text-[#F9BD00]">★</span>
+                        <% end %>
                         </div>
                         </p>
                       </div>

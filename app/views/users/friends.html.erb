@@ -8,7 +8,7 @@
         <% @friends.each do |friend| %>
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
             <li class="flex flex-col gap-1 relative overflow-hidden p-4 my-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
-                <%= link_to friend.email, user_restaurants_path(friend) %>
+                <%= link_to friend.name.present? ? friend.name : friend.email, user_restaurants_path(friend) %>
                 <% if friendship %>
                 <% if friendship.pending? %>
                     <div class="flex">
@@ -23,16 +23,10 @@
                         </button>
                     </div>
                 <% elsif friendship.accepted? %>
-                    <div class="flex">
+                    <div class="flex justify-between items-center">
                         <%= form_with(url: friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure you want to remove this friend?' }, html: { class: 'inline' }) do %>
-                            <button type="submit" class="flex items-center gap-2 text-sm font-light text-white bg-white/20 px-4 py-2 rounded-full">
-                                <?xml version="1.0" encoding="UTF-8"?>
-                                <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="white">
-                                    <path d="M18.6213 12.1213L20.7426 10M22.864 7.87868L20.7426 10M20.7426 10L18.6213 7.87868M20.7426 10L22.864 12.1213" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M1 20V19C1 15.134 4.13401 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path d="M8 12C10.2091 12 12 10.2091 12 8C12 5.79086 10.2091 4 8 4C5.79086 4 4 5.79086 4 8C4 10.2091 5.79086 12 8 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                                <span>Remove</span>
+                            <button type="submit" class="absolute right-4 top-[50%] -translate-y-2/4 flex items-center gap-2 text-sm font-light text-white">
+                                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                             </button>
                         <% end %>
                     </div>

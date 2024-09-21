@@ -51,7 +51,8 @@ main {
 
 .restaurant__card svg,
 .dashboard__card svg,
-.categories__cards svg {
+.categories__cards svg,
+.friends-restaurant__cards svg {
     width: 4rem;
     height: 4rem;
 }

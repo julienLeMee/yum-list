@@ -11,6 +11,8 @@ module ApplicationHelper
         ['friendships', 'pending_requests'],
         ['friends', 'index'],
         ['users', 'show'],
+        ['users', 'edit'],
+        ['users', 'update'],
         ['users', 'friend_restaurants'],
         ['users', 'friends']
       '#F5F5F5' # Couleur spécifique pour ces contrôleurs et actions

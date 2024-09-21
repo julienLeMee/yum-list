@@ -1,15 +1,15 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
-    <%# <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
+    <h2 class="pt-4 text-2xl font-semibold text-[--color--text--primary]">
       Untested restaurants
-    </h2> %>
+    </h2>
 
-    <div class="gap-4 my-12 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[80px]">
+    <div class="gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-2 items-center justify-center py-2 px-4 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-full hover:shadow-lg transition duration-200 ease-in-out">
+          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-2 items-center justify-center py-2 px-4 bg-white text-[--color--text--primary] hover:text-[--color--burgundy] rounded-full transition duration-200 ease-in-out">
             <% if restaurant.category == "Asian" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path stroke="currentColor" stroke-width="1.5" d="M2 12h7M15 12h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
@@ -41,11 +41,11 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mb-4">
-          <p class="text-lg text-[--color--text--primary]">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
+          <p class="text-[--color--text--primary]">
             <%= category %>
           </p>
-          <p>
+          <p class="font-light py-1 px-3 bg-white/30 w-fit rounded-full text-[--color--red]">
             <%= restaurants.count %>
           </p>
         </div>

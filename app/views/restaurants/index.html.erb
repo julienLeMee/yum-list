@@ -7,26 +7,26 @@
 
     <% if @restaurants.any? %>
       <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form", html: { class: "mt-4" }) do %>
-        <div class="relative mb-6">
+        <div class="relative my-6 flex items-center gap-2">
             <input
             type="text"
             name="query"
             placeholder="Search..."
-            class="w-full py-2 px-4 border-none mt-4 rounded-full"
+            class="w-full py-2 px-4 border-none rounded-full"
             value="<%= params[:query] %>"
             id="search-input"
             >
-        </div>
-
-        <div class="flex space-x-4">
             <!-- Bouton de recherche -->
             <button type="submit" class="w-fit text-white bg-[--color--red] hover:bg-[--color--burgundy] transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 px-4 text-sm leading-6 font-semibold">
             Search
             </button>
-
             <!-- Bouton de réinitialisation -->
             <% if params[:query].present? %>
-            <%= link_to 'Reset', restaurants_path, class: 'w-fit text-[--color--red] border border-[--color--red] hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 px-4 text-sm leading-6 font-semibold', method: :get %>
+                <%= link_to restaurants_path, class: 'w-fit text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-1 text-sm leading-6 font-semibold', method: :get do %>
+                    <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#B1454A">
+                    <path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426" stroke="#B1454A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                <% end %>
             <% end %>
         </div>
       <% end %>
@@ -34,12 +34,12 @@
 
 
 
-    <div class="gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max min-h-[60px]">
+    <div class="gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
           <% categories << restaurant.category %>
-          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-2 items-center justify-center py-2 px-4 bg-white text-[--color--text--primary] hover:text-gray-900 rounded-full hover:shadow-lg transition duration-200 ease-in-out">
+          <a href="#<%= restaurant.category.parameterize %>" class="w-fit h-fit flex gap-2 items-center justify-center py-2 px-4 bg-white text-[--color--text--primary] hover:text-[--color--burgundy] rounded-full transition duration-200 ease-in-out">
             <% if restaurant.category == "Asian" %>
               <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path stroke="currentColor" stroke-width="1.5" d="M2 12h7M15 12h7"></path></svg>
             <% elsif restaurant.category == "Ramen" %>
@@ -108,11 +108,11 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mb-4">
-          <p class="text-lg text-[--color--text--primary]">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
+          <p class="text-[--color--text--primary]">
             <%= category %>
           </p>
-          <p class="font-light py-1 px-4 bg-white/50 w-fit rounded-full text-[--color--red]">
+          <p class="font-light py-1 px-3 bg-white/30 w-fit rounded-full text-[--color--red]">
             <%= restaurants.count %>
           </p>
         </div>

@@ -8,8 +8,8 @@
 
     <% if @restaurants.any? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-4 mb-2">
-          <p class="text-lg text-[--color--text--primary]">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
+          <p class="text-[--color--text--primary]">
             <%= category %>
           </p>
         </div>

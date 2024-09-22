@@ -1,10 +1,6 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <%# <h2 class="p-4 mt-6 text-2xl rounded-xl font-semibold text-white bg-[--color--red]">
-      All restaurants
-    </h2> %>
-
     <% if @restaurants.any? %>
       <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form", html: { class: "mt-4" }) do %>
         <div class="relative my-6 flex items-center gap-2">

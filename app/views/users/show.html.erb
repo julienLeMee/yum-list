@@ -67,12 +67,12 @@
     <% grouped_restaurants = current_user.restaurants.group_by(&:category) %>
         <div class="dashboard__card--list text-sm text-[--color--text--primary]">
       <% grouped_restaurants.each do |category, restaurants| %>
+        <%= link_to restaurants_path(query: category) do %>
             <div class="dashboard__card flex items-center justify-between relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
             <div class="flex flex-col gap-1">
                 <span class="font-light py-1 px-4 bg-white/20 w-fit rounded-full"><%= category %></span>
                 <span><%= pluralize(restaurants.count, "restaurant") %></span>
             </div>
-            </liv>
             <div>
             <% case category %>
             <% when "Pizza" %>
@@ -98,6 +98,7 @@
             <% end %>
             </div>
         </div>
+        <% end %>
         <% end %>
 
   </div>

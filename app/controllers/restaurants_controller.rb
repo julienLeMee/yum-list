@@ -1,29 +1,35 @@
 class RestaurantsController < ApplicationController
-  def index
-    if params[:query].present?
-      @restaurants = current_user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+#   def index
+#     if params[:query].present?
+#       @restaurants = current_user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+#     else
+#       @restaurants = current_user.restaurants
+#     end
+#   end
+
+def index
+    if params[:user_id] && current_user.id != params[:user_id].to_i
+      # Affichage des restaurants d'un ami
+      @user = User.find(params[:user_id])
+      @restaurants = @user.restaurants
+      @editable = false
+      @debug_message = "Affichage des restaurants d'un ami"
+      logger.debug "Affichage des restaurants d'un ami"
     else
-      @restaurants = current_user.restaurants
+      # Affichage des restaurants de l'utilisateur actuel
+      @user = current_user
+      if params[:query].present?
+        @restaurants = @user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+      else
+        @restaurants = @user.restaurants
+      end
+      @editable = true
+      @debug_message = "Affichage des restaurants de l'utilisateur actuel"
+      logger.debug "Affichage des restaurants de l'utilisateur actuel"
     end
   end
 
-#   def index
-#     if params[:user_id] && current_user.id != params[:user_id].to_i
-#       # Affichage des restaurants d'un ami
-#       @user = User.find(params[:user_id])
-#       @restaurants = @user.restaurants
-#       @editable = false # L'utilisateur ne peut pas éditer les restaurants de son ami
-#     else
-#       # Affichage des restaurants de l'utilisateur actuel
-#       @user = current_user
-#       if params[:query].present?
-#         @restaurants = @user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
-#       else
-#         @restaurants = @user.restaurants
-#       end
-#       @editable = true # L'utilisateur peut éditer ses propres restaurants
-#     end
-#   end
+
 
   def categories
     @categories = current_user.restaurants.select(:category).distinct.pluck(:category)
@@ -44,6 +50,8 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
+    @user = @restaurant.user
+    @editable = current_user == @user
     @reviews = @restaurant.reviews
   end
 

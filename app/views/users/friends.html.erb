@@ -11,19 +11,23 @@
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
 
             <% if friendship&.accepted? %>
-              <li class="flex flex-col justify-between gap-1 relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
-                <!-- Lien vers les restaurants pour les amis uniquement -->
-                <%= link_to friend.name.present? ? friend.name : friend.email, user_restaurants_path(friend) %>
-                <span class=" w-fit mt-2 flex items-center gap-2 text-sm font-light bg-white text-[--color--red] rounded-full p-2">
-                <?xml version="1.0" encoding="UTF-8"?><svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#b1454a"><path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                <span>See their <%= friend.restaurants.count %> restaurants</span>
-                <div class="flex justify-between items-center">
+              <li class="flex justify-between gap-1 relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
+                <%= link_to user_restaurants_path(friend), class: "flex flex-col" do %>
+                <span><%= friend.name.present? ? friend.name : friend.email %></span>
+                <span class="w-fit mt-2 flex items-center gap-2 text-sm font-light bg-white text-[--color--red] rounded-full p-2">
+                    <span>
+                    See their <%= friend.restaurants.count %> restaurants
+                    </span>
+                    <svg width="16px" height="16px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#b1454a">
+                    <path d="M3 12L21 12M21 12L12.5 3.5M21 12L12.5 20.5" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+                <% end %>
                   <%= form_with(url: friendship_path(friendship), method: :delete, data: { confirm: 'Are you sure you want to remove this friend?' }, html: { class: 'inline' }) do %>
                     <button type="submit" class="absolute right-4 top-[50%] -translate-y-2/4 flex items-center gap-2 text-sm font-light text-white">
                       <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M20 9L18.005 20.3463C17.8369 21.3026 17.0062 22 16.0353 22H7.96474C6.99379 22 6.1631 21.3026 5.99496 20.3463L4 9" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21 6L15.375 6M3 6L8.625 6M8.625 6V4C8.625 2.89543 9.52043 2 10.625 2H13.375C14.4796 2 15.375 2.89543 15.375 4V6M8.625 6L15.375 6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                     </button>
                   <% end %>
-                </div>
               </li>
             <% end %>
         <% end %>

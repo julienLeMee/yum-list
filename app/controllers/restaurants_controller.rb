@@ -7,6 +7,24 @@ class RestaurantsController < ApplicationController
     end
   end
 
+#   def index
+#     if params[:user_id] && current_user.id != params[:user_id].to_i
+#       # Affichage des restaurants d'un ami
+#       @user = User.find(params[:user_id])
+#       @restaurants = @user.restaurants
+#       @editable = false # L'utilisateur ne peut pas éditer les restaurants de son ami
+#     else
+#       # Affichage des restaurants de l'utilisateur actuel
+#       @user = current_user
+#       if params[:query].present?
+#         @restaurants = @user.restaurants.where('name LIKE ? OR category LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+#       else
+#         @restaurants = @user.restaurants
+#       end
+#       @editable = true # L'utilisateur peut éditer ses propres restaurants
+#     end
+#   end
+
   def categories
     @categories = current_user.restaurants.select(:category).distinct.pluck(:category)
   end

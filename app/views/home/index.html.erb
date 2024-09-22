@@ -1,30 +1,24 @@
-<% if user_signed_in? %>
   <main class="bg-[--color--red] lg:pl-72 h-full relative z-[100]">
-    <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-64 h-64 absolute top-[10%] right-[-10%]" %>
-    <div class="flex flex-col justify-end h-full mb-20 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-5xl font-bold tracking-tight text-white sm:text-6xl">Welcome to Yum List</h1>
-        <p class="mt-6 text-sm leading-8 text-white">Organize your favorite restaurants, whether they are tested or to be discovered. Happy exploring!</p>
-        <%= link_to restaurants_path, class: "w-fit mb-20 mt-4 text-white bg-white/20 hover:shadow-lg transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 px-4 text-sm leading-6 font-semibold" do %>
-        Get started
-        <% end %>
-    </div>
+<% if user_signed_in? %>
+    <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "yum-list__logo w-56 h-56 absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4" %>
+
+    <script>
+        setTimeout(function() {
+        window.location.href = '<%= restaurants_path %>';
+        }, 1000);
+    </script>
+
 <% else %>
   <div class="bg-[--color--red] relative isolate overflow-hidden h-screen">
-      <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
-        <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-      </div>
-      <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-56 h-56 absolute top-[10%] left-[50%] -translate-x-2/4" %>
+      <div class="flex h-full items-center mx-auto max-w-2xl mt-12">
         <div class="text-center">
-          <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Yum List</h1>
-          <p class="mt-2 text-lg leading-8 text-white p-4">Organize your favorite restaurants, whether they are tested or to be discovered. Happy exploring!</p>
+          <p class="mt-4 text-lg leading-8 text-white p-4">Organize your favorite restaurants, whether they are tested or to discover. Connect with your friends and share your favorite addresses. <br> Happy discovering!</p>
           <div class="mt-2 flex items-center justify-center gap-x-6">
             <a href="<%= new_user_session_path %>" class="rounded-full bg-white/20 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[--color--burgundy] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2">Get started</a>
           </div>
-          <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-56 h-56 absolute bottom-[10%] right-[-10%]" %>
         </div>
-      </div>
-      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
       </div>
     </div>
 <% end %>
+</main>

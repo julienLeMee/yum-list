@@ -1,9 +1,9 @@
 <div class="bg-[--color--red] flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sign__up--page sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Sign up for an account</h2>
+        <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-40 h-40 absolute top-[8%] left-[50%] -translate-x-2/4" %>
   </div>
 
-  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  <div class="mt-20 sm:mx-auto sm:w-full sm:max-w-sm z-10">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false }, class: "space-y-6" }) do |f| %>
       <div>
         <label for="email" class="block text-sm font-medium leading-6 text-white">Email address</label>

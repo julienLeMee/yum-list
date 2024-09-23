@@ -56,6 +56,11 @@
             <path d="M12 17C10.3431 17 9 15.6569 9 14C9 12.3431 10.3431 11 12 11C13.6569 11 15 12.3431 15 14C15 15.6569 13.6569 17 12 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
         <span>Requests</span>
+        <% if @pending_friend_requests.present? && @pending_friend_requests > 0 %>
+            <div class="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center w-4 h-4 bg-red-600 text-white rounded-full">
+                <span class="text-xs"><%= @pending_friend_requests %></span>
+            </div>
+        <% end %>
     <% end %>
 </div>
 

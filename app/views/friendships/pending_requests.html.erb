@@ -6,10 +6,16 @@
     <% if @pending_requests.any? %>
     <ul>
         <% @pending_requests.each do |request| %>
-        <li>
-            <%= link_to request.user.email, user_path(request.user) %>
-            <%= button_to 'Accept', accept_friendship_path(request.id), method: :patch, class: 'btn btn-success' %>
-            <%= link_to 'Reject', reject_friendship_path(request.id), method: :delete, class: 'btn btn-danger' %>
+        <li class="flex flex-col gap-1 relative overflow-hidden p-4 my-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
+            <% if request.user.name.present? %>
+                <%= request.user.name %>
+            <% else %>
+                <%= request.user.email %>
+            <% end %>
+            <div class="flex gap-4">
+                <%= button_to 'Accept', accept_friendship_path(request.id), method: :patch, class: 'flex items-center gap-2 text-sm font-light text-[--color--red] bg-white hover:bg-white/50 rounded-full p-2 mt-2' %>
+                <%= link_to 'Reject', reject_friendship_path(request.id), method: :delete, class: 'flex items-center gap-2 text-sm font-light text-white bg-transparent border border-white hover:bg-white/20 rounded-full p-2 mt-2' %>
+            </div>
         </li>
         <% end %>
     </ul>

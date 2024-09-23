@@ -133,12 +133,22 @@
             <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>
         </svg>
         <% end %>
-        <%= link_to dashboard_path, class: "text-[--color--text--primary] my-button" do %>
-            <span class="sr-only">Your profile</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-              <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
-            </svg>
-        <% end %>
+        <div class="relative inline-block">
+            <%= link_to dashboard_path, class: "text-[--color--text--primary] my-button" do %>
+                <span class="sr-only">Your profile</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1"></path>
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"></circle>
+                </svg>
+            <% end %>
+
+            <% if @pending_friend_requests.present? && @pending_friend_requests > 0 %>
+                <div class="absolute top-0 left-0 transform -translate-x-1/2 -translate-y-1/2 inline-flex items-center justify-center w-4 h-4 bg-red-600 text-white rounded-full">
+                    <span class="text-xs"><%= @pending_friend_requests %></span>
+                </div>
+            <% end %>
+        </div>
       <% else %>
         <%= link_to login_path, class: "text-[--color--text--primary] my-button" do %>
             <span class="sr-only">Your profile</span>

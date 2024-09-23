@@ -22,8 +22,6 @@ class Friendship < ApplicationRecord
         end
     end
 
-
-
     # Méthode pour refuser une demande d'amitié
     def reject
       update(status: 'rejected')

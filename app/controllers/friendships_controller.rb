@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_pending_friend_requests
 
     def create
       email = params[:email]
@@ -40,6 +41,12 @@ class FriendshipsController < ApplicationController
       # Liste les demandes d'amis reçues par l'utilisateur qui sont encore en attente
       @pending_requests = Friendship.where(friend: current_user, status: 'pending')
     end
+
+    def set_pending_friend_requests
+        if current_user
+          @pending_friend_requests = Friendship.pending.where(friend: current_user).count
+        end
+      end
 
     def resend_request
         @friendship = Friendship.find(params[:id])

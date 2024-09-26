@@ -29,7 +29,8 @@
             <div class="col-span-3">
               <%= f.label :category, "Category", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <%= f.select :category, options_for_select([
-                "Asian",
+                "Japanese",
+                "Korean",
                 "Ramen",
                 "Sushi",
                 "BBQ",
@@ -51,7 +52,7 @@
             <div class="col-span-3 select__edit">
                 <%= f.label :rating, "Rating", class: "block text-sm font-medium leading-6 text-[--color--text--primary] mr-2" %>
                 <div class="mt-2">
-                    <%= f.select :rating, options_for_select([1, 2, 3, 4, 5], @restaurant.rating), class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                    <%= f.select :rating, options_for_select([['?', nil], 1, 2, 3, 4, 5], @restaurant.rating), class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
                 </div>
             </div>
 
@@ -62,9 +63,10 @@
             </div>
 
 
-                <div class="">
+            <div class="">
                 <%= f.submit "Update restaurant", class: "rounded-full bg-[--color--red] px-3 py-1.5 text-sm border-0 font-semibold leading-6 text-white shadow-sm hover:bg-[--color--burgundy] cursor-pointer" %>
-                </div>
+            </div>
+
             </div>
           </div>
         </div>

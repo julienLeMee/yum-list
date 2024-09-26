@@ -5,11 +5,12 @@
 
     <% if @friends.any? %>
 
-      <p class="mt-6 mb-1 text-[--color--text--primary]">Friends</p>
-      <ul>
-        <% @friends.each do |friend| %>
+      <!-- Afficher la section "Friends" uniquement s'il y a des amis acceptés -->
+      <% if @friends.any? { |friend| current_user.friendships.find_by(friend_id: friend.id)&.accepted? || current_user.inverse_friendships.find_by(user_id: friend.id)&.accepted? } %>
+        <p class="mt-6 mb-1 text-[--color--text--primary]">Friends</p>
+        <ul>
+          <% @friends.each do |friend| %>
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
-
             <% if friendship&.accepted? %>
               <li class="flex justify-between gap-1 relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
                 <%= link_to user_restaurants_path(friend), class: "flex flex-col" do %>
@@ -30,15 +31,16 @@
                   <% end %>
               </li>
             <% end %>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      <% end %>
 
-      <!-- Afficher les demandes en attente en second -->
-      <p class="mt-6 mb-1 text-[--color--text--primary]">Pending requests</p>
-      <ul>
-        <% @friends.each do |friend| %>
+      <!-- Afficher les demandes en attente uniquement s'il y a des amis en attente -->
+      <% if @friends.any? { |friend| current_user.friendships.find_by(friend_id: friend.id)&.pending? || current_user.inverse_friendships.find_by(user_id: friend.id)&.pending? } %>
+        <p class="mt-6 mb-1 text-[--color--text--primary]">Pending requests</p>
+        <ul>
+          <% @friends.each do |friend| %>
             <% friendship = current_user.friendships.find_by(friend_id: friend.id) || current_user.inverse_friendships.find_by(user_id: friend.id) %>
-
             <% if friendship&.pending? %>
               <li class="flex justify-between items-center gap-1 relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-[--color--red] border border-[--color--red]">
                 <div class="flex flex-col">
@@ -53,8 +55,10 @@
                   <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="#b1454a"><path d="M12 12C15.866 12 19 8.86599 19 5H5C5 8.86599 8.13401 12 12 12ZM12 12C15.866 12 19 15.134 19 19H5C5 15.134 8.13401 12 12 12Z" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 2L12 2L19 2" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M5 22H12L19 22" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
               </li>
             <% end %>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      <% end %>
+
     <% else %>
       <p>You have no friends yet.</p>
     <% end %>

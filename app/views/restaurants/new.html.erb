@@ -26,10 +26,11 @@
               </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-3">
+            <div class="col-span-3">
               <%= f.label :category, "Category", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
               <%= f.select :category, options_for_select([
-                "Asian",
+                "Japanese",
+                "Korean",
                 "Ramen",
                 "Sushi",
                 "BBQ",
@@ -47,11 +48,18 @@
                 ], @restaurant.category), { include_blank: 'Select a category' }, class: "mt-2 block w-full rounded-full border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
             </div>
 
-            <div class="flex justify-between w-full col-span-6">
+            <div class="col-span-3 select__edit">
+                <%= f.label :rating, "Rating", class: "block text-sm font-medium leading-6 text-[--color--text--primary] mr-2" %>
+                <div class="mt-2">
+                    <%= f.select :rating, options_for_select([['?', nil], 1, 2, 3, 4, 5], @restaurant.rating), class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                </div>
+            </div>
+
+            <div class="col-span-6 flex items-center justify-between">
                 <div class="">
                 <%= f.label :tested, class:"block text-sm font-medium leading-6 text-[--color--text--primary] mr-2" %>
-                <%= f.check_box :tested, id:"tested_checkbox", class:"h-4 w-4 rounded border-gray-300 text-[--color--text--secondary] focus:ring-[--color--text--secondary] cursor-pointer" %>
-                </div>
+                <%= f.check_box :tested, class:"h-4 w-4 rounded border-gray-300 text-[--color--text--secondary] focus:ring-[--color--text--secondary] cursor-pointer" %>
+            </div>
 
                 <div class="">
                 <%= f.submit "Add Restaurant", class: "rounded-full bg-[--color--red] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[--color--burgundy] focus:ring focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>

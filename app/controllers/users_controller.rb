@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:show, :edit, :update, :logout]
     before_action :set_user, only: [:show, :edit, :update]
+    before_action :set_pending_friend_requests
 
     def show
       @restaurants = @user.restaurants
@@ -48,6 +49,14 @@ class UsersController < ApplicationController
     def set_user
       @user = current_user
     end
+
+    def set_pending_friend_requests
+        if current_user
+          pending_requests = Friendship.where(friend: current_user, status: :pending)
+          Rails.logger.debug "Pending friend requests count: #{pending_requests.count}, requests: #{pending_requests.inspect}"
+          @pending_friend_requests = pending_requests.count
+        end
+      end
 
     def user_params
         if params[:user][:password].blank? && params[:user][:password_confirmation].blank?

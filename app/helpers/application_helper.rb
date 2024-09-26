@@ -4,6 +4,7 @@ module ApplicationHelper
     when ['restaurants', 'new'],
         ['restaurants', 'index'],
         ['restaurants', 'show'],
+        ['restaurants', 'edit'],
         ['restaurants', 'tested_restaurants'],
         ['restaurants', 'untested_restaurants'],
         ['restaurants', 'categories'],

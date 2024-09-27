@@ -6,12 +6,12 @@
     "background_color": "#FFFFFF",
     "icons": [
       {
-        "src": "/images/yum-list-logo.png",
+        "src": "/images/yum-list-new-logo.jpg",
         "type": "image/png",
         "sizes": "192x192"
       },
       {
-        "src": "/images/yum-list-logo.png",
+        "src": "/images/yum-list-new-logo.jpg",
         "type": "image/png",
         "sizes": "512x512"
       }

@@ -1,6 +1,6 @@
   <main class="bg-[--color--red] lg:pl-72 h-full relative z-[100]">
 <% if user_signed_in? %>
-    <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "yum-list__logo w-56 h-56 absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4" %>
+    <%= image_tag "yum-list-new-logo.jpg", alt: "Yum List Logo", class: "yum-list__logo w-56 h-56 absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4" %>
 
     <script>
         setTimeout(function() {
@@ -10,7 +10,7 @@
 
 <% else %>
   <div class="bg-[--color--red] relative isolate overflow-hidden h-screen">
-      <%= image_tag "yum-list-logo.svg", alt: "Yum List Logo", class: "w-56 h-56 absolute top-[10%] left-[50%] -translate-x-2/4" %>
+      <%= image_tag "yum-list-new-logo.jpg", alt: "Yum List Logo", class: "w-56 h-56 absolute top-[10%] left-[50%] -translate-x-2/4" %>
       <div class="flex h-full items-center mx-auto max-w-2xl mt-12">
         <div class="text-center">
           <p class="mt-4 text-lg leading-8 text-white p-4">Organize your favorite restaurants, whether they are tested or to discover. Connect with your friends and share your favorite addresses. <br> Happy discovering!</p>

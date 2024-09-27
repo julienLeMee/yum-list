@@ -1,5 +1,5 @@
 meta_product_name: "Yum list"
 meta_title: "Yum list : Organize your favorite restaurants!"
 meta_description: "Organize your favorite restaurants, whether you've already visited them or are planning to try them. Happy exploring!"
-meta_image: "yum-list-logo.png" # should exist in `app/assets/images/`
+meta_image: "yum-list-new-logo.jpg" # should exist in `app/assets/images/`
 twitter_account: "@majin_bun"   # required for Twitter Cards

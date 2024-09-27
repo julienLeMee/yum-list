@@ -10,6 +10,7 @@ Cette application Ruby on Rails permet aux utilisateurs de consulter et de gére
 - **Listes de Restaurants des Amis** : Consultez et explorez les listes de restaurants favoris de vos amis, classés et organisés.
 - **Design Responsive** : L'application est optimisée pour les appareils de bureau et mobiles.
 - **Recherche et Filtrage** : Les utilisateurs peuvent rechercher et filtrer les restaurants en fonction de leurs préférences.
+- **Communauté** : Les utilisateurs peuvent ajouter des amis pour voir leur listes de restaurants.
 
 ## Pré-requis
 

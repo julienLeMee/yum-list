@@ -6,6 +6,13 @@
   <div class="mt-20 sm:mx-auto sm:w-full sm:max-w-sm z-10">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { data: { turbo: false }, class: "space-y-6" }) do |f| %>
       <div>
+        <label for="name" class="block text-sm font-medium leading-6 text-white">Name</label>
+        <div class="mt-2">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "block w-full rounded-full border-0 bg-white/20 py-1.5 text-white shadow-sm sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div>
         <label for="email" class="block text-sm font-medium leading-6 text-white">Email address</label>
         <div class="mt-2">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full rounded-full border-0 bg-white/20 py-1.5 text-white shadow-sm sm:text-sm sm:leading-6" %>

@@ -36,6 +36,7 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
             let streetSuffix = '';
 
             place.address_components.forEach(component => {
+                // console.log(component);
                 if (component.types.includes('street_number')) {
                     streetNumber = component.long_name;
                 }
@@ -51,12 +52,12 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
                 if (component.types.includes('postal_code')) {
                     postalCode = component.long_name;
                 }
-                if (component.types.includes('sublocality') || component.types.includes('neighborhood')) {
-                    streetSuffix = component.long_name;
-                }
+                // if (component.types.includes('sublocality') || component.types.includes('neighborhood')) {
+                //     streetSuffix = component.long_name;
+                // }
             });
 
-            const formattedAddress = `${streetNumber} ${streetName} ${streetSuffix}, ${city}, ${province} ${postalCode}`;
+            const formattedAddress = `${streetNumber} ${streetName}, ${city}, ${province} ${postalCode}`;
             addressInput.value = formattedAddress.trim();
         });
     }

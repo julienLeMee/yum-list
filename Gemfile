@@ -45,7 +45,7 @@ gem 'simple_form'
 gem "tailwindcss-rails"
 
 # Dotenv
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test, :production]
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

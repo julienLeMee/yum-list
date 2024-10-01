@@ -53,10 +53,6 @@ def index
     @user = @restaurant.user
     @editable = current_user == @user
     @reviews = @restaurant.reviews
-
-    # Récupérer les horaires d'ouverture via l'API Google Places
-    google_place_id = @restaurant.google_place_id # Assurez-vous d'avoir cet ID stocké
-    @opening_hours = fetch_opening_hours_from_google(google_place_id)
   end
 
   def new
@@ -100,14 +96,5 @@ def index
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :category, :description, :tested, :rating)
-  end
-
-  def fetch_opening_hours_from_google(place_id)
-    response = GooglePlacesClient.details(place_id)
-    if response["result"] && response["result"]["opening_hours"]
-      response["result"]["opening_hours"]["weekday_text"]
-    else
-      []
-    end
   end
 end

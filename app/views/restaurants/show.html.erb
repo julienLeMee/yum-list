@@ -46,7 +46,7 @@
       </div>
       <p class="mt-6 text-lg leading-5 text-black/20 border border-black/20 rounded-full py-1 px-2 w-fit"><%= @restaurant.category %></p>
       <h2 class="mt-2 text-4xl font-bold tracking-tight text-[--color--text--primary] sm:text-6xl"><%= @restaurant.name %></h2>
-      <p class="mt-1 text-xs leading-5 text-[--color--text--primary]"><%= @restaurant.address %></p>
+      <p class="mt-2 text-xs leading-5 text-[--color--text--primary]"><%= @restaurant.address %></p>
       <div class="flex gap-1 justify-start">
         <% if @restaurant.rating.present? %>
             <span><%= @restaurant.rating %></span>
@@ -55,18 +55,6 @@
       </div>
       <p class="mt-6 text-lg leading-8 text-[--color--text--primary]"><%= @restaurant.description %></p>
     </div>
-
-    <!-- Placeholder pour les horaires d'ouverture -->
-    <% if @opening_hours.present? %>
-        <div class="mt-4 text-md leading-6 text-[--color--text--primary]">
-            <p>Horaires d'ouverture :</p>
-            <ul>
-            <% @opening_hours.each do |day, hours| %>
-                <li><%= day.capitalize %>: <%= hours %></li>
-            <% end %>
-            </ul>
-        </div>
-    <% end %>
 
   </div>
 </main>

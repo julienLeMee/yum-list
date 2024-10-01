@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_20_001212) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_01_012833) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -40,6 +40,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_20_001212) do
     t.integer "user_id"
     t.boolean "tested"
     t.integer "rating"
+    t.text "opening_hours"
+    t.string "google_place_id"
     t.index ["user_id"], name: "index_restaurants_on_user_id"
   end
 

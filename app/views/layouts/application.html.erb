@@ -28,6 +28,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_PLACES_API_KEY'] %>&libraries=places"></script>
   </head>
 
   <body>

@@ -52,8 +52,21 @@
             <span><%= @restaurant.rating %></span>
             <span class="text-[#F9BD00]">★</span>
         <% end %>
-        </div>
+      </div>
       <p class="mt-6 text-lg leading-8 text-[--color--text--primary]"><%= @restaurant.description %></p>
     </div>
+
+    <!-- Placeholder pour les horaires d'ouverture -->
+    <% if @opening_hours.present? %>
+        <div class="mt-4 text-md leading-6 text-[--color--text--primary]">
+            <p>Horaires d'ouverture :</p>
+            <ul>
+            <% @opening_hours.each do |day, hours| %>
+                <li><%= day.capitalize %>: <%= hours %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
   </div>
 </main>

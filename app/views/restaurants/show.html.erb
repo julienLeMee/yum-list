@@ -46,9 +46,9 @@
       </div>
       <p class="mt-6 text-lg leading-5 text-black/20 border border-black/20 rounded-full py-1 px-2 w-fit"><%= @restaurant.category %></p>
       <h2 class="mt-2 text-4xl font-bold tracking-tight text-[--color--text--primary] sm:text-6xl"><%= @restaurant.name %></h2>
-      <a href="https://www.google.com/maps/search/?api=1&query=<%= URI::encode_www_form_component(@restaurant.address) %>" target="_blank" class="flex items-center gap-2 my-2">
+      <a href="https://www.google.com/maps/search/?api=1&query=<%= URI::encode_www_form_component(@restaurant.address) %>" target="_blank" class="flex items-start gap-2 my-2">
         <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M20 10C20 14.4183 12 22 12 22C12 22 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z" stroke="#000000" stroke-width="1.5"></path><path d="M12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11Z" fill="#000000" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <p class="my-2 text-xs leading-5 text-[--color--text--primary]"><%= @restaurant.address %></p>
+        <p class="text-xs leading-5 text-[--color--text--primary]"><%= @restaurant.address %></p>
       </a>
       <div class="flex gap-1 justify-start">
         <% if @restaurant.rating.present? %>

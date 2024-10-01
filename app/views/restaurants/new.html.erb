@@ -5,18 +5,14 @@
         <div class="px-4 py-6 sm:p-8">
           <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-            <div class="col-span-6">
-              <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
-              <div class="mt-2">
-                <%= f.text_field :name, autocomplete: "given-name", class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
-              </div>
+            <div class="form-group col-span-6">
+                <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
+                <%= f.text_field :name, id: "name-autocomplete", class: "form-control block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
             </div>
 
-            <div class="col-span-6">
-              <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
-              <div class="mt-2">
-                <%= f.text_field :address, autocomplete: "off", class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
-              </div>
+            <div class="form-group col-span-6">
+                <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
+                <%= f.text_field :address, id: "autocomplete", class: "form-control block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
             </div>
 
             <div class="col-span-6">

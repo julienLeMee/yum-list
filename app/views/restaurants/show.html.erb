@@ -42,7 +42,10 @@
   </div>
 
     <% if @opening_hours.present? %>
-        <h3 class="my-6 font-light text-lg text-[--color--red] leading-8">Opening hours</h3>
+        <div class="flex items-center gap-2 mt-6">
+            <?xml version="1.0" encoding="UTF-8"?><svg style="width:1.5rem;height:1.5rem;" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#b1454a"><path d="M12 6L12 12L18 12" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#b1454a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <h3 class="font-light text-lg text-[--color--red] leading-8">Opening hours</h3>
+        </div>
         <ul>
             <% @opening_hours.each do |hour| %>
             <li class="border-b border-b-gray-300 py-4"><%= hour %></li>

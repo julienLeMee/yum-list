@@ -6,6 +6,7 @@ document.addEventListener("turbo:load", function () {
 function initializeAutocomplete(nameInputId, addressInputId, isNew) {
     const nameInput = document.getElementById(nameInputId);
     const addressInput = document.getElementById(addressInputId);
+    const placeIdInput = document.getElementById('place-id-input'); // Assurez-vous que cet ID correspond à votre champ caché pour place_id
 
     if (nameInput) {
         const options = {
@@ -14,7 +15,7 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
                 new google.maps.LatLng(45.6215, -73.3673)
             ),
             componentRestrictions: { 'country': ['ca'] },
-            fields: ['address_components', 'geometry', 'name'],
+            fields: ['address_components', 'geometry', 'name', 'place_id'], // Vous avez déjà ici le champ place_id
             strictBounds: false
         };
 
@@ -28,15 +29,14 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
             }
 
             nameInput.value = place.name;
+
             let streetNumber = '';
             let streetName = '';
             let city = '';
             let province = '';
             let postalCode = '';
-            let streetSuffix = '';
 
             place.address_components.forEach(component => {
-                // console.log(component);
                 if (component.types.includes('street_number')) {
                     streetNumber = component.long_name;
                 }
@@ -52,13 +52,14 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
                 if (component.types.includes('postal_code')) {
                     postalCode = component.long_name;
                 }
-                // if (component.types.includes('sublocality') || component.types.includes('neighborhood')) {
-                //     streetSuffix = component.long_name;
-                // }
             });
 
             const formattedAddress = `${streetNumber} ${streetName}, ${city}, ${province} ${postalCode}`;
             addressInput.value = formattedAddress.trim();
+
+            if (placeIdInput) {
+                placeIdInput.value = place.place_id; // Ici, vous assignez le place_id au champ caché
+            }
         });
     }
 }

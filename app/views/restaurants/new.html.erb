@@ -10,6 +10,8 @@
                 <%= f.text_field :name, id: "name-autocomplete", class: "form-control block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
             </div>
 
+            <%= hidden_field_tag 'place_id', nil, id: 'place-id-input' %>
+
             <div class="form-group col-span-6">
                 <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
                 <%= f.text_field :address, id: "autocomplete", class: "form-control block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>

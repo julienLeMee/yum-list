@@ -129,12 +129,18 @@ def index
         if place_details["status"] == "OK"
           @opening_hours = place_details.dig("result", "opening_hours", "weekday_text")
           Rails.logger.debug "Opening Hours: #{@opening_hours.inspect}"
+
+          # Sauvegarder les horaires d'ouverture dans l'objet restaurant
+          if @opening_hours.present?
+            @restaurant.update(opening_hours: @opening_hours.to_json)
+          end
         else
           Rails.logger.error "Error fetching place details: #{place_details['status']}"
           @opening_hours = []
         end
       end
-      redirect_to restaurant_path(@restaurant, opening_hours: @opening_hours) # <-- Pass the opening_hours here
+
+      redirect_to restaurant_path(@restaurant) # Pas besoin de passer les horaires ici
     else
       render :edit
     end

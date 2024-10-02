@@ -59,5 +59,14 @@
       <p class="mt-6 text-lg leading-8 text-[--color--text--primary]"><%= @restaurant.description %></p>
     </div>
 
+    <% if @opening_hours.present? %>
+        <h3>Horaires d'ouverture:</h3>
+        <ul>
+            <% @opening_hours.each do |hour| %>
+            <li><%= hour %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
   </div>
 </main>

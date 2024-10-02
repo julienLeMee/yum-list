@@ -54,11 +54,11 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
                 }
             });
 
-            const formattedAddress = `${streetNumber} ${streetName}, ${city}, ${province} ${postalCode}`;
+            const formattedAddress = `${streetNumber} ${streetName} \n${city}, ${province} ${postalCode}`;
             addressInput.value = formattedAddress.trim();
 
             if (placeIdInput) {
-                placeIdInput.value = place.place_id; // Ici, vous assignez le place_id au champ caché
+                placeIdInput.value = place.place_id;
             }
         });
     }

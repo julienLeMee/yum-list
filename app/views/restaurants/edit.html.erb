@@ -3,7 +3,7 @@
     <%= form_for @restaurant, url: restaurant_path(@restaurant), method: :patch, local: true do |f| %>
       <div class="">
         <div class="px-4 py-6 sm:p-8">
-          <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-6">
 
             <div class="col-span-6">
                 <%= f.label :name, "Name", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
@@ -17,7 +17,7 @@
             <div class="col-span-6">
                 <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>
                 <div class="mt-2">
-                    <%= f.text_field :address, id: "address-edit-autocomplete", value: f.object.address, class: "block w-full rounded-full border-0 bg-white py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
+                    <%= f.text_area :address, id: "address-edit-autocomplete", value: f.object.address, class: "block w-full rounded-xl border-0 bg-white px-2 py-1.5 text-[--color--text--primary] shadow-sm ring-1 ring-inset ring-white/10 focus:ring-1 focus:ring-inset focus:ring-[--color--text--secondary] sm:text-sm sm:leading-6" %>
                 </div>
             </div>
 

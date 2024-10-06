@@ -17,7 +17,7 @@ class Friendship < ApplicationRecord
                 f.status = 'accepted'
             end
         else
-            Rails.logger.warn("Attempted to accept a friendship that is not pending: #{self.inspect}")
+            # Rails.logger.warn("Attempted to accept a friendship that is not pending: #{self.inspect}")
             false
         end
     end

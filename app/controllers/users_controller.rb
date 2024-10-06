@@ -12,12 +12,12 @@ class UsersController < ApplicationController
     end
 
     def update
-        Rails.logger.debug "User params: #{user_params.inspect}"
+        # Rails.logger.debug "User params: #{user_params.inspect}"
 
         if @user.update(user_params)
           redirect_to @user, notice: 'Your profile has been updated successfully.'
         else
-          Rails.logger.debug "Update failed: #{@user.errors.full_messages}"
+        #   Rails.logger.debug "Update failed: #{@user.errors.full_messages}"
           render :edit
         end
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       @friend = User.find(params[:id])
 
       unless current_user.friends.include?(@friend) || current_user.inverse_friends.include?(@friend)
-        Rails.logger.debug "User #{current_user.id} is not friends with #{@friend.id}. Redirecting to dashboard."
+        # Rails.logger.debug "User #{current_user.id} is not friends with #{@friend.id}. Redirecting to dashboard."
         redirect_to dashboard_path, alert: "You are not friends with this user."
         return
       end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     def set_pending_friend_requests
         if current_user
           pending_requests = Friendship.where(friend: current_user, status: :pending)
-          Rails.logger.debug "Pending friend requests count: #{pending_requests.count}, requests: #{pending_requests.inspect}"
+        #   Rails.logger.debug "Pending friend requests count: #{pending_requests.count}, requests: #{pending_requests.inspect}"
           @pending_friend_requests = pending_requests.count
         end
       end

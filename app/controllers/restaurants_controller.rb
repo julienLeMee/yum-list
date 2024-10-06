@@ -32,8 +32,6 @@ def index
     end
   end
 
-
-
   def categories
     @categories = current_user.restaurants.select(:category).distinct.pluck(:category)
   end
@@ -48,7 +46,8 @@ def index
 
   def restaurant_list
     @restaurants = current_user.restaurants
-    render json: { restaurants: @restaurants }
+
+    render json: { restaurants: @restaurants.as_json(only: [:id, :name, :latitude, :longitude, :category]) }
   end
 
   def show
@@ -97,21 +96,21 @@ def index
           if opening_hours
             hours_text = opening_hours['weekday_text'] # ou un autre format selon vos besoins
             @restaurant.opening_hours = hours_text.to_json # stockez-les comme JSON
-            Rails.logger.debug "Opening hours set: #{@restaurant.opening_hours}"
           else
-            Rails.logger.warn("Opening hours are nil for restaurant: #{restaurant_params[:name]}")
-            @restaurant.opening_hours = nil # ou un autre traitement
+            @restaurant.opening_hours = nil
           end
 
-          # Sauvegarder les modifications d'ouverture
-          @restaurant.save # Assurez-vous de sauvegarder les horaires d'ouverture mis à jour
-        else
-          Rails.logger.error "Error fetching opening hours for place_id: #{@restaurant.place_id}"
+          # ** Ajoutez ces lignes pour enregistrer la latitude et la longitude **
+          @restaurant.latitude = place_details['result']['geometry']['location']['lat']
+          @restaurant.longitude = place_details['result']['geometry']['location']['lng']
+
+          # Sauvegarder les modifications d'ouverture et les coordonnées
+          @restaurant.save # Assurez-vous de sauvegarder les horaires d'ouverture et les coordonnées mises à jour
         end
       end
       redirect_to restaurant_path(@restaurant)
     else
-      render :new # Au lieu de rediriger, vous pourriez vouloir rester sur la page de création
+      render :new
     end
   end
 
@@ -120,27 +119,29 @@ def index
   end
 
   def update
+    logger.debug "Received params: #{params.inspect}"
     @restaurant = Restaurant.find(params[:id])
     if @restaurant.update(restaurant_params)
       if @restaurant.place_id.present?
         place_details = get_place_details(@restaurant.place_id)
-        Rails.logger.debug "Place Details: #{place_details.inspect}"
+        Rails.logger.debug "See place Details: #{place_details.inspect}"
 
         if place_details["status"] == "OK"
-          @opening_hours = place_details.dig("result", "opening_hours", "weekday_text")
-          Rails.logger.debug "Opening Hours: #{@opening_hours.inspect}"
 
-          # Sauvegarder les horaires d'ouverture dans l'objet restaurant
-          if @opening_hours.present?
-            @restaurant.update(opening_hours: @opening_hours.to_json)
-          end
+          @opening_hours = place_details.dig("result", "opening_hours", "weekday_text")
+
+          # Mettez à jour tous les attributs en une seule fois
+          @restaurant.update(
+            opening_hours: @opening_hours.to_json,
+            latitude: place_details['result']['geometry']['location']['lat'],
+            longitude: place_details['result']['geometry']['location']['lng']
+          )
         else
-          Rails.logger.error "Error fetching place details: #{place_details['status']}"
           @opening_hours = []
         end
       end
 
-      redirect_to restaurant_path(@restaurant) # Pas besoin de passer les horaires ici
+      redirect_to restaurant_path(@restaurant)
     else
       render :edit
     end
@@ -160,15 +161,22 @@ def index
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :address, :description, :category, :tested, :place_id, :opening_hours, :rating, :google_place_id)
+    params.require(:restaurant).permit(:name, :place_id, :latitude, :longitude, :address, :description, :category, :rating, :tested)
   end
 
   def get_place_details(place_id)
     api_key = ENV['GOOGLE_PLACES_API_KEY']
-    url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name,opening_hours,formatted_address&key=#{api_key}")
+    url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name,opening_hours,formatted_address,geometry&key=#{api_key}")
     response = Net::HTTP.get(url)
     result = JSON.parse(response)
     Rails.logger.debug "Google Place Details Response: #{result.inspect}"
-    result
+
+    # Vérifiez si geometry est présent
+    if result['status'] == 'OK' && result['result'].key?('geometry')
+      return result
+    else
+      Rails.logger.warn "Place details not found for place_id: #{place_id}"
+      return nil
+    end
   end
 end

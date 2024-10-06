@@ -11,6 +11,8 @@
             </div>
 
             <%= hidden_field_tag 'place_id', nil, id: 'place-id-input' %>
+            <%= f.hidden_field :latitude, nil, id: 'latitude-input' %>
+            <%= f.hidden_field :longitude, nil, id: 'longitude-input' %>
 
             <div class="form-group col-span-6">
                 <%= f.label :address, "Address", class: "block text-sm font-medium leading-6 text-[--color--text--primary]" %>

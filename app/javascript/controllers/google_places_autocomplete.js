@@ -91,17 +91,17 @@ function initMap() {
     }
 
     const mapOptions = {
-      zoom: 12,
-      center: { lat: 45.5017, lng: -73.5673 }, // Coordonnées pour Montréal
-      disableDefaultUI: true,
-      styles: [ // Ajouter les styles ici
-        {
-            "featureType": "poi",
-            "stylers": [
-                { "visibility": "off" } // Masquer les points d'intérêt
-            ]
-        }
-      ]
+        zoom: 12,
+        center: { lat: 45.5017, lng: -73.5673 }, // Coordonnées pour Montréal
+        disableDefaultUI: true,
+        styles: [ // Ajouter les styles ici
+            {
+                "featureType": "poi",
+                "stylers": [
+                    { "visibility": "off" } // Masquer les points d'intérêt
+                ]
+            }
+        ]
     };
 
     const map = new google.maps.Map(mapDiv, mapOptions); // Passer mapDiv ici
@@ -111,54 +111,86 @@ function initMap() {
 
     // Récupérer la liste des restaurants via une requête AJAX
     fetch('/restaurant_list')
-      .then(response => {
-        if (!response.ok) {
-          // Si la réponse n'est pas OK, lancez une erreur
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const contentType = response.headers.get("content-type");
-        if (!contentType || !contentType.includes("application/json")) {
-          // Si la réponse n'est pas du JSON, lancez une erreur
-          throw new TypeError("Oops, we haven't got JSON!");
-        }
-        return response.json(); // Essaie de convertir en JSON
-      })
-      .then(data => {
-        console.log('Data received:', data);
-        // Vérifiez si la latitude et la longitude existent avant de créer des marqueurs
-        data.restaurants.forEach(restaurant => {
-          if (restaurant.latitude && restaurant.longitude) { // Vérifier la présence de latitude et longitude
-            const position = { lat: restaurant.latitude, lng: restaurant.longitude };
-            const path = "M20 10C20 14.4183 12 22 12 22C12 22 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z M12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11Z";
-            const marker = new google.maps.Marker({
-                position: position,
-                map: map,
-                title: restaurant.name,
-                icon: {
-                    path: path,
-                    fillColor: "#b1454a",
-                    fillOpacity: 1,
-                    strokeWeight: 0,
-                    rotation: 0,
-                    scale: 2,
-                    anchor: new google.maps.Point(0, 20),
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+                throw new TypeError("Oops, we haven't got JSON!");
+            }
+            return response.json(); // Essaie de convertir en JSON
+        })
+        .then(data => {
+            console.log('Data received:', data);
+
+            const markers = []; // Tableau pour stocker les marqueurs
+
+            data.restaurants.forEach(restaurant => {
+                if (restaurant.latitude && restaurant.longitude) { // Vérifier la présence de latitude et longitude
+                    const position = { lat: restaurant.latitude, lng: restaurant.longitude };
+                    const path = "M20 10C20 14.4183 12 22 12 22C12 22 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z M12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11Z";
+
+                    const marker = new google.maps.Marker({
+                        position: position,
+                        title: restaurant.name,
+                        icon: {
+                            path: path,
+                            fillColor: "#b1454a",
+                            fillOpacity: 1,
+                            strokeColor: "#f4858a",
+                            strokeWeight: 0,
+                            rotation: 0,
+                            scale: 2,
+                            anchor: new google.maps.Point(12, 22),
+                        }
+                    });
+
+                    markers.push(marker); // Ajouter le marqueur au tableau
+
+                    // Optionnel : ajouter un événement de clic pour afficher des infos sur le restaurant
+                    const infowindow = new google.maps.InfoWindow({
+                        content: `<h3>${restaurant.name}</h3><p>${restaurant.category}</p>`,
+                    });
+
+                    marker.addListener('click', () => {
+                        infowindow.open(map, marker);
+                    });
+                } else {
+                    console.warn(`Restaurant ${restaurant.name} n'a pas de coordonnées valides.`);
                 }
             });
 
-            // Optionnel : ajouter un événement de clic pour afficher des infos sur le restaurant
-            const infowindow = new google.maps.InfoWindow({
-              content: `<h3>${restaurant.name}</h3><p>${restaurant.category}</p>`, // Contenu de la fenêtre d'infos
+            // Créer un cluster avec les marqueurs
+            const markerCluster = new MarkerClusterer(map, markers, {
+                styles: [{
+                    textColor: '#ffffff', // Couleur du texte
+                    url: createClusterImageUrl('#b1454a', 30), // Couleur du cluster
+                    height: 30,
+                    width: 30
+                }],
+                maxZoom: 15, // Ajuster le zoom maximal pour le cluster
+                gridSize: 30
             });
-
-            marker.addListener('click', () => {
-              infowindow.open(map, marker); // Ouvrir la fenêtre d'infos quand le marqueur est cliqué
-            });
-          } else {
-            console.warn(`Restaurant ${restaurant.name} n'a pas de coordonnées valides.`);
-          }
+        })
+        .catch(error => {
+            console.error('Error fetching restaurant data:', error);
         });
-      })
-      .catch(error => {
-        console.error('Error fetching restaurant data:', error);
-      });
+}
+
+// Fonction pour créer une image de cluster personnalisée
+function createClusterImageUrl(color, size) {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff'; // Couleur du texte
+
+    return canvas.toDataURL();
 }

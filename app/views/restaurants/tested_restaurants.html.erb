@@ -5,7 +5,7 @@
       Tested restaurants
     </h2>
 
-    <div class="h-12 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
+    <div class="h-14 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
@@ -90,13 +90,13 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="M6 20h3m3 0H9m0 0v-5M17 20v-8s2.5-1 2.5-3V4.5M17 8.5v-4M4.5 11c1 2.128 4.5 4 4.5 4s3.5-1.872 4.5-4c1.08-2.297 0-6.5 0-6.5h-9s-1.08 4.203 0 6.5Z"></path></svg>
                         <% end %>
                       <div class="min-w-0 flex-auto">
-                        <p class="text-sm font-semibold leading-6 text-gray-900">
+                        <p class="text-sm font-semibold text-gray-900">
                           <%= restaurant.name %>
                         </p>
-                        <p class="mt-1 flex text-xs leading-5 text-gray-500">
+                        <p class="mt-1 flex text-xs text-gray-500">
                           <%= restaurant.description %>
                         </p>
-                        <p class="mt-1 flex text-xs leading-5 text-gray-500">
+                        <p class="mt-1 flex text-xs text-gray-500">
                         <div class="flex gap-1 justify-start">
                         <% if restaurant.rating.present? %>
                             <span><%= restaurant.rating %></span>

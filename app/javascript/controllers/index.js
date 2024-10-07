@@ -70,21 +70,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   });
-
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const accordeon = document.getElementById('accordeon');
-    const openingHoursList = document.getElementById('opening-hours-list');
-
-    // Ajout de l'événement 'click' sur l'accordéon
-    accordeon.addEventListener('click', activeAccordeon);
-
-    function activeAccordeon() {
-      // Vérifie si la liste des horaires est visible ou non
-      if (openingHoursList.style.display === 'none') {
-        openingHoursList.style.display = 'block'; // Affiche la liste
-      } else {
-        openingHoursList.style.display = 'none'; // Cache la liste
-      }
-    }
-  });

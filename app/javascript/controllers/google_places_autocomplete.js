@@ -4,6 +4,25 @@ document.addEventListener("turbo:load", function () {
 
     // Appeler initMap ici pour s'assurer que l'élément #map est disponible
     initMap();
+
+    // Accordéons
+    const accordeon = document.getElementById('accordeon');
+    const openingHoursList = document.getElementById('opening-hours-list');
+    const accordionIcon = document.getElementById('accordion-icon');
+
+    // Ajout de l'événement 'click' sur l'accordéon
+    accordeon.addEventListener('click', function() {
+        // Vérifie si la liste des horaires est visible ou non
+        if (openingHoursList.style.opacity === '0' || openingHoursList.style.maxHeight === '0px') {
+            openingHoursList.style.opacity = '1'; // Affiche la liste
+            openingHoursList.style.maxHeight = openingHoursList.scrollHeight + 'px'; // Ajuste max-height
+            accordionIcon.style.transform = 'rotate(180deg)'; // Rotation de l'icône
+        } else {
+            openingHoursList.style.opacity = '0'; // Cache la liste
+            openingHoursList.style.maxHeight = '0px'; // Réinitialise max-height
+            accordionIcon.style.transform = 'rotate(0deg)'; // Remet à l'état d'origine
+        }
+    });
 });
 
 function initializeAutocomplete(nameInputId, addressInputId, isNew) {

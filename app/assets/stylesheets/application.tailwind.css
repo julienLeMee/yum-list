@@ -64,6 +64,14 @@ main {
     }
 }
 
+.gm-ui-hover-effect {
+    width: 32px;
+    height: 32px;
+}
+.gm-ui-hover-effect span {
+    margin: 0 0 0 12px;
+}
+
 .select__edit #restaurant_rating {
     padding: 6px 12px;
     width: 100%;

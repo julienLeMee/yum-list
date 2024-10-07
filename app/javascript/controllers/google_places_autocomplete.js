@@ -150,7 +150,7 @@ function initMap() {
 
                     // Optionnel : ajouter un événement de clic pour afficher des infos sur le restaurant
                     const infowindow = new google.maps.InfoWindow({
-                        content: `<h3>${restaurant.name}</h3><p>${restaurant.category}</p>`,
+                        content: `<h3 class='font-semibold mb-2'>${restaurant.name}</h3><p>${restaurant.category}</p>`,
                     });
 
                     marker.addListener('click', () => {

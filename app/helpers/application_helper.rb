@@ -15,7 +15,8 @@ module ApplicationHelper
         ['users', 'edit'],
         ['users', 'update'],
         ['users', 'friend_restaurants'],
-        ['users', 'friends']
+        ['users', 'friends'],
+        ['pages', 'map']
       '#F5F5F5' # Couleur spécifique pour ces contrôleurs et actions
     else
       '#B1454A' # Couleur par défaut

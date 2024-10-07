@@ -121,13 +121,14 @@ def index
   def update
     logger.debug "Received params: #{params.inspect}"
     @restaurant = Restaurant.find(params[:id])
+
     if @restaurant.update(restaurant_params)
       if @restaurant.place_id.present?
         place_details = get_place_details(@restaurant.place_id)
         Rails.logger.debug "See place Details: #{place_details.inspect}"
 
-        if place_details["status"] == "OK"
-
+        # Vérifier si place_details n'est pas nil
+        if place_details && place_details["status"] == "OK"
           @opening_hours = place_details.dig("result", "opening_hours", "weekday_text")
 
           # Mettez à jour tous les attributs en une seule fois
@@ -137,6 +138,8 @@ def index
             longitude: place_details['result']['geometry']['location']['lng']
           )
         else
+          # Si place_details est nil ou que le statut n'est pas OK
+          Rails.logger.warn "Place details not found or status not OK"
           @opening_hours = []
         end
       end
@@ -165,17 +168,14 @@ def index
   end
 
   def get_place_details(place_id)
-    api_key = ENV['GOOGLE_PLACES_API_KEY']
-    url = URI("https://maps.googleapis.com/maps/api/place/details/json?place_id=#{place_id}&fields=name,opening_hours,formatted_address,geometry&key=#{api_key}")
-    response = Net::HTTP.get(url)
-    result = JSON.parse(response)
-    Rails.logger.debug "Google Place Details Response: #{result.inspect}"
+    # Vérifiez si vous recevez une réponse correcte de l'API
+    response = SomeApiService.fetch_place_details(place_id)
+    Rails.logger.debug "API response: #{response.inspect}"
 
-    # Vérifiez si geometry est présent
-    if result['status'] == 'OK' && result['result'].key?('geometry')
-      return result
+    if response && response["status"] == "OK"
+      return response
     else
-      Rails.logger.warn "Place details not found for place_id: #{place_id}"
+      Rails.logger.warn "Failed to get place details for place_id: #{place_id}"
       return nil
     end
   end

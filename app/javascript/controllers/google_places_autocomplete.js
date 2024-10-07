@@ -24,23 +24,6 @@ document.addEventListener("turbo:load", function () {
         }
     });
 
-    // Fonction pour créer une image de cluster personnalisée
-    function createClusterImageUrl(color, size) {
-        const canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.fillStyle = '#ffffff'; // Couleur du texte
-
-        return canvas.toDataURL();
-    }
-
 });
 
 function initializeAutocomplete(nameInputId, addressInputId, isNew) {
@@ -63,7 +46,6 @@ function initializeAutocomplete(nameInputId, addressInputId, isNew) {
 
         autocompleteName.addListener('place_changed', function () {
             const place = autocompleteName.getPlace();
-            console.log('PLAAACE :', place);
             if (!place.geometry) {
                 console.log("No details available for input: '" + place.name + "'");
                 return;
@@ -213,6 +195,23 @@ function initMap() {
         .catch(error => {
             console.error('Error fetching restaurant data:', error);
         });
+
+        // Fonction pour créer une image de cluster personnalisée
+        function createClusterImageUrl(color, size) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff'; // Couleur du texte
+
+            return canvas.toDataURL();
+        }
 }
 
 document.addEventListener("turbo:load", function () {

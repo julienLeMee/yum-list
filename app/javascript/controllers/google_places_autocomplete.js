@@ -235,4 +235,13 @@ document.addEventListener("turbo:load", function () {
         // Appliquer la couleur aléatoire comme couleur de remplissage (fill)
         svg.style.color = randomColor;
     });
+
+    const categoriesCards = document.querySelectorAll('.categories__cards');
+    categoriesCards.forEach(card => {
+        // Générer une couleur aléatoire
+        const randomColor = getRandomColor();
+
+        // Appliquer la couleur aléatoire comme couleur de remplissage (fill)
+        card.style.backgroundColor = randomColor;
+    });
 })

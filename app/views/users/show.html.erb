@@ -26,7 +26,7 @@
 
     <div class="flex gap-2 justify-evenly items-center my-4">
 
-    <%= link_to friends_path, class: 'flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-4 text-center text-base font-semibold text-[#333] hover:text-[--color--burgundy]' do %>
+    <%= link_to friends_path, class: 'flex flex-col gap-2 justify-center items-center bg-white shadow-sm rounded-xl p-4 text-center text-base font-semibold text-[#333] hover:text-[--color--burgundy]' do %>
         <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M1 20V19C1 15.134 4.134 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
             <path d="M13 14V14C13 11.2386 15.2386 9 18 9V9C20.7614 9 23 11.2386 23 14V14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
@@ -37,7 +37,7 @@
     <% end %>
 
         <% if !current_user.friends.include?(@user) && !current_user.inverse_friends.include?(@user) %>
-            <span class="add-friend__link flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-4 text-center">
+            <span class="add-friend__link flex flex-col gap-2 justify-center items-center bg-white shadow-sm rounded-xl p-4 text-center">
                 <svg width="24" height="24" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-black">
                     <path d="M17 10H20M23 10H20M20 10V7M20 10V13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path d="M1 20V19C1 15.134 4.134 12 8 12V12C11.866 12 15 15.134 15 19V20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -50,7 +50,7 @@
             </span>
         <% end %>
 
-    <%= link_to pending_requests_friendships_path, class: 'relative flex flex-col gap-2 justify-center items-center bg-white rounded-xl p-4 text-center text-base font-semibold text-[#333] hover:text-[--color--burgundy]' do %>
+    <%= link_to pending_requests_friendships_path, class: 'relative flex flex-col gap-2 justify-center items-center bg-white shadow-sm rounded-xl p-4 text-center text-base font-semibold text-[#333] hover:text-[--color--burgundy]' do %>
         <svg width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M3 13C6.6 5 17.4 5 21 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
             <path d="M12 17C10.3431 17 9 15.6569 9 14C9 12.3431 10.3431 11 12 11C13.6569 11 15 12.3431 15 14C15 15.6569 13.6569 17 12 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -73,9 +73,9 @@
         <div class="dashboard__card--list text-sm text-[--color--text--primary]">
       <% grouped_restaurants.each do |category, restaurants| %>
         <%= link_to restaurants_path(query: category) do %>
-            <div class="dashboard__card flex items-center justify-between relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-white bg-[--color--red]">
+            <div class="dashboard__card flex items-center justify-between relative overflow-hidden p-4 mb-6 text-base rounded-xl font-semibold text-black bg-white shadow-md">
             <div class="flex flex-col gap-1">
-                <span class="font-light py-1 px-4 bg-white/20 w-fit rounded-full"><%= category %></span>
+                <span class="font-light py-1 px-4 bg-[#b1454a]/20 w-fit rounded-full"><%= category %></span>
                 <span><%= pluralize(restaurants.count, "restaurant") %></span>
             </div>
             <div>

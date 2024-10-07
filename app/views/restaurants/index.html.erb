@@ -97,7 +97,7 @@
         end
         %>
         <%= link_to restaurant_path(last_restaurant), class: "last-restaurant__card flex flex-col gap-1 relative overflow-hidden p-4 my-6 text-base rounded-xl shadow-sm font-semibold bg-white text-black" do %>
-            <span class="font-light py-1 px-4 border border-[#b1454a]/50 text-[#b1454a]/50 w-fit rounded-full">Last added</span>
+            <span class="font-light py-1 px-4 bg-[#b1454a]/20 text-black w-fit rounded-full">Last added</span>
             <span><%= last_restaurant.name %></span>
         <% end %>
     <% end %>

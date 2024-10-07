@@ -23,6 +23,24 @@ document.addEventListener("turbo:load", function () {
             accordionIcon.style.transform = 'rotate(0deg)'; // Remet à l'état d'origine
         }
     });
+
+    // Fonction pour créer une image de cluster personnalisée
+    function createClusterImageUrl(color, size) {
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff'; // Couleur du texte
+
+        return canvas.toDataURL();
+    }
+
 });
 
 function initializeAutocomplete(nameInputId, addressInputId, isNew) {
@@ -197,19 +215,25 @@ function initMap() {
         });
 }
 
-// Fonction pour créer une image de cluster personnalisée
-function createClusterImageUrl(color, size) {
-    const canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
+document.addEventListener("turbo:load", function () {
+    // Couleur aléatoire pour les SVG dans les cartes restaurants
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
 
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-    ctx.fill();
+    // Sélectionne tous les SVG dans les éléments avec la classe 'restaurant__card'
+    const svgElements = document.querySelectorAll('.restaurant__card svg');
 
-    ctx.fillStyle = '#ffffff'; // Couleur du texte
+    svgElements.forEach(svg => {
+        // Générer une couleur aléatoire
+        const randomColor = getRandomColor();
 
-    return canvas.toDataURL();
-}
+        // Appliquer la couleur aléatoire comme couleur de remplissage (fill)
+        svg.style.color = randomColor;
+    });
+})

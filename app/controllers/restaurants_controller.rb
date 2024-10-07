@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'httparty'
 
 class RestaurantsController < ApplicationController
 #   def index
@@ -168,15 +169,17 @@ def index
   end
 
   def get_place_details(place_id)
-    # Vérifiez si vous recevez une réponse correcte de l'API
-    response = SomeApiService.fetch_place_details(place_id)
-    Rails.logger.debug "API response: #{response.inspect}"
+    api_key = ENV['GOOGLE_PLACES_API_KEY']  # Assurez-vous d'avoir défini la clé API
+    url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=#{place_id}&key=#{api_key}"
 
-    if response && response["status"] == "OK"
-      return response
+    response = HTTParty.get(url)
+
+    if response.success?
+      Rails.logger.debug "API response: #{response.body}"
+      JSON.parse(response.body)
     else
       Rails.logger.warn "Failed to get place details for place_id: #{place_id}"
-      return nil
+      nil
     end
   end
 end

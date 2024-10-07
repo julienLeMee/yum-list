@@ -47,6 +47,8 @@ gem "tailwindcss-rails"
 # Dotenv
 gem 'dotenv-rails', groups: [:development, :test, :production]
 
+gem 'httparty'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

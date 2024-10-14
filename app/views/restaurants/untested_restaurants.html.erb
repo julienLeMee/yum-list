@@ -4,7 +4,7 @@
       Untested restaurants
     </h2>
 
-    <div class="h-14 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
+    <div class="h-14 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max hide-scrollbar">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
@@ -46,20 +46,17 @@
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
         <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
-          <p class="text-[--color--text--primary]">
+          <p class="text-[--color--text--primary] font-medium">
             <%= category %>
           </p>
           <p class="font-light py-1 px-3 bg-white/30 w-fit rounded-full text-[--color--red]">
             <%= restaurants.count %>
           </p>
         </div>
-        <ul role="list" class="flex gap-4 overflow-x-auto w-full mb-8">
+        <ul role="list" class="hide-scrollbar flex gap-4 overflow-x-auto w-full mb-8">
             <% restaurants.each do |restaurant| %>
               <li>
                 <a href="<%= restaurant_path(restaurant) %>" class="restaurant__card relative flex h-[95%] bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl shadow-md hover:shadow-lg transition duration-200 ease-in-out">
-                  <% if restaurant.tested? %>
-                    <div class="bg-green-500 w-2 h-2 rounded-full absolute top-2 right-2"></div>
-                  <% end %>
                   <!-- Restaurant details here -->
                   <div class="min-w-52 max-w-52 min-h-52 relative flex items-start justify-between p-6">
                     <div class="flex flex-col gap-4 min-w-0 gap-x-4">
@@ -89,7 +86,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1" viewBox="0 0 24 24" color="currentColor"><path stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" d="M6 20h3m3 0H9m0 0v-5M17 20v-8s2.5-1 2.5-3V4.5M17 8.5v-4M4.5 11c1 2.128 4.5 4 4.5 4s3.5-1.872 4.5-4c1.08-2.297 0-6.5 0-6.5h-9s-1.08 4.203 0 6.5Z"></path></svg>
                         <% end %>
                       <div class="min-w-0 flex-auto">
-                        <p class="text-sm font-semiboldlasclass="h-14 text-gray-900">
+                        <p class="text-sm font-semibold text-gray-900">
                           <%= restaurant.name %>
                         </p>
                         <p class="mt-1 flex text-xslasclass="h-14 text-gray-500">

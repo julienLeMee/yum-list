@@ -5,7 +5,7 @@
       Tested restaurants
     </h2>
 
-    <div class="h-14 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max">
+    <div class="h-14 gap-4 my-6 overflow-x-auto w-full grid grid-flow-col auto-cols-max hide-scrollbar">
       <% categories = [] %>
       <% @restaurants.each do |restaurant| %>
         <% unless categories.include?(restaurant.category) %>
@@ -47,14 +47,14 @@
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
         <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
-          <p class="text-[--color--text--primary]">
+          <p class="text-[--color--text--primary] font-medium">
             <%= category %>
           </p>
           <p class="font-light py-1 px-3 bg-white/30 w-fit rounded-full text-[--color--red]">
             <%= restaurants.count %>
           </p>
         </div>
-        <ul role="list" class="flex gap-4 overflow-x-auto w-full mb-8">
+        <ul role="list" class="hide-scrollbar flex gap-4 overflow-x-auto w-full mb-8">
             <% restaurants.each do |restaurant| %>
               <li>
                 <a href="<%= restaurant_path(restaurant) %>" class="restaurant__card relative flex h-[95%] bg-white text-[--color--text--primary] hover:text-gray-900 rounded-xl shadow-md hover:shadow-lg transition duration-200 ease-in-out">

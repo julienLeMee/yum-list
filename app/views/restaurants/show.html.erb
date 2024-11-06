@@ -4,7 +4,7 @@
   <% else %>
      <p class="px-6 pt-4 text-xs font-light text-[--color--text--primary]">Added on <%= @restaurant.created_at.strftime("%d %B %Y") %></p>
   <% end %>
-  <div class="single__card px-6 lg:px-12 py-4">
+  <div class="single__card px-6 lg:px-12 pb-4 pt-0">
     <div class="mx-auto lg:mx-0">
 
         <% if @editable %>
@@ -20,21 +20,23 @@
             </div>
         <% end %>
 
-    <p class="text-lg leading-5 text-black/20 border border-black/20 rounded-full py-1 px-2 w-fit"><%= @restaurant.category %></p>
-    <h2 class="my-2 text-4xl font-bold tracking-tight text-[--color--text--primary] sm:text-6xl"><%= @restaurant.name %></h2>
+    <div class="bg-[--color--red] rounded-lg p-4">
+        <p class="text-lg leading-5 text-white/70 border border-white/70 rounded-full py-1 px-2 w-fit"><%= @restaurant.category %></p>
+        <h2 class="my-2 text-4xl font-bold tracking-tight text-white sm:text-6xl"><%= @restaurant.name %></h2>
 
-    <div class="w-full flex gap-1 justify-start">
-        <% if @restaurant.rating.present? %>
-            <span><%= @restaurant.rating %></span>
-            <span class="text-[#F9BD00]">★</span>
-        <% end %>
+        <div class="w-full flex gap-1 justify-start">
+            <% if @restaurant.rating.present? %>
+                <span class="text-white"><%= @restaurant.rating %></span>
+                <span class="text-[#F9BD00]">★</span>
+            <% end %>
+        </div>
+        <a href="https://www.google.com/maps/search/?api=1&query=<%= URI::encode_www_form_component(@restaurant.address) %>" target="_blank" class="flex items-start gap-2 my-6">
+            <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="white"><path d="M20 10C20 14.4183 12 22 12 22C12 22 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z" stroke="white" stroke-width="1.5"></path><path d="M12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11Z" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <p class="text-xs leading-5 text-white">
+                <%= @restaurant.address.gsub(/\n/, '<br>').html_safe %>
+            </p>
+        </a>
     </div>
-    <a href="https://www.google.com/maps/search/?api=1&query=<%= URI::encode_www_form_component(@restaurant.address) %>" target="_blank" class="flex items-start gap-2 my-6">
-        <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M20 10C20 14.4183 12 22 12 22C12 22 4 14.4183 4 10C4 5.58172 7.58172 2 12 2C16.4183 2 20 5.58172 20 10Z" stroke="#000000" stroke-width="1.5"></path><path d="M12 11C12.5523 11 13 10.5523 13 10C13 9.44772 12.5523 9 12 9C11.4477 9 11 9.44772 11 10C11 10.5523 11.4477 11 12 11Z" fill="#000000" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <p class="text-xs leading-5 text-[--color--text--primary]">
-            <%= @restaurant.address.gsub(/\n/, '<br>').html_safe %>
-        </p>
-    </a>
     <% if @restaurant.description.present? %>
         <div class="w-screen bg-[#FEF0DE] flex flex-col gap-4 justify-between items-center ml-[-1.5rem] px-6 my-4">
         <p class="w-full my-6 text-xs leading-5 font-semibold text-[--color--text--primary]">"<%= @restaurant.description %>"</p>

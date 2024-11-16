@@ -54,6 +54,7 @@ def index
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
     if @restaurant
+        @related_restaurants = Restaurant.where(user_id: current_user.id, category: @restaurant.category).where.not(id: @restaurant.id).limit(5)
       @user = @restaurant.user
       @editable = current_user == @user
       @reviews = @restaurant.reviews

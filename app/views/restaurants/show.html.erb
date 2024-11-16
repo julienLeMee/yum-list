@@ -44,6 +44,28 @@
     <% end %>
   </div>
 
+  <% if @related_restaurants.present? %>
+    <div class="related-restaurants mt-8">
+        <h3 class="text-lg font-semibold text-[--color--text--primary]">Other restaurants in <%= @restaurant.category %>:</h3>
+        <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+        <% @related_restaurants.each do |related_restaurant| %>
+            <li class="restaurant-card bg-white border border-gray-200 rounded-lg shadow-md p-4">
+            <h4 class="text-md font-bold text-[--color--text--secondary]">
+                <%= link_to related_restaurant.name, restaurant_path(related_restaurant), class: "hover:underline" %>
+            </h4>
+            <p class="text-sm text-gray-500"><%= related_restaurant.address %></p>
+            <% if related_restaurant.rating.present? %>
+                <div class="flex items-center gap-1 mt-2">
+                <span class="text-[--color--text--secondary]"><%= related_restaurant.rating %></span>
+                <span class="text-[#F9BD00]">★</span>
+                </div>
+            <% end %>
+            </li>
+        <% end %>
+        </ul>
+    </div>
+    <% end %>
+
     <% if @opening_hours.present? %>
         <div id="accordeon" class="flex items-center gap-2 mt-6 cursor-pointer text-[--color--red]">
             <h3 class="flex items-center gap-2 font-light text-lg text-[--color--red] leading-8">Opening hours<svg id="accordion-icon" style="width:2rem;height:2rem; transition: transform 0.2s;" width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></h3>

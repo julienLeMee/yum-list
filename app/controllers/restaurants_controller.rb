@@ -110,9 +110,16 @@ def index
           @restaurant.save # Assurez-vous de sauvegarder les horaires d'ouverture et les coordonnées mises à jour
         end
       end
-      redirect_to restaurant_path(@restaurant)
+
+      respond_to do |format|
+        format.html { redirect_to restaurant_path(@restaurant), notice: "Restaurant ajouté avec succès." }
+        # format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "restaurants/restaurant", locals: { restaurant: @restaurant }) }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "restaurants/form", locals: { restaurant: @restaurant }), status: :unprocessable_entity }
+      end
     end
   end
 

@@ -96,23 +96,21 @@ def index
           opening_hours = place_details['result']['opening_hours']
 
           if opening_hours
-            hours_text = opening_hours['weekday_text'] # ou un autre format selon vos besoins
-            @restaurant.opening_hours = hours_text.to_json # stockez-les comme JSON
+            hours_text = opening_hours['weekday_text']
+            @restaurant.opening_hours = hours_text.to_json
           else
             @restaurant.opening_hours = nil
           end
 
-          # ** Ajoutez ces lignes pour enregistrer la latitude et la longitude **
           @restaurant.latitude = place_details['result']['geometry']['location']['lat']
           @restaurant.longitude = place_details['result']['geometry']['location']['lng']
 
-          # Sauvegarder les modifications d'ouverture et les coordonnées
-          @restaurant.save # Assurez-vous de sauvegarder les horaires d'ouverture et les coordonnées mises à jour
+          @restaurant.save
         end
       end
 
       respond_to do |format|
-        format.html { redirect_to restaurant_path(@restaurant), notice: "Restaurant ajouté avec succès." }
+        format.html { redirect_to restaurant_path(@restaurant) }
         # format.turbo_stream { render turbo_stream: turbo_stream.replace("form", partial: "restaurants/restaurant", locals: { restaurant: @restaurant }) }
       end
     else

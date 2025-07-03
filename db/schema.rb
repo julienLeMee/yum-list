@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_06_201733) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "type", null: false
-    t.json "params", default: {}
+    t.string "type"
+    t.json "params"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"

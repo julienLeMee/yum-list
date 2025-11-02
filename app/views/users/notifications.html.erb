@@ -11,7 +11,20 @@
           <% 
             event = notification.event
             notifier_class = event.type.constantize
-            notifier = notifier_class.with(event.params)
+            
+            # Désérialiser les GlobalIDs manuellement pour éviter les erreurs de sérialisation
+            clean_params = {}
+            event.params.each do |key, value|
+              if value.is_a?(Hash) && value.key?('_aj_globalid')
+                clean_params[key] = GlobalID::Locator.locate(value['_aj_globalid'])
+              elsif value.is_a?(String) && value.start_with?('gid://')
+                clean_params[key] = GlobalID::Locator.locate(value)
+              else
+                clean_params[key] = value
+              end
+            end
+            
+            notifier = notifier_class.with(clean_params)
           %>
           <div class="flex items-start justify-between gap-4 p-4 mb-6 text-base rounded-xl font-semibold text-black bg-white shadow-md <%= 'opacity-60' if notification.read_at.present? %>">
             <div class="flex-1">

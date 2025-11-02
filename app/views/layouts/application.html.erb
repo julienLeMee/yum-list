@@ -22,6 +22,35 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<%= image_path('favicon.ico') %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+    <!-- Enregistrement précoce du Service Worker -->
+    <script>
+        // Enregistrer le Service Worker dès que possible (avant le chargement de la page)
+        if ('serviceWorker' in navigator) {
+            // Enregistrer immédiatement, sans attendre l'événement load
+            navigator.serviceWorker.register('/service-worker.js', {
+                scope: '/'
+            }).then(function(registration) {
+                console.log('✅ ServiceWorker enregistré avec succès, scope:', registration.scope);
+                
+                // Vérifier s'il y a des mises à jour
+                registration.addEventListener('updatefound', function() {
+                    const newWorker = registration.installing;
+                    console.log('Nouveau Service Worker trouvé, installation...');
+                    newWorker.addEventListener('statechange', function() {
+                        if (newWorker.state === 'activated') {
+                            console.log('✅ Nouveau Service Worker activé!');
+                        }
+                    });
+                });
+            }).catch(function(err) {
+                console.error('❌ Erreur lors de l\'enregistrement du ServiceWorker:', err);
+            });
+        } else {
+            console.warn('⚠️ Service Worker non supporté dans ce navigateur');
+        }
+    </script>
+    
     <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
@@ -42,30 +71,4 @@
     <!-- prettier-ignore -->
 
   </body>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/service-worker.js', {
-                    scope: '/'
-                }).then(function(registration) {
-                    console.log('✅ ServiceWorker enregistré avec succès, scope:', registration.scope);
-                    
-                    // Vérifier s'il y a des mises à jour
-                    registration.addEventListener('updatefound', function() {
-                        const newWorker = registration.installing;
-                        console.log('Nouveau Service Worker trouvé, installation...');
-                        newWorker.addEventListener('statechange', function() {
-                            if (newWorker.state === 'activated') {
-                                console.log('✅ Nouveau Service Worker activé!');
-                            }
-                        });
-                    });
-                }).catch(function(err) {
-                    console.error('❌ Erreur lors de l\'enregistrement du ServiceWorker:', err);
-                });
-            });
-        } else {
-            console.warn('⚠️ Service Worker non supporté dans ce navigateur');
-        }
-    </script>
 </html>

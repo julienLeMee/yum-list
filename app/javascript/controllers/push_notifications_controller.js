@@ -14,35 +14,66 @@ export default class extends Controller {
     }
   }
 
-  async waitForServiceWorker() {
+  async waitForServiceWorker(maxAttempts = 10, delay = 500) {
     if (!('serviceWorker' in navigator)) {
+      console.log('Service Worker non supporté dans ce navigateur')
       return false
     }
 
+    // Si le service worker est déjà prêt, on retourne immédiatement
     try {
-      // Attendre que le service worker soit enregistré
-      let registration = await navigator.serviceWorker.getRegistration()
-      
-      if (!registration) {
-        console.log('Service Worker pas encore enregistré, attente...')
-        // Attendre un peu et réessayer
-        await new Promise(resolve => setTimeout(resolve, 1000))
-        registration = await navigator.serviceWorker.getRegistration()
+      const existingRegistration = await navigator.serviceWorker.getRegistration()
+      if (existingRegistration) {
+        try {
+          await navigator.serviceWorker.ready
+          console.log('✅ Service Worker déjà prêt!')
+          return true
+        } catch (e) {
+          console.log('Service Worker enregistré mais pas encore prêt, attente...')
+        }
       }
-
-      if (registration) {
-        console.log('Service Worker trouvé:', registration.scope)
-        // Attendre que le service worker soit activé
-        await navigator.serviceWorker.ready
-        console.log('Service Worker prêt!')
-        return true
-      }
-
-      return false
-    } catch (error) {
-      console.error('Erreur lors de l\'attente du Service Worker:', error)
-      return false
+    } catch (e) {
+      console.log('Vérification initiale du Service Worker...')
     }
+
+    // Sinon, on attend avec plusieurs tentatives
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        console.log(`Tentative ${attempt}/${maxAttempts} pour trouver le Service Worker...`)
+        
+        // Vérifier si le service worker est maintenant enregistré
+        const registration = await navigator.serviceWorker.getRegistration()
+        
+        if (registration) {
+          console.log('✅ Service Worker trouvé:', registration.scope)
+          
+          // Attendre que le service worker soit activé (ready)
+          try {
+            await navigator.serviceWorker.ready
+            console.log('✅ Service Worker prêt et activé!')
+            return true
+          } catch (readyError) {
+            console.log('Service Worker enregistré mais pas encore ready, attente...', readyError)
+            // On continue la boucle pour réessayer
+          }
+        } else {
+          console.log(`Service Worker pas encore enregistré (tentative ${attempt}/${maxAttempts})`)
+        }
+        
+        // Attendre avant la prochaine tentative (sauf si c'était la dernière)
+        if (attempt < maxAttempts) {
+          await new Promise(resolve => setTimeout(resolve, delay))
+        }
+      } catch (error) {
+        console.error(`Erreur lors de la tentative ${attempt}:`, error)
+        if (attempt < maxAttempts) {
+          await new Promise(resolve => setTimeout(resolve, delay))
+        }
+      }
+    }
+
+    console.error('❌ Service Worker non trouvé après', maxAttempts, 'tentatives')
+    return false
   }
 
   async checkPushSupport() {
@@ -65,6 +96,19 @@ export default class extends Controller {
     const supported = await this.checkPushSupport()
     if (!supported) return
 
+    // Attendre que le service worker soit prêt avant de vérifier l'abonnement
+    const swReady = await this.waitForServiceWorker(5, 300) // Moins de tentatives pour updateUI (plus rapide)
+    if (!swReady) {
+      console.warn('Service Worker pas encore prêt pour updateUI, on réessayera plus tard')
+      // Ne pas bloquer, juste mettre le bouton par défaut
+      if (this.hasButtonTarget) {
+        this.buttonTarget.textContent = '🔕 Activer les notifications'
+        this.buttonTarget.classList.remove('bg-green-600', 'hover:bg-green-700')
+        this.buttonTarget.classList.add('bg-blue-600', 'hover:bg-blue-700')
+      }
+      return
+    }
+
     try {
       const registration = await navigator.serviceWorker.ready
       const subscription = await registration.pushManager.getSubscription()
@@ -82,6 +126,12 @@ export default class extends Controller {
       }
     } catch (error) {
       console.error('Erreur lors de la vérification de l\'abonnement:', error)
+      // En cas d'erreur, mettre le bouton par défaut
+      if (this.hasButtonTarget) {
+        this.buttonTarget.textContent = '🔕 Activer les notifications'
+        this.buttonTarget.classList.remove('bg-green-600', 'hover:bg-green-700')
+        this.buttonTarget.classList.add('bg-blue-600', 'hover:bg-blue-700')
+      }
     }
   }
 

@@ -24,21 +24,26 @@
               <span class="text-xs font-medium">All</span>
             <% end %>
             
-            <%= link_to tested_restaurants_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(tested_restaurants_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m7 12.5 3 3 7-7"></path>
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path>
-              </svg>
-              <span class="text-xs font-medium">Tested</span>
-            <% end %>
-            
             <%= link_to untested_restaurants_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(untested_restaurants_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
-              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.5 10.677a2 2 0 0 0 2.823 2.823"></path>
-                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7.362 7.561C5.68 8.74 4.279 10.42 3 12c1.889 2.991 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 0 1-1.078 1.5"></path>
+              <svg width="22px" height="22px" viewBox="0 0 24 24" stroke-width="1.5" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
+                <path d="M18 14C19.1046 14 20 13.1046 20 12C20 10.8954 19.1046 10 18 10C16.8954 10 16 10.8954 16 12C16 13.1046 16.8954 14 18 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M18 7C19.1046 7 20 6.10457 20 5C20 3.89543 19.1046 3 18 3C16.8954 3 16 3.89543 16 5C16 6.10457 16.8954 7 18 7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 5L13 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 12L13 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3 19L13 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M16 21.2426L18.1213 19.1213M18.1213 19.1213L20.2426 17M18.1213 19.1213L16 17M18.1213 19.1213L20.2426 21.2426" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
               <span class="text-xs font-medium">Untested</span>
             <% end %>
+
+            <%= link_to map_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(map_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
+              <svg width="22px" height="22px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="<%= 'fill-[--color--red]' if current_page?(map_path) %>">
+                <path d="M9 19L3.78974 20.7368C3.40122 20.8663 3 20.5771 3 20.1675L3 5.43246C3 5.1742 3.16526 4.94491 3.41026 4.86325L9 3M9 19L15 21M9 19L9 3M15 21L20.5897 19.1368C20.8347 19.0551 21 18.8258 21 18.5675L21 3.83246C21 3.42292 20.5988 3.13374 20.2103 3.26325L15 5M15 21L15 5M15 5L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                </path>
+              </svg>
+              <span class="text-xs font-medium">Map</span>
+            <% end %>
+
           </nav>
         </div>
       </div>
@@ -124,10 +129,7 @@
     <div class="fixed w-full top-0 z-40 flex items-center gap-x-6 bg-[--color--primary] px-4 pt-4 pb-2 shadow-lg sm:px-6 lg:hidden border-[--color--text--primary] border-1">
       <div class="flex-1 text-sm font-semibold leading-6 text-[--color--text--primary]">Yum List</div>
       <% if user_signed_in? %>
-        <%= link_to map_path, class: "text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full text-sm leading-6 font-semibold" do %>
-            <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 19L3.78974 20.7368C3.40122 20.8663 3 20.5771 3 20.1675L3 5.43246C3 5.1742 3.16526 4.94491 3.41026 4.86325L9 3M9 19L15 21M9 19L9 3M15 21L20.5897 19.1368C20.8347 19.0551 21 18.8258 21 18.5675L21 3.83246C21 3.42292 20.5988 3.13374 20.2103 3.26325L15 5M15 21L15 5M15 5L9 3" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <% end %>
-        <%= link_to new_restaurant_path, class: "text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-sm leading-6 font-semibold" do %>
+        <%= link_to new_restaurant_path, class: "text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full py-2 text-sm leading-6 font-semibold" do %>
         <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
             <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 12h6m6 0h-6m0 0V6m0 6v6"></path>
         </svg>

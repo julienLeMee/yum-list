@@ -7,28 +7,22 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  # Configurer le serveur SMTP avec Sendgrid
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
-    domain: 'localhost',
-    address: 'smtp.sendgrid.net',
-    port: 587,
-    authentication: :plain,
-    enable_starttls_auto: true
-  }
+  # Utiliser letter_opener pour le développement (ouvre les emails dans le navigateur)
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_options = { from: 'pepperwoood@gmail.com' }
-#   config.action_mailer.delivery_method = :letter_opener
-#   config.action_mailer.smtp_settings = {
-#     address: 'smtp.gmail.com',
-#     port: '587',
-#     domain: 'example.com',
-#     user_name: ENV['SMTP_USERNAME'],
-#     password: ENV['SMTP_PASSWORD'],
-#     authentication: 'plain',
-#     enable_starttls_auto: true
-#   }
+
+  # Configuration SMTP avec Sendgrid (pour la production)
+  # Décommentez et configurez SENDGRID_API_KEY si vous voulez utiliser SMTP en développement
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   user_name: 'apikey',
+  #   password: ENV['SENDGRID_API_KEY'],
+  #   domain: 'localhost',
+  #   address: 'smtp.sendgrid.net',
+  #   port: 587,
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
 
   # Configurer l'URL d'action mailer pour les environnements de développement
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }

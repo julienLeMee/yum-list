@@ -32,4 +32,7 @@ Rails.application.routes.draw do
     get '/friends', to: 'users#friends', as: :friends
     get '/users/:id/restaurants', to: 'users#friend_restaurants', as: :user_restaurants
     post 'friendships/:id/resend_request', to: 'friendships#resend_request', as: 'friendship_resend_request'
+    
+    get '/notifications', to: 'users#notifications', as: :notifications
+    patch '/notifications/:id/read', to: 'users#mark_notification_as_read', as: :mark_notification_read
   end

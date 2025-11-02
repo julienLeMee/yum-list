@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:show, :edit, :update, :logout]
+    before_action :authenticate_user!, only: [:show, :edit, :update, :logout, :notifications, :mark_notification_as_read]
     before_action :set_user, only: [:show, :edit, :update]
     before_action :set_pending_friend_requests
 
@@ -41,6 +41,21 @@ class UsersController < ApplicationController
       end
 
       @restaurants = @friend.restaurants
+    end
+
+    def notifications
+      @notifications = current_user.noticed_notifications
+      @unread_count = current_user.unread_notifications_count
+    end
+
+    def mark_notification_as_read
+      notification = Noticed::Notification.find(params[:id])
+      if notification.recipient == current_user
+        notification.mark_as_read!
+        redirect_to notifications_path, notice: "Notification marquée comme lue."
+      else
+        redirect_to notifications_path, alert: "Vous n'avez pas accès à cette notification."
+      end
     end
 
     private

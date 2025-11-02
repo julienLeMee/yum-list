@@ -20,6 +20,9 @@ Rails.application.configure do
  }
  config.action_mailer.default_options = { from: 'pepperwoood@gmail.com' }
 
+  # Configurer l'URL d'action mailer pour la production
+  config.action_mailer.default_url_options = { host: 'yum-list-aged-water-5075.fly.dev', protocol: 'https' }
+
   # Assurer que les erreurs de livraison sont levées
   config.action_mailer.raise_delivery_errors = true
 

@@ -4,53 +4,42 @@
     <div class="relative z-[100] side-menu" role="dialog" aria-modal="true">
       <div class="fixed bg-[--color--primary]"></div>
 
-      <div class="fixed flex bottom-0 w-full">
-        <div class="relative flex w-full flex-1 items-center justify-center">
-
-          <!-- Sidebar component, swap this element with another sidebar if you like -->
-         <div class="w-full flex grow flex-row gap-y-5 overflow-y-auto bg-[--color--primary--hover]/99 px-8 pb-4 lg:hidden shadow-2xl backdrop-blur-3xl">
-            <nav class="flex flex-1 flex-col">
-              <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                <li>
-                  <ul role="list" class="-mx-2 space-y-1 flex justify-between flex-wrap align-baseline">
-                    <li class="mt-auto">
-                      <!-- Current: "bg-red text-[--color--text--primary]", Default: "text-[--color--text--primary] hover:bg-white hover:text-black" -->
-                      <%= link_to restaurant_categories_path, class: "flex-col items-center text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-xs leading-6" do %>
-                        <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor">
-                            <path d="M14 20.4V14.6C14 14.2686 14.2686 14 14.6 14H20.4C20.7314 14 21 14.2686 21 14.6V20.4C21 20.7314 20.7314 21 20.4 21H14.6C14.2686 21 14 20.7314 14 20.4Z" stroke="currentColor" stroke-width="1.5"></path><path d="M3 20.4V14.6C3 14.2686 3.26863 14 3.6 14H9.4C9.73137 14 10 14.2686 10 14.6V20.4C10 20.7314 9.73137 21 9.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z" stroke="currentColor" stroke-width="1.5"></path><path d="M14 9.4V3.6C14 3.26863 14.2686 3 14.6 3H20.4C20.7314 3 21 3.26863 21 3.6V9.4C21 9.73137 20.7314 10 20.4 10H14.6C14.2686 10 14 9.73137 14 9.4Z" stroke="currentColor" stroke-width="1.5"></path><path d="M3 9.4V3.6C3 3.26863 3.26863 3 3.6 3H9.4C9.73137 3 10 3.26863 10 3.6V9.4C10 9.73137 9.73137 10 9.4 10H3.6C3.26863 10 3 9.73137 3 9.4Z" stroke="currentColor" stroke-width="1.5"></path>
-                        </svg>
-                        Grid
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-xs leading-6" do %>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 6h12M4 6.01l.01-.011M4 12.01l.01-.011M4 18.01l.01-.011M8 12h12M8 18h12"></path>
-                        </svg>
-                        All
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to tested_restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-xs leading-6" do %>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m7 12.5 3 3 7-7"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path>
-                        </svg>
-                        Tested
-                      <% end %>
-                    </li>
-                    <li>
-                      <%= link_to untested_restaurants_path, class: "flex-col items-center text-[--color--text--primary] hover:text-[--color--red] transition duration-200 ease-in-out group flex gap-x-3 rounded-full p-2 text-xs leading-6" do %>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
-                          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.5 10.677a2 2 0 0 0 2.823 2.823"></path><path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7.362 7.561C5.68 8.74 4.279 10.42 3 12c1.889 2.991 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 0 1-1.078 1.5"></path>
-                        </svg>
-                        Untested
-                      <% end %>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
+      <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
+        <div class="w-full bg-white border-t border-gray-200 shadow-lg">
+          <nav class="flex items-center justify-around px-2 py-2">
+            <%= link_to restaurant_categories_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(restaurant_categories_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
+              <svg width="22px" height="22px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="<%= 'fill-[--color--red]' if current_page?(restaurant_categories_path) %>">
+                <path d="M14 20.4V14.6C14 14.2686 14.2686 14 14.6 14H20.4C20.7314 14 21 14.2686 21 14.6V20.4C21 20.7314 20.7314 21 20.4 21H14.6C14.2686 21 14 20.7314 14 20.4Z" stroke="currentColor" stroke-width="<%= current_page?(restaurant_categories_path) ? '0' : '1.5' %>"></path>
+                <path d="M3 20.4V14.6C3 14.2686 3.26863 14 3.6 14H9.4C9.73137 14 10 14.2686 10 14.6V20.4C10 20.7314 9.73137 21 9.4 21H3.6C3.26863 21 3 20.7314 3 20.4Z" stroke="currentColor" stroke-width="<%= current_page?(restaurant_categories_path) ? '0' : '1.5' %>"></path>
+                <path d="M14 9.4V3.6C14 3.26863 14.2686 3 14.6 3H20.4C20.7314 3 21 3.26863 21 3.6V9.4C21 9.73137 20.7314 10 20.4 10H14.6C14.2686 10 14 9.73137 14 9.4Z" stroke="currentColor" stroke-width="<%= current_page?(restaurant_categories_path) ? '0' : '1.5' %>"></path>
+                <path d="M3 9.4V3.6C3 3.26863 3.26863 3 3.6 3H9.4C9.73137 3 10 3.26863 10 3.6V9.4C10 9.73137 9.73137 10 9.4 10H3.6C3.26863 10 3 9.73137 3 9.4Z" stroke="currentColor" stroke-width="<%= current_page?(restaurant_categories_path) ? '0' : '1.5' %>"></path>
+              </svg>
+              <span class="text-xs font-medium">Grid</span>
+            <% end %>
+            
+            <%= link_to restaurants_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(restaurants_path) && !current_page?(tested_restaurants_path) && !current_page?(untested_restaurants_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 6h12M4 6.01l.01-.011M4 12.01l.01-.011M4 18.01l.01-.011M8 12h12M8 18h12"></path>
+              </svg>
+              <span class="text-xs font-medium">All</span>
+            <% end %>
+            
+            <%= link_to tested_restaurants_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(tested_restaurants_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m7 12.5 3 3 7-7"></path>
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"></path>
+              </svg>
+              <span class="text-xs font-medium">Tested</span>
+            <% end %>
+            
+            <%= link_to untested_restaurants_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(untested_restaurants_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.5 10.677a2 2 0 0 0 2.823 2.823"></path>
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7.362 7.561C5.68 8.74 4.279 10.42 3 12c1.889 2.991 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 0 1-1.078 1.5"></path>
+              </svg>
+              <span class="text-xs font-medium">Untested</span>
+            <% end %>
+          </nav>
         </div>
       </div>
     </div>

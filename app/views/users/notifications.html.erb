@@ -1,0 +1,53 @@
+<main class="pt-16 pb-28 lg:pl-72">
+  <div class="px-4 sm:px-6 lg:px-8">
+
+    <%= render 'shared/flashes' %>
+
+    <h1 class="mt-4 pt-4 text-2xl font-semibold text-[--color--text--primary]">Notifications</h1>
+
+    <% if @notifications.any? %>
+      <div class="mt-6 space-y-4">
+        <% @notifications.each do |notification| %>
+          <% event = notification.event %>
+          <% notifier_class = event.type.constantize %>
+          <% notifier = notifier_class.with(event.params) %>
+          <div class="flex items-start justify-between gap-4 p-4 mb-6 text-base rounded-xl font-semibold text-black bg-white shadow-md <%= 'opacity-60' if notification.read_at.present? %>">
+            <div class="flex-1">
+              <p class="text-[--color--text--primary]">
+                <% message_parts = notifier.message.split("\n") %>
+                <span class="text-sm"><%= message_parts[0] %></span>
+                <% if message_parts[1] %>
+                  <br>
+                  <span class="text-base font-semibold"><%= message_parts[1] %></span>
+                <% end %>
+              </p>
+              <% if notifier.respond_to?(:url) && notifier.url.present? %>
+                <%= link_to notifier.url, class: "mt-2 inline-block text-sm text-[--color--red] hover:text-[--color--burgundy]" do %>
+                  Voir le restaurant →
+                <% end %>
+              <% end %>
+              <p class="mt-2 text-xs text-gray-500">
+                <%= time_ago_in_words(notification.created_at) %> ago
+              </p>
+            </div>
+            <% if notification.read_at.nil? %>
+              <%= link_to mark_notification_read_path(notification), method: :patch, class: "flex-shrink-0 text-sm text-[--color--red] hover:text-[--color--burgundy]" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+                  <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"></path>
+                </svg>
+              <% end %>
+            <% else %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="green">
+                <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"></path>
+              </svg>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="mt-6 text-[--color--text--primary]">Vous n'avez aucune notification pour le moment.</p>
+    <% end %>
+
+  </div>
+</main>
+

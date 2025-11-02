@@ -23,20 +23,22 @@ class FriendRequestNotificationNotifier < ApplicationNotifier
   # required_param :message
   deliver_by :database
   
-  deliver_by :custom, class: "WebPushChannel" do |config|
-    config.enqueue = false
-  end
+  # Désactivé temporairement - notifications push
+  # deliver_by :custom, class: "WebPushChannel" do |config|
+  #   config.enqueue = false
+  # end
 
   def message
     sender_name = params[:sender].email
     "#{sender_name} vous a envoyé une demande d'ami"
   end
   
-  def params_with_defaults
-    super.merge(
-      title: "Nouvelle demande d'ami",
-      body: message,
-      url: Rails.application.routes.url_helpers.pending_requests_friendships_url
-    )
-  end
+  # Plus nécessaire sans les notifications push
+  # def params_with_defaults
+  #   super.merge(
+  #     title: "Nouvelle demande d'ami",
+  #     body: message,
+  #     url: Rails.application.routes.url_helpers.pending_requests_friendships_url
+  #   )
+  # end
 end

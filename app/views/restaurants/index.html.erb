@@ -40,19 +40,18 @@
       <% end %>
     </div>
 
-    <% if @restaurants.any? %>
-        <% last_restaurant = @restaurants.last %>
-        <%= link_to restaurant_path(last_restaurant), class: "flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-gray-200 transition-colors" do %>
+    <% if @restaurants.any? && @last_added_restaurant.present? %>
+        <%= link_to restaurant_path(@last_added_restaurant), class: "flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-gray-200 transition-colors" do %>
           <div class="relative w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
-            <% if last_restaurant.image_url.present? %>
-              <%= image_tag last_restaurant.image_url, class: "w-full h-full object-cover" %>
+            <% if @last_added_restaurant.image_url.present? %>
+              <%= image_tag @last_added_restaurant.image_url, class: "w-full h-full object-cover" %>
             <% else %>
               <div class="w-full h-full bg-gradient-to-br from-gray-300 to-gray-200"></div>
             <% end %>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-[11px] text-gray-500 font-medium mb-0.5">LAST ADDED</p>
-            <p class="text-[14px] font-semibold text-gray-900 truncate"><%= last_restaurant.name %></p>
+            <p class="text-[11px] text-gray-500 font-medium mb-0.5">DERNIER AJOUTÉ</p>
+            <p class="text-[14px] font-semibold text-gray-900 truncate"><%= @last_added_restaurant.name %></p>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" stroke-width="2" viewBox="0 0 24 24" class="text-gray-400">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path>
@@ -63,7 +62,7 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-6 mb-1">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-8 mb-4">
           <p class="text-[--color--text--primary] font-medium">
             <%= category %>
           </p>

@@ -34,6 +34,9 @@ def index
       logger.debug "Affichage des restaurants de l'utilisateur actuel"
     end
     
+    # Récupérer le dernier restaurant ajouté (indépendamment des filtres)
+    @last_added_restaurant = @user.restaurants.order(created_at: :desc).first
+    
     # Récupérer automatiquement les images manquantes en arrière-plan (max 5 à la fois)
     # Utiliser une requête SQL pour éviter de charger tous les restaurants
     restaurants_without_images = @restaurants_relation
@@ -53,12 +56,16 @@ def index
 
   def tested_restaurants
     @restaurants = current_user.restaurants.where(tested: true)
+    # Récupérer le dernier restaurant ajouté (indépendamment des filtres)
+    @last_added_restaurant = current_user.restaurants.order(created_at: :desc).first
     # Récupérer automatiquement les images manquantes en arrière-plan
     fetch_missing_images_for_restaurants(@restaurants)
   end
 
   def untested_restaurants
     @restaurants = current_user.restaurants.where(tested: false)
+    # Récupérer le dernier restaurant ajouté (indépendamment des filtres)
+    @last_added_restaurant = current_user.restaurants.order(created_at: :desc).first
     # Récupérer automatiquement les images manquantes en arrière-plan
     fetch_missing_images_for_restaurants(@restaurants)
   end

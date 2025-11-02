@@ -13,7 +13,7 @@ class NewRestaurantNotificationNotifier < ApplicationNotifier
   def message
     sender_name = params[:sender].name.present? ? params[:sender].name : params[:sender].email
     restaurant_name = params[:restaurant].name
-    "#{sender_name} a ajouté un nouveau restaurant : #{restaurant_name}"
+    "#{sender_name} a ajouté un nouveau restaurant :\n#{restaurant_name}"
   end
 
   def url

@@ -9,28 +9,22 @@
       <div class="mt-6 space-y-4">
         <% @notifications.each do |notification| %>
           <% 
-            begin
-              notifier = notification.to_notifier
-              message_text = notifier.message
-              notification_url = notifier.url if notifier.respond_to?(:url)
-            rescue => e
-              # En cas d'erreur, on affiche un message par défaut
-              message_text = "Vous avez une nouvelle notification"
-              notification_url = nil
-            end
+            event = notification.event
+            notifier_class = event.type.constantize
+            notifier = notifier_class.with(event.params)
           %>
           <div class="flex items-start justify-between gap-4 p-4 mb-6 text-base rounded-xl font-semibold text-black bg-white shadow-md <%= 'opacity-60' if notification.read_at.present? %>">
             <div class="flex-1">
               <p class="text-[--color--text--primary]">
-                <% message_parts = message_text.to_s.split("\n") %>
+                <% message_parts = notifier.message.split("\n") %>
                 <span class="text-sm"><%= message_parts[0] %></span>
                 <% if message_parts[1] %>
                   <br>
                   <span class="text-base font-semibold"><%= message_parts[1] %></span>
                 <% end %>
               </p>
-              <% if notification_url.present? %>
-                <%= link_to notification_url, class: "mt-2 inline-block text-sm text-[--color--red] hover:text-[--color--burgundy]" do %>
+              <% if notifier.respond_to?(:url) && notifier.url.present? %>
+                <%= link_to notifier.url, class: "mt-2 inline-block text-sm text-[--color--red] hover:text-[--color--burgundy]" do %>
                   Voir le restaurant →
                 <% end %>
               <% end %>

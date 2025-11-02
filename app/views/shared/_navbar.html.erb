@@ -1,4 +1,4 @@
-<% if user_signed_in? %>
+<% if user_signed_in? && !current_page?(root_path) %>
   <!-- Menu du bas mobile - DOIT être en dehors du conteneur relatif pour rester fixé -->
   <div class="fixed bottom-0 left-0 right-0 z-[999] lg:hidden">
     <div class="w-full bg-white border-t border-gray-200 shadow-lg">
@@ -44,6 +44,7 @@
     </div>
   </div>
 
+  <% unless current_page?(root_path) %>
   <div>
     <!-- Static sidebar for desktop -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col border-r-2 border-white/75">
@@ -122,6 +123,7 @@
       </div>
     </div>
 
+    <!-- Header mobile en haut -->
     <div class="fixed w-full top-0 z-40 flex items-center gap-x-6 bg-[--color--primary] px-4 pt-4 pb-2 shadow-lg sm:px-6 lg:hidden border-[--color--text--primary] border-1">
       <div class="flex-1 text-sm font-semibold leading-6 text-[--color--text--primary]">Yum List</div>
       <% if user_signed_in? %>
@@ -156,8 +158,8 @@
       <% end %>
       </div>
     </div>
-
   </div>
-
+  <% end %>
+  <!-- Fin du unless current_page?(root_path) -->
 
 <% end %>

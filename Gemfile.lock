@@ -161,6 +161,9 @@ GEM
     noticed (2.4.3)
       rails (>= 6.1.0)
     orm_adapter (0.5.0)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-linux)
     public_suffix (5.0.3)
     puma (6.4.2)
       nio4r (~> 2.0)
@@ -280,6 +283,7 @@ DEPENDENCIES
   jbuilder
   letter_opener
   noticed
+  pg (~> 1.5)
   puma (>= 5.6.8)
   rails (~> 7.0.4, >= 7.0.4.2)
   selenium-webdriver

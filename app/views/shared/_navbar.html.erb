@@ -1,12 +1,8 @@
 <% if user_signed_in? %>
-  <div>
-    <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-    <div class="relative z-[100] side-menu" role="dialog" aria-modal="true">
-      <div class="fixed bg-[--color--primary]"></div>
-
-      <div class="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-        <div class="w-full bg-white border-t border-gray-200 shadow-lg">
-          <nav class="flex items-center justify-around px-2 py-2">
+  <!-- Menu du bas mobile - DOIT être en dehors du conteneur relatif pour rester fixé -->
+  <div class="fixed bottom-0 left-0 right-0 z-[999] lg:hidden">
+    <div class="w-full bg-white border-t border-gray-200 shadow-lg">
+      <nav class="flex items-center justify-around px-2 py-2">
             <%= link_to restaurant_categories_path, class: "flex flex-col items-center justify-center gap-1 p-2 min-w-[60px] rounded-lg transition-colors #{current_page?(restaurant_categories_path) ? 'text-[--color--red] bg-[--color--red]/10' : 'text-gray-600 hover:text-[--color--red]'}" do %>
               <svg width="22px" height="22px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="<%= 'fill-[--color--red]' if current_page?(restaurant_categories_path) %>">
                 <path d="M14 20.4V14.6C14 14.2686 14.2686 14 14.6 14H20.4C20.7314 14 21 14.2686 21 14.6V20.4C21 20.7314 20.7314 21 20.4 21H14.6C14.2686 21 14 20.7314 14 20.4Z" stroke="currentColor" stroke-width="<%= current_page?(restaurant_categories_path) ? '0' : '1.5' %>"></path>
@@ -44,11 +40,11 @@
               <span class="text-xs font-medium">Map</span>
             <% end %>
 
-          </nav>
-        </div>
-      </div>
+      </nav>
     </div>
+  </div>
 
+  <div>
     <!-- Static sidebar for desktop -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col border-r-2 border-white/75">
       <!-- Sidebar component, swap this element with another sidebar if you like -->

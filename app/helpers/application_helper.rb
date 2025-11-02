@@ -16,6 +16,7 @@ module ApplicationHelper
         ['users', 'update'],
         ['users', 'friend_restaurants'],
         ['users', 'friends'],
+        ['users', 'notifications'],
         ['pages', 'map']
       '#F5F5F5' # Couleur spécifique pour ces contrôleurs et actions
     else

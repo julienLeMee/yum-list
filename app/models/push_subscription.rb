@@ -15,6 +15,8 @@ class PushSubscription < ApplicationRecord
       badge: '/yum-list-logo.png'
     }
     
+    Rails.logger.info("[PushSubscription] Envoi push: title=#{title}, body=#{body}, url=#{url}")
+    
     WebPush.payload_send(
       message: message.to_json,
       endpoint: endpoint,
@@ -26,8 +28,18 @@ class PushSubscription < ApplicationRecord
         private_key: ENV['VAPID_PRIVATE_KEY']
       }
     )
-  rescue WebPush::InvalidSubscription, WebPush::ExpiredSubscription
-    # Si l'abonnement est invalide ou expiré, on le supprime
+    
+    Rails.logger.info("[PushSubscription] Push envoyé avec succès")
+  rescue WebPush::InvalidSubscription => e
+    Rails.logger.error("[PushSubscription] Abonnement invalide, suppression: #{e.message}")
     destroy
+    raise # Re-raise pour que WebPushChannel le logge aussi
+  rescue WebPush::ExpiredSubscription => e
+    Rails.logger.error("[PushSubscription] Abonnement expiré, suppression: #{e.message}")
+    destroy
+    raise # Re-raise pour que WebPushChannel le logge aussi
+  rescue => e
+    Rails.logger.error("[PushSubscription] Erreur inattendue lors de l'envoi: #{e.class.name} - #{e.message}")
+    raise # Re-raise pour que WebPushChannel le logge aussi
   end
 end

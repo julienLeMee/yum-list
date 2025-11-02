@@ -16,48 +16,95 @@ export default class extends Controller {
 
   async waitForServiceWorker(maxAttempts = 10, delay = 500) {
     if (!('serviceWorker' in navigator)) {
-      console.log('Service Worker non supporté dans ce navigateur')
+      console.log('❌ Service Worker non supporté dans ce navigateur')
       return false
+    }
+
+    // Vérifier s'il y a une erreur d'enregistrement globale
+    if (window.serviceWorkerError) {
+      console.error('❌ Erreur d\'enregistrement du Service Worker détectée:', window.serviceWorkerError)
+      return false
+    }
+
+    // Si window.serviceWorkerReady existe (défini dans le layout), l'utiliser
+    if (window.serviceWorkerReady) {
+      try {
+        await window.serviceWorkerReady
+        console.log('✅ Service Worker prêt via window.serviceWorkerReady!')
+        return true
+      } catch (e) {
+        console.warn('⚠️ Erreur avec window.serviceWorkerReady:', e)
+        // Continuer avec la méthode normale
+      }
     }
 
     // Si le service worker est déjà prêt, on retourne immédiatement
     try {
       const existingRegistration = await navigator.serviceWorker.getRegistration()
       if (existingRegistration) {
+        console.log('📋 Service Worker enregistré trouvé, vérification de l\'état...')
+        console.log('📋 État - installing:', existingRegistration.installing?.state)
+        console.log('📋 État - waiting:', existingRegistration.waiting?.state)
+        console.log('📋 État - active:', existingRegistration.active?.state)
+        
         try {
           await navigator.serviceWorker.ready
           console.log('✅ Service Worker déjà prêt!')
           return true
         } catch (e) {
-          console.log('Service Worker enregistré mais pas encore prêt, attente...')
+          console.log('⏳ Service Worker enregistré mais pas encore prêt, attente...', e)
         }
+      } else {
+        console.log('⚠️ Aucun Service Worker enregistré trouvé')
       }
     } catch (e) {
-      console.log('Vérification initiale du Service Worker...')
+      console.log('⚠️ Erreur lors de la vérification initiale:', e)
     }
 
     // Sinon, on attend avec plusieurs tentatives
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        console.log(`Tentative ${attempt}/${maxAttempts} pour trouver le Service Worker...`)
+        console.log(`🔄 Tentative ${attempt}/${maxAttempts} pour trouver le Service Worker...`)
         
         // Vérifier si le service worker est maintenant enregistré
         const registration = await navigator.serviceWorker.getRegistration()
         
         if (registration) {
           console.log('✅ Service Worker trouvé:', registration.scope)
+          console.log('📋 Détails - installing:', registration.installing?.state, 'waiting:', registration.waiting?.state, 'active:', registration.active?.state)
+          
+          // Si le service worker est actif, on peut l'utiliser directement
+          if (registration.active && registration.active.state === 'activated') {
+            console.log('✅ Service Worker déjà activé!')
+            return true
+          }
           
           // Attendre que le service worker soit activé (ready)
           try {
-            await navigator.serviceWorker.ready
+            // Utiliser Promise.race avec un timeout pour éviter d'attendre indéfiniment
+            const readyPromise = navigator.serviceWorker.ready
+            const timeoutPromise = new Promise((_, reject) => 
+              setTimeout(() => reject(new Error('Timeout')), delay * 2)
+            )
+            
+            await Promise.race([readyPromise, timeoutPromise])
             console.log('✅ Service Worker prêt et activé!')
             return true
           } catch (readyError) {
-            console.log('Service Worker enregistré mais pas encore ready, attente...', readyError)
+            if (readyError.message === 'Timeout') {
+              console.log(`⏳ Service Worker pas encore ready (timeout après ${delay * 2}ms), tentative ${attempt}/${maxAttempts}...`)
+            } else {
+              console.log('⏳ Service Worker enregistré mais pas encore ready:', readyError.message)
+            }
             // On continue la boucle pour réessayer
           }
         } else {
-          console.log(`Service Worker pas encore enregistré (tentative ${attempt}/${maxAttempts})`)
+          console.log(`⚠️ Service Worker pas encore enregistré (tentative ${attempt}/${maxAttempts})`)
+          // Vérifier s'il y a une erreur globale
+          if (window.serviceWorkerError) {
+            console.error('❌ Erreur d\'enregistrement détectée, arrêt des tentatives')
+            return false
+          }
         }
         
         // Attendre avant la prochaine tentative (sauf si c'était la dernière)
@@ -65,14 +112,15 @@ export default class extends Controller {
           await new Promise(resolve => setTimeout(resolve, delay))
         }
       } catch (error) {
-        console.error(`Erreur lors de la tentative ${attempt}:`, error)
+        console.error(`❌ Erreur lors de la tentative ${attempt}:`, error)
         if (attempt < maxAttempts) {
           await new Promise(resolve => setTimeout(resolve, delay))
         }
       }
     }
 
-    console.error('❌ Service Worker non trouvé après', maxAttempts, 'tentatives')
+    console.error(`❌ Service Worker non trouvé après ${maxAttempts} tentatives`)
+    console.error('💡 Vérifiez la console pour les erreurs d\'enregistrement du Service Worker')
     return false
   }
 

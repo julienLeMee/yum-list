@@ -26,29 +26,65 @@
     <!-- Enregistrement précoce du Service Worker -->
     <script>
         // Enregistrer le Service Worker dès que possible (avant le chargement de la page)
-        if ('serviceWorker' in navigator) {
-            // Enregistrer immédiatement, sans attendre l'événement load
-            navigator.serviceWorker.register('/service-worker.js', {
-                scope: '/'
-            }).then(function(registration) {
-                console.log('✅ ServiceWorker enregistré avec succès, scope:', registration.scope);
-                
-                // Vérifier s'il y a des mises à jour
-                registration.addEventListener('updatefound', function() {
-                    const newWorker = registration.installing;
-                    console.log('Nouveau Service Worker trouvé, installation...');
-                    newWorker.addEventListener('statechange', function() {
-                        if (newWorker.state === 'activated') {
-                            console.log('✅ Nouveau Service Worker activé!');
-                        }
+        (function() {
+            if (!('serviceWorker' in navigator)) {
+                console.warn('⚠️ Service Worker non supporté dans ce navigateur');
+                return;
+            }
+
+            // Vérifier d'abord si le service worker est accessible
+            fetch('/service-worker.js', { method: 'HEAD' })
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Service Worker non accessible: ' + response.status);
+                    }
+                    console.log('✅ Service Worker fichier accessible');
+                    
+                    // Enregistrer le service worker
+                    return navigator.serviceWorker.register('/service-worker.js', {
+                        scope: '/'
                     });
+                })
+                .then(function(registration) {
+                    console.log('✅ ServiceWorker enregistré avec succès, scope:', registration.scope);
+                    console.log('📋 État du Service Worker:', registration.active ? 'actif' : 'en attente');
+                    
+                    // Vérifier l'état du service worker
+                    if (registration.installing) {
+                        console.log('⏳ Service Worker en cours d\'installation...');
+                        registration.installing.addEventListener('statechange', function() {
+                            console.log('📋 État change:', this.state);
+                            if (this.state === 'activated') {
+                                console.log('✅ Service Worker activé!');
+                            }
+                        });
+                    } else if (registration.waiting) {
+                        console.log('⏳ Service Worker en attente...');
+                    } else if (registration.active) {
+                        console.log('✅ Service Worker déjà actif!');
+                    }
+                    
+                    // Vérifier s'il y a des mises à jour
+                    registration.addEventListener('updatefound', function() {
+                        const newWorker = registration.installing;
+                        console.log('🔄 Nouveau Service Worker trouvé, installation...');
+                        newWorker.addEventListener('statechange', function() {
+                            console.log('📋 Nouveau SW état:', this.state);
+                            if (this.state === 'activated') {
+                                console.log('✅ Nouveau Service Worker activé!');
+                            }
+                        });
+                    });
+                    
+                    // Marquer le service worker comme disponible globalement
+                    window.serviceWorkerReady = registration.ready || Promise.resolve(registration);
+                })
+                .catch(function(err) {
+                    console.error('❌ Erreur lors de l\'enregistrement du ServiceWorker:', err);
+                    console.error('📋 Détails:', err.message, err.stack);
+                    window.serviceWorkerError = err;
                 });
-            }).catch(function(err) {
-                console.error('❌ Erreur lors de l\'enregistrement du ServiceWorker:', err);
-            });
-        } else {
-            console.warn('⚠️ Service Worker non supporté dans ce navigateur');
-        }
+        })();
     </script>
     
     <%= javascript_importmap_tags %>

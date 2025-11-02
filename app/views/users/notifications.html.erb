@@ -3,7 +3,9 @@
 
     <%= render 'shared/flashes' %>
 
-    <h1 class="mt-4 pt-4 text-2xl font-semibold text-[--color--text--primary]">Notifications</h1>
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-2 text-xl font-semibold leading-9 tracking-tight text-[#333]">Notifications</h2>
+    </div>
 
     <% if @notifications.any? %>
       <div class="mt-6 space-y-4">

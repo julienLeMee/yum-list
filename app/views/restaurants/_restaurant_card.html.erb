@@ -54,9 +54,9 @@
       
         <!-- Adresse sur 2 lignes -->
         <% if restaurant.address.present? %>
-          <div class="text-[11px] text-gray-500">
-            <span class="leading-relaxed line-clamp-2"><%= truncate(restaurant.address, length: 50) %></span>
-          </div>
+          <p class="text-[11px] text-gray-500 leading-relaxed line-clamp-2 max-w-[80%]">
+            <%= restaurant.address %>
+          </p>
         <% end %>
     </div>
   </div>

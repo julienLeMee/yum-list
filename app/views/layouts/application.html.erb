@@ -45,12 +45,27 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-            navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function(err) {
-                console.log('ServiceWorker registration failed: ', err);
+                navigator.serviceWorker.register('/service-worker.js', {
+                    scope: '/'
+                }).then(function(registration) {
+                    console.log('✅ ServiceWorker enregistré avec succès, scope:', registration.scope);
+                    
+                    // Vérifier s'il y a des mises à jour
+                    registration.addEventListener('updatefound', function() {
+                        const newWorker = registration.installing;
+                        console.log('Nouveau Service Worker trouvé, installation...');
+                        newWorker.addEventListener('statechange', function() {
+                            if (newWorker.state === 'activated') {
+                                console.log('✅ Nouveau Service Worker activé!');
+                            }
+                        });
+                    });
+                }).catch(function(err) {
+                    console.error('❌ Erreur lors de l\'enregistrement du ServiceWorker:', err);
+                });
             });
-            });
+        } else {
+            console.warn('⚠️ Service Worker non supporté dans ce navigateur');
         }
     </script>
 </html>

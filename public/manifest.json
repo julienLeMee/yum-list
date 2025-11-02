@@ -1,19 +1,24 @@
 {
     "name": "Yum List",
-    "short_name": "App",
+    "short_name": "Yum List",
+    "description": "Organize your favorite restaurants with friends!",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#FFFFFF",
+    "theme_color": "#B1454A",
+    "orientation": "portrait-primary",
     "icons": [
       {
         "src": "/images/yum-list-new-logo.jpg",
         "type": "image/png",
-        "sizes": "192x192"
+        "sizes": "192x192",
+        "purpose": "any maskable"
       },
       {
         "src": "/images/yum-list-new-logo.jpg",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "512x512",
+        "purpose": "any maskable"
       }
     ]
   }

@@ -5,6 +5,38 @@
 
     <h1 class="mt-4 pt-4 text-2xl font-semibold text-[--color--text--primary]">Notifications</h1>
 
+    <!-- Section Notifications Push -->
+    <div class="mt-6 p-6 bg-white rounded-xl shadow-md" data-controller="push-notifications">
+      <div class="flex items-start justify-between gap-4">
+        <div class="flex-1">
+          <h2 class="text-lg font-semibold text-[--color--text--primary] flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke-width="1.5" viewBox="0 0 24 24" color="currentColor">
+              <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M18 8.4c0-1.697-.632-3.325-1.757-4.525C15.117 2.675 13.59 2 12 2c-1.591 0-3.117.674-4.243 1.875C6.632 5.075 6 6.703 6 8.4c0 5.3-2 7.6-2 7.6h16s-2-2.3-2-7.6ZM13.73 21a1.999 1.999 0 0 1-3.46 0"></path>
+            </svg>
+            Notifications Push
+          </h2>
+          <p class="mt-2 text-sm text-gray-600">
+            Recevez des notifications en temps réel sur votre appareil, même lorsque vous n'êtes pas sur l'application.
+          </p>
+          <p class="mt-1 text-xs text-gray-500">
+            📱 <strong>iPhone :</strong> Installez l'application sur votre écran d'accueil pour activer les notifications.
+            <br>
+            📱 <strong>Android :</strong> Les notifications fonctionnent directement dans votre navigateur.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <button 
+          data-push-notifications-target="button"
+          data-action="click->push-notifications#toggleNotifications"
+          class="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg font-semibold transition-colors duration-200 shadow-md hover:shadow-lg">
+          🔕 Activer les notifications
+        </button>
+        <p data-push-notifications-target="status" class="mt-2 text-sm"></p>
+      </div>
+    </div>
+
     <% if @notifications.any? %>
       <div class="mt-6 space-y-4">
         <% @notifications.each do |notification| %>

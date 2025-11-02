@@ -1,32 +1,9 @@
 <main class="pt-16 pb-28 lg:pl-72">
   <div class="px-4 sm:px-6 lg:px-8">
 
-    <% if @restaurants.any? %>
-      <%= form_with(url: restaurants_path, method: :get, local: true, id: "search-form", html: { class: "mt-4" }) do %>
-        <div class="relative my-3 flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" stroke-width="2.5" viewBox="0 0 24 24" class="absolute left-3.5 text-gray-500 pointer-events-none z-10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M17 17l4 4M3 11a8 8 0 1 0 16 0 8 8 0 0 0-16 0Z"></path>
-          </svg>
-          <input
-            type="text"
-            name="query"
-            placeholder="Search..."
-            class="w-full bg-gray-100/80 rounded-lg px-4 py-0.5 pl-10 pr-10 text-[15px] placeholder-gray-500 focus:outline-none focus:bg-gray-100 transition-colors border-0"
-            value="<%= params[:query] %>"
-            id="search-input"
-          >
-          <% if params[:query].present? %>
-            <%= link_to restaurants_path, class: 'absolute right-3.5 w-5 h-5 flex items-center justify-center rounded-full bg-gray-400 hover:bg-gray-500 transition z-10', method: :get do %>
-              <svg width="10px" height="10px" stroke-width="3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                <path d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-
-
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-2 text-xl font-semibold leading-9 tracking-tight text-[#333]"><%= pluralize(@restaurants.count, "restaurant") %> in your list</h2>
+    </div>
 
     <div class="gap-2 my-4 overflow-x-auto w-full grid grid-flow-col auto-cols-max hide-scrollbar">
       <% categories = [] %>
@@ -62,8 +39,8 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-8 mb-4">
-          <p class="text-[--color--text--primary] font-medium">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-8 mb-2">
+          <p class="text-[--color--text--primary] font-bold">
             <%= category %>
           </p>
         </div>

@@ -14,8 +14,8 @@
     <!-- Your content -->
     <% if @restaurants.present? %>
       <% @restaurants.group_by(&:category).each do |category, restaurants| %>
-        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-8 mb-4">
-          <p class="text-[--color--text--primary] font-medium">
+        <div id="<%= category.parameterize %>" class="flex items-center justify-between mt-8 mb-2">
+          <p class="text-[--color--text--primary] font-bold">
             <%= category %>
           </p>
         </div>

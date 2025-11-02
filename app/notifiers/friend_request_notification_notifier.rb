@@ -22,8 +22,21 @@ class FriendRequestNotificationNotifier < ApplicationNotifier
   #
   # required_param :message
   deliver_by :database
+  
+  deliver_by :custom, class: "WebPushChannel" do |config|
+    config.enqueue = false
+  end
 
   def message
-    "#{params[:sender].email} sent you a friend request."
+    sender_name = params[:sender].email
+    "#{sender_name} vous a envoyé une demande d'ami"
+  end
+  
+  def params_with_defaults
+    super.merge(
+      title: "Nouvelle demande d'ami",
+      body: message,
+      url: Rails.application.routes.url_helpers.pending_requests_friendships_url
+    )
   end
 end

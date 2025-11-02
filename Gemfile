@@ -26,6 +26,8 @@ gem 'sendgrid-ruby'
 
 gem 'noticed'
 
+gem 'web-push'
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 

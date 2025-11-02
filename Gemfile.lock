@@ -68,6 +68,7 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
+    base64 (0.3.0)
     bcrypt (3.1.19)
     bigdecimal (3.1.8)
     bindex (0.8.1)
@@ -122,6 +123,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jwt (3.1.2)
+      base64
     launchy (3.0.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -160,6 +163,7 @@ GEM
       racc (~> 1.4)
     noticed (2.4.3)
       rails (>= 6.1.0)
+    openssl (3.3.2)
     orm_adapter (0.5.0)
     pg (1.6.2-aarch64-linux)
     pg (1.6.2-arm64-darwin)
@@ -253,6 +257,9 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    web-push (3.0.2)
+      jwt (~> 3.0)
+      openssl (~> 3.0)
     webdrivers (5.2.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
@@ -298,6 +305,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  web-push
   webdrivers
 
 RUBY VERSION

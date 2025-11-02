@@ -35,4 +35,9 @@ Rails.application.routes.draw do
     
     get '/notifications', to: 'users#notifications', as: :notifications
     patch '/notifications/:id/read', to: 'users#mark_notification_as_read', as: :mark_notification_read
+    
+    # Routes pour les notifications push
+    get '/push_subscriptions/vapid_public_key', to: 'push_subscriptions#vapid_public_key'
+    post '/push_subscriptions', to: 'push_subscriptions#create'
+    delete '/push_subscriptions', to: 'push_subscriptions#destroy'
   end

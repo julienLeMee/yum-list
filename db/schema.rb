@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_11_02_041151) do
+ActiveRecord::Schema[7.0].define(version: 2025_11_02_181157) do
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "friend_id", null: false
@@ -52,6 +52,17 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_02_041151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "push_subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "endpoint", null: false
+    t.text "p256dh", null: false
+    t.text "auth", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "endpoint"], name: "index_push_subscriptions_on_user_id_and_endpoint", unique: true
+    t.index ["user_id"], name: "index_push_subscriptions_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -98,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_11_02_041151) do
   add_foreign_key "friendships", "users"
   add_foreign_key "friendships", "users", column: "friend_id"
   add_foreign_key "notifications", "users"
+  add_foreign_key "push_subscriptions", "users"
   add_foreign_key "restaurants", "users"
   add_foreign_key "reviews", "restaurants"
 end
